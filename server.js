@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node ss
 require('babel-register');
 require('babel-polyfill');
 const startServer = require('./src/server').startServer;
