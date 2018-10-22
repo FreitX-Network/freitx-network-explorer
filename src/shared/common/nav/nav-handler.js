@@ -21,21 +21,21 @@ export function formatBlockHistory(seconds) {
 export function setNavRoutes(server) {
   const {gateways: {iotexCore, coinmarketcap}} = server;
 
-  // async function getStatisticApi(ctx, next) {
-  //   try {
-  //     const statistic = await iotexCore.getCoinStatistic();
-  //     const block1 = await iotexCore.getLastBlocksByRange(1, 1);
-  //     const latestBlock = await iotexCore.getLastBlocksByRange(statistic.height, 1);
-  //     statistic.bh = formatBlockHistory(
-  //       block1[0] && latestBlock[0] && latestBlock[0].height >= block1[0].height ?
-  //         latestBlock[0].timestamp - block1[0].timestamp : 0
-  //     );
-  //
-  //     ctx.body = {ok: true, statistic};
-  //   } catch (error) {
-  //     ctx.body = {ok: false, error: {code: 'FAIL_GET_STATISTIC', message: 'nav.error.statistic'}};
-  //   }
-  // }
+  async function getStatisticApi(ctx, next) {
+    try {
+      const statistic = await iotexCore.getCoinStatistic();
+      const block1 = await iotexCore.getLastBlocksByRange(1, 1);
+      const latestBlock = await iotexCore.getLastBlocksByRange(statistic.height, 1);
+      statistic.bh = formatBlockHistory(
+        block1[0] && latestBlock[0] && latestBlock[0].height >= block1[0].height ?
+          latestBlock[0].timestamp - block1[0].timestamp : 0
+      );
+
+      ctx.body = {ok: true, statistic};
+    } catch (error) {
+      ctx.body = {ok: false, error: {code: 'FAIL_GET_STATISTIC', message: 'nav.error.statistic'}};
+    }
+  }
 
   async function getCoinPrice(ctx, next) {
     try {

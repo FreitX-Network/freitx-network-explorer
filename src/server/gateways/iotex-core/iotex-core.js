@@ -102,8 +102,8 @@ export interface IGExplorer {
   // get block by block ID
   getBlockByID(blockId: string): GBlock,
 
-  // // get statistic of iotx
-  // getCoinStatistic(): GCoinStatistic,
+  // get statistic of iotx
+  getCoinStatistic(): GCoinStatistic,
 
   // get consensus metrics
   getConsensusMetrics(): GConsensusMetrics,
@@ -420,12 +420,12 @@ export class IotexCoreExplorer {
     });
   }
 
-  // // get statistic of iotx
-  // async getCoinStatistic(): Promise<TCoinStatistic> {
-  //   return this.fetchValue('coinStatistic', null, async() => {
-  //     return await promisify(this.exp.getCoinStatistic)();
-  //   });
-  // }
+  // get statistic of iotx
+  async getCoinStatistic(): Promise<TCoinStatistic> {
+    return this.fetchValue('coinStatistic', null, async() => {
+      return await promisify(this.exp.getCoinStatistic)();
+    });
+  }
 
   // get consensus metrics
   async getConsensusMetrics(): Promise<TConsensusMetrics> {
