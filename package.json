@@ -87,7 +87,7 @@
     "config": "^1.26.1",
     "copy-to-clipboard": "^3.0.8",
     "deep-extend": "^0.5.1",
-    "dotenv": "^6.0.0",
+    "dotenv": "^6.1.0",
     "dotty": "0.0.2",
     "ethereumjs-abi": "^0.6.5",
     "extend": "^3.0.0",
