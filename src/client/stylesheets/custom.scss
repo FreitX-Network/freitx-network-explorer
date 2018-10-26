@@ -2,7 +2,7 @@
   background-color: #151b21 !important;
   border-width: 1px;
   border-style: solid;
-  border-color: #73fbe0;
+  border-color: #18C3EA;
   border-radius: 0 !important;
 }
 
@@ -11,11 +11,11 @@
 }
 
 .force-teal {
-  color: #73fbe0 !important;
+  color: #18C3EA !important;
 }
 
 .title {
-  color: #73fbe0;
+  color: #18C3EA;
 }
 
 .subtitle {
@@ -23,7 +23,7 @@
 }
 
 .teal-text {
-  color: #73fbe0 !important;
+  color: #18C3EA !important;
 }
 
 .dashboard-wrap {
@@ -62,7 +62,7 @@
 }
 
 .live-tag {
-  background-color: #73fbe0;
+  background-color: #18C3EA;
   color: #151b21;
   width: 50px;
   height:100px;
@@ -98,7 +98,7 @@
 .tooltip .tooltiptext-right {
   visibility: hidden;
   width: 150px;
-  background-color: #73fbe0;
+  background-color: #18C3EA;
   color: #151b21;
   text-align: center;
   border-radius: 6px;
@@ -146,12 +146,12 @@
 
 .tooltip .tooltiptext-left::after {
   left: 100%;
-  border-left-color: #73fbe0;
+  border-left-color: #18C3EA;
 }
 
 .tooltip .tooltiptext-right::after {
   right: 100%;
-  border-right-color: #73fbe0;
+  border-right-color: #18C3EA;
 }
 
 .tooltip:hover .tooltiptext-left,
@@ -168,17 +168,17 @@
 
 // Navbar
 .navbar-menu, .navbar-dropdown {
-  background-color: #0a0a0a;
+  background-color: #333333;
   color: #ffffff;
 }
 
 .navbar-link:hover {
-  background-color: #0a0a0a !important;
+  background-color: #333333 !important;
   color: #ffffff !important;
 }
 
 a.navbar-item:hover {
-  background-color: #0a0a0a !important;
+  background-color: #333333 !important;
   color: #73fbe1 !important;
 }
 
@@ -225,7 +225,7 @@ a.navbar-item:hover {
 
 // Navbar
 .navbar-menu, .navbar-dropdown {
-  background-color: #0a0a0a;
+  background-color: #333333;
   color: #ffffff;
 }
 

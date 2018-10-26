@@ -133,7 +133,7 @@ export class BlockchainExplorer extends Component {
         <Helmet
           title={`${t('blockchainExplorer.title')} - IoTeX`}
         />
-        <div className='column'>
+        <div className='column' style="border:1px solid red">
           <div className='columns'>
             <div className='column is-half'>
               <div className='box-custom' style='width: 100%;height:100%;min-height:300px'>

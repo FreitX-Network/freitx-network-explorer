@@ -88,14 +88,6 @@ export class Nav extends Component {
             <nav className='navbar is-black'>
               <div className='container'>
                 <div className='navbar-brand'>
-                  <a className='navbar-item' href={SITE_URL}>
-                    <img
-                      src={assetURL('/logo.svg')}
-                      alt='IoTeX Explorer'
-                      width='112'
-                      height='28'
-                    />
-                  </a>
                   <div
                     className={`navbar-burger burger ${this.state.displayDropdownMenu ? 'is-active' : ''}`}
                     data-target='navMenuColordark-example'
@@ -108,15 +100,6 @@ export class Nav extends Component {
                 </div>
                 <div id='navMenuColordark-example' className={`navbar-menu ${this.state.displayDropdownMenu ? 'is-active' : ''}`}>
                   <div className='navbar-end'>
-                    <div className='navbar-item has-dropdown is-hoverable'>
-                      <p className='navbar-link'>Tools</p>
-                      <div className='navbar-dropdown' style={{paddingTop: '0px', borderTop: '0px'}}>
-                        <a className='navbar-item' href={EXECUTIONS.INDEX}>{t('meta.executions')}</a>
-                        <a className='navbar-item' href={TRANSFERS.INDEX}>{t('meta.transfers')}</a>
-                        <a className='navbar-item' href={BLOCKS.INDEX}>{t('meta.blocks')}</a>
-                        <a className='navbar-item' href={VOTES.INDEX}>{t('meta.votes')}</a>
-                      </div>
-                    </div>
                     <div className='navbar-item'>
                       <a className='navbar-item' href={WALLET.INDEX}>{t('meta.account')}</a>
                     </div>
@@ -159,6 +142,31 @@ export class Nav extends Component {
             </div>
           </NavWrapper>
         </div>
+
+
+        <div className="left_menu">
+        <a href={SITE_URL}>
+          <img
+            className="logo"
+            src={assetURL('/logo.svg')}
+            alt='FreitX Network'
+          />
+        </a>
+
+          <div className='navbar-menu_global' style={{paddingTop: '0px', borderTop: '0px'}}>
+            <a className='navbar-item' href={WALLET.INDEX}>{t('meta.account')}</a>
+            <a className='navbar-item' href={EXECUTIONS.INDEX}>{t('meta.executions')}</a>
+            <a className='navbar-item' href={TRANSFERS.INDEX}>{t('meta.transfers')}</a>
+            <a className='navbar-item' href={BLOCKS.INDEX}>{t('meta.blocks')}</a>
+            <a className='navbar-item' href={VOTES.INDEX}>{t('meta.votes')}</a>
+
+          </div>
+
+        </div>
+
+
+
+
       </div>
     );
   }

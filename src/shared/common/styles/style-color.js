@@ -1,6 +1,6 @@
 export const colors = {
   brand01: '#00c9c9', //	Primary brand, Interactive text, Primary icon color, Border highlight, Emphasis background
-  brand02: '#73fbe0', //	Supporting brand, brand01 hover
+  brand02: '#18C3EA', //	Supporting brand, brand01 hover
   brand03: '#00b4a0', //	Secondary brand, Loading
   ui01: '#979797', //	Primary background, Layer 1 background
   ui02: '#151A20', //	Default background, Layer 0 background, Secondary background

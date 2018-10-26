@@ -33,7 +33,7 @@ export class IotexExplorerTitle extends Component {
   render() {
     return (
       <div className='column container main-title-wrap'>
-        <h1 className='title main-title'>IoTeX.Explorer</h1>
+        <h1 className='title main-title'>Explorer</h1>
         <span className='live-tag'>
           <i className='fas fa-circle live-tag-icon'/>
           <span className='live-tag-text'>{this.props.status}</span>
