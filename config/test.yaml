@@ -1,3 +1,0 @@
-gateways:
-  logger:
-    level: "debug"

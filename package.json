@@ -21,7 +21,8 @@
     "update-idl": "barrister -t \"Explorer Interface\" -d explorer.html -j explorer.json explorer.idl",
     "changelog-major": "build-changelog --major",
     "changelog-minor": "build-changelog --minor",
-    "changelog-patch": "build-changelog --patch"
+    "changelog-patch": "build-changelog --patch",
+    "kill": "lsof -n -i4TCP:4004 | grep LISTEN | awk '{ print $2 }' | xargs kill"
   },
   "ava": {
     "require": [
@@ -87,7 +88,7 @@
     "config": "^1.26.1",
     "copy-to-clipboard": "^3.0.8",
     "deep-extend": "^0.5.1",
-    "dotenv": "^6.0.0",
+    "dotenv": "^6.1.0",
     "dotty": "0.0.2",
     "ethereumjs-abi": "^0.6.5",
     "extend": "^3.0.0",
