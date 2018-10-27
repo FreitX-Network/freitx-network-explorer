@@ -8,8 +8,24 @@ import isBrowser from 'is-browser';
 import {assetURL} from '../../../lib/asset-url';
 import {t} from '../../../lib/iso-i18n';
 import {BLOCKS, SITE_URL, EXECUTIONS, TRANSFERS, VOTES, WALLET} from '../site-url';
+import {fetchConsensusMetrics} from '../../consensus-metrics/consensus-metrics-actions';
+import type {TCoinStatistic, TConsensusMetrics} from '../../../entities/explorer-types';
+import {Navboard} from './navboard';
+
+
+type PropsType = {
+  statistic: TCoinStatistic,
+};
 
 export class Nav extends Component {
+  props: {
+    fetchConsensusMetrics: fetchConsensusMetrics,
+    statistic: TCoinStatistic,
+    votes: number,
+    consensus: {
+      metrics: TConsensusMetrics,
+    },
+  };
   _form: any;
 
   constructor(props: any) {
@@ -18,6 +34,8 @@ export class Nav extends Component {
       displayDropdownMenu: false,
       fetchCoinStatistic: 0,
       fetchCoinPrice: 0,
+      fetchConsensusMetricsId: 0,
+      height: 0,
     };
 
     (this: any).toggleDropdownMenu = this.toggleDropdownMenu.bind(this);
@@ -31,20 +49,36 @@ export class Nav extends Component {
 
   componentWillMount() {
     if (isBrowser) {
+      this.props.fetchConsensusMetrics();
       this.props.fetchCoinStatistic();
       this.props.fetchCoinPrice();
     }
   }
 
+  componentWillReceiveProps(nextProps: PropsType, nextContext: any) {
+    if (nextProps.statistic && this.state.height !== nextProps.statistic.height) {
+      this.setState(state => {
+        state.height = nextProps.statistic.height;
+      }, () => {
+        this.props.fetchExecutions({offset: 0, count: this.props.executions.count, tip: this.state.height});
+        this.props.fetchTransfers({offset: 0, count: this.props.transfers.count, tip: this.state.height, showCoinBase: false});
+        this.props.fetchBlocks({offset: 0, count: this.props.blocks.count, tip: this.state.height});
+        this.props.fetchVotes({offset: 0, count: this.props.votes.count, tip: this.state.height});
+      });
+    }
+  }
+
   componentDidMount() {
     if (isBrowser) {
+      const fetchConsensusMetricsId = window.setInterval(() => this.props.fetchConsensusMetrics(),5000,);
       const fetchCoinStatistic = window.setInterval(() => this.props.fetchCoinStatistic(), 30000);
       const fetchCoinPrice = window.setInterval(() => this.props.fetchCoinPrice(), 30000);
-      this.setState({fetchCoinStatistic, fetchCoinPrice});
+      this.setState({fetchCoinStatistic, fetchCoinPrice, fetchConsensusMetricsId});
     }
   }
 
   componentWillUnmount() {
+    window.clearInterval(this.state.fetchConsensusMetricsId);
     window.clearInterval(this.state.fetchCoinStatistic);
     window.clearInterval(this.state.fetchCoinPrice);
   }
@@ -81,6 +115,10 @@ export class Nav extends Component {
   }
 
   render() {
+    const stats = this.props.statistic;
+    const consensusMetrics = this.props.consensus && this.props.consensus.metrics || {};
+    const votesData = Number(stats ? stats.votes || 0 : 0).toLocaleString();
+
     return (
       <div>
         <div className='navbar is-fixed-top' role='navigation'>
@@ -101,6 +139,15 @@ export class Nav extends Component {
                 <div id='navMenuColordark-example' className={`navbar-menu ${this.state.displayDropdownMenu ? 'is-active' : ''}`}>
                   <div className='navbar-end'>
                     <div className='navbar-item'>
+                    <Navboard
+                    epochs={Number(consensusMetrics ? (consensusMetrics.latestEpoch || 0) : 0).toLocaleString()}
+                    blocks={Number(stats ? (stats.height || 0) + 1 : 0).toLocaleString()}
+                    executions={Number(stats ? stats.executions || 0 : 0).toLocaleString()}
+                    transfers={Number(stats ? stats.transfers || 0 : 0).toLocaleString()}
+                    votes={Number(stats ? stats.votes || 0 : 0).toLocaleString()}
+                    faps={Number(stats ? stats.aps || 0 : 0).toLocaleString()}
+                    bbh={stats ? stats.bh || 0 : 0}
+                      />
                       <a className='navbar-item' href={WALLET.INDEX}>{t('meta.account')}</a>
                     </div>
                     <div className='navbar-item'>
@@ -135,11 +182,12 @@ export class Nav extends Component {
             <div className='info-bar nav-price'>
               <div className='content has-text-centered'>
                 <div className='columns is-mobile' style={{marginTop: '0rem'}}>
-                  <div className='column is-half nav-price-col'>IOTX/ETH: {this.props.price ? this.props.price.eth : 0}</div>
                   <div className='column is-half nav-price-col'>IOTX/USD: {this.props.price ? this.props.price.usd : 0}</div>
+                  <div className='column is-half nav-price-col'>BBH: {this.props.votesData}</div>
                 </div>
               </div>
             </div>
+
           </NavWrapper>
         </div>
 
