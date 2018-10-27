@@ -4,6 +4,7 @@ import {fetchExecutions} from '../executions/executions-actions';
 import {fetchTransfers} from '../transfers/transfers-actions';
 import {fetchBlocks} from '../blocks/blocks-actions';
 import {fetchVotes} from '../votes/votes-actions';
+import {fetchConsensusMetrics} from '../consensus-metrics/consensus-metrics-actions';
 import {BlockchainExplorer} from './blockchain-explorer';
 
 export const BlockchainExplorerContainer = connect(
@@ -23,5 +24,6 @@ export const BlockchainExplorerContainer = connect(
     fetchTransfers: data => dispatch(fetchTransfers(data)),
     fetchBlocks: data => dispatch(fetchBlocks(data)),
     fetchVotes: data => dispatch(fetchVotes(data)),
+    fetchConsensusMetrics: () => dispatch(fetchConsensusMetrics()),
   }),
 )(BlockchainExplorer);
