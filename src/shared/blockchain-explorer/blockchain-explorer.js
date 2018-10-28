@@ -21,7 +21,6 @@ import {fetchConsensusMetrics} from '../consensus-metrics/consensus-metrics-acti
 import type {TConsensusMetrics} from '../../entities/explorer-types';
 import {ToolTip} from '../common/tooltip';
 import type {TExecution} from '../../entities/explorer-types';
-import {Dashboard} from './dashboard';
 
 type PropsType = {
   statistic: TCoinStatistic,
@@ -130,7 +129,7 @@ export class BlockchainExplorer extends Component {
     return (
       <div className='container'>
         <Helmet
-          title={`${t('blockchainExplorer.title')} - IoTeX`}
+          title={`${t('blockchainExplorer.title')}`}
         />
         <br></br>
         <div className='column'>

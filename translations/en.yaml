@@ -2,9 +2,9 @@ meta.title: Title
 meta.description: Description
 meta.address: Address
 meta.id: Id
-meta.transfers: Transfers
+meta.transfers: Transactions
 meta.transactions: Transactions
-meta.transfer: Transfer
+meta.transfer: Transaction
 meta.height: Height
 meta.timestamp: Timestamp
 meta.amount: Amount
@@ -14,7 +14,7 @@ meta.page: Page
 meta.next: Next
 meta.previous: Previous
 meta.loading: Loading
-meta.all: All
+meta.all: View All
 meta.block: Block
 meta.blocks: Blocks
 meta.vote: Vote
@@ -25,8 +25,8 @@ address.title: Address Summary
 address.totalBalance: Total Balance
 address.nonce: Nonce
 address.voteDetails: Vote Details
-address.listOfTransfers: List of Transfers
-address.listOfExecutions: List of Executions
+address.listOfTransfers: List of Transactions
+address.listOfExecutions: List of Contracts
 address.error.failGetAddress: 'Could not get address details for ${id}'
 address.error.failGetTransfers: 'Could not get transfers for address ${id}'
 address.error.failGetVotes: 'Could not get votes for address ${id}'
@@ -36,46 +36,46 @@ block.totalForged: Total Forged
 block.totalAmount: Total Amount
 block.generatedBy: Producer Public Key
 block.size: Size (in Bytes)
-block.listOfTransfers: List of Transfers
+block.listOfTransfers: List of Transactions
 block.listOfVotes: List of Votes
 block.error.failGetBlock: 'Could not retrieve block details for ${id}'
 block.error.failGetTransfers: 'Could not retrieve transfers for block ${id}'
 block.error.failGetVotes: 'Could not get retrieve for block ${id}'
 dashboard.epochs: Epochs
 dashboard.blocks: Blocks
-dashboard.transfers: Transfers
+dashboard.transfers: Transactions
 dashboard.votes: Votes
 dashboard.faps: IFTPS
 dashboard.bbh: BBH
 dashboard.epochsMsg: >-
-  Total number of Epochs that have been running on IoTeX blockchain. Epoch
-  refers to a period when the same set of elected delegates take turns to
+  Total number of Epochs that have been running on FreitX Network blockchain.
+  Epoch refers to a period when the same set of elected delegates take turns to
   produce the blocks on behalf of the whole network.
-dashboard.blocksMsg: Total number of blocks built on IoTeX blockchain.
-dashboard.transfersMsg: Total number of token transfer created/recorded on IoTeX blockchain.
-dashboard.votesMsg: Total number of votes for delegates on IoTeX blockchain.
+dashboard.blocksMsg: Total number of blocks built on FreitX Network blockchain.
+dashboard.transfersMsg: Total number of token transfer created/recorded on FreitX Network blockchain.
+dashboard.votesMsg: Total number of votes for delegates on FreitX Network blockchain.
 dashboard.fapsMsg: >-
   Instant Finalized Transaction Rate (IFTPS) - The number of instantly finalized
-  actions (transfers + votes) per second.
+  actions (Transactions + votes) per second.
 dashboard.bbhMsg: >-
-  Block Building History - How long the IoTeX blockchain has been running
-  (timestamp of the latest block - timestamp of the first block)
-latestBlocks.title: Latest Blocks
-latestTransfers.title: Latest Transfers
-latestVotes.title: Latest Votes
+  Block Building History - How long the FreitX Network blockchain has been
+  running (timestamp of the current block - timestamp of the first block)
+latestBlocks.title: Current Blocks
+latestTransfers.title: Current Transactions
+latestVotes.title: Current Votes
 blocks.title: Blocks
 blocks.forged: Forged
 blocks.error.get: Could not get blocks
 blockchainExplorer.title: Blockchain Explorer
 transfers.title: Transactions
-transfer.title: Transfer Details
+transfer.title: Transaction Details
 transfer.sender: Sender
 transfer.recipient: Recipient
 transfer.fee: Fee
-transfer.hash: Transfer Hash
+transfer.hash: Transaction Hash
 transfer.coinBase: Coinbase
-transfer.error.get: 'Could not get retrieve transfer details for ${id}'
-transfers.error.get: Could not get transfers
+transfer.error.get: 'Could not get retrieve transactions details for ${id}'
+transfers.error.get: Could not get transactions
 footer.website: Website
 footer.blog: Blog
 footer.chat: Chat
@@ -99,19 +99,19 @@ vote.error.getVote: 'Could not get vote ${id}'
 votes.out: Vote sent out
 votes.in: Vote received
 votes.error.get: Could not get votes
-'rolldpos:title': Roll-DPoS
-'rolldpos:msg': >-
-  A randomized delegated proof of stake algorithm, which inherits all the
-  advantages of the original DPoS consensus framework and further enhances its
-  capability in terms of decentralization as well as extensibility to complex
-  blockchain architectures. The colored dots represent the delegates, and the
-  flashing dot represents the selected producer.
+# 'rolldpos:title': Roll-DPoS
+# 'rolldpos:msg': >-
+#   A randomized delegated proof of stake algorithm, which inherits all the
+#   advantages of the original DPoS consensus framework and further enhances its
+#   capability in terms of decentralization as well as extensibility to complex
+#   blockchain architectures. The colored dots represent the delegates, and the
+#   flashing dot represents the selected producer.
 breadcrumbs.home: home
 breadcrumbs.votes: votes
-breadcrumbs.transfers: transfers
+breadcrumbs.transfers: transactions
 breadcrumbs.blocks: blocks
 breadcrumbs.address: address
-breadcrumbs.executions: executions
+breadcrumbs.executions: contracts
 base.message.close: Close
 wallet.title.wallet: Wallet
 wallet.tab.transfer: 'Send ${token}'
@@ -123,7 +123,7 @@ wallet.transactionDetail.signed: Transaction Signature
 wallet.account.hidden: '******************************************************************'
 wallet.account.header: Unlock / Create new wallet
 wallet.account.enterPrivateKey: Private Key
-wallet.account.addressPlaceHolder: IoTeX Address...
+wallet.account.addressPlaceHolder: FreitX Network Address...
 wallet.account.gkp: Generate Key Pair
 wallet.account.generate: Generate
 wallet.account.secureMessage: >-
@@ -160,7 +160,7 @@ wallet.transactions.header: Actions
 wallet.transactions.transfer: Create Transfer
 wallet.transactions.vote: Create Vote
 wallet.transactions.send: Send Transaction
-wallet.transfer.title: Send IOTX
+wallet.transfer.title: Send OneX
 wallet.vote.title: Vote for Delegate
 wallet.transaction.title: Transaction
 wallet.interact.abiTemplate: >-
@@ -184,19 +184,21 @@ wallet.account.placehold.privateKey: Paste your private key here
 wallet.input.solidity: Solidity (optional)
 wallet.deploy.generateAbiAndByteCode: Generate ABI and Byte Code
 wallet.generate.fail: Something went wrong. Please check your internet connect/ try again
-meta.executions: Executions
-meta.execution: Execution
-latestExecutions.title: Latest Executions
-dashboard.executions: Executions
-dashboard.executionsMsg: Total number of contract execution created/recorded on IoTeX blockchain.
+meta.executions: Contracts
+meta.execution: Contract
+latestExecutions.title: Current Contracts
+dashboard.executions: Contracts
+dashboard.executionsMsg: >-
+  Total number of contract execution created/recorded on FreitX Network
+  blockchain.
 execution.title: Execution Details
 execution.timestamp: Minted At
 execution.executor: Executor
 execution.contract: Contract
 execution.hash: Execution Hash
-block.listOfExecutions: List of Executions
+block.listOfExecutions: List of Contracts
 execution.error.failGetExecution: 'Could not get execution details for ${id}'
-executions.error.get: Could not get executions
+executions.error.get: Could not get contracts
 receipt.title: Receipt
 receipt.contract: Contract Address
 receipt.status: Status
@@ -207,8 +209,8 @@ execution.gas: Gas Limit
 execution.input: Input
 execution.nonce: Nonce
 input.error.private_key.length: Private key has to be of length 72
-input.error.raw_address.length: IOTX address has to be of length 49
-input.error.raw_address.invalid: IOTX address must start with io
+input.error.raw_address.length: OneX address has to be of length 49
+input.error.raw_address.invalid: OneX address must start with io
 input.error.number.invalid: Only number 0-9
 input.error.bytes.length: Bytes must be of even length
 input.error.bytes.invalid: 'Invalid bytes, must be a character in 0-9 A-F'
@@ -221,9 +223,9 @@ wallet.cannot_find_solidity_version: Cannot find solidity version
 receipt.success: Success
 unlock-wallet.title: Unlock your wallet
 unlock-wallet.warn.message: >-
-  Please double-check the URL & SSL cert. It should say https://www.iotexscan.io
+  Please double-check the URL & SSL cert. It should be https://www.private.freitx.network/
   in your URL bar.
-unlock-wallet.no-wallet: Don't have a IoTeX wallet yet?
+unlock-wallet.no-wallet: Don't have a FreitX Network wallet yet?
 unlock-wallet.create: Create a new wallet
 new-wallet.copied: Copied to clipboard
 new-wallet.copy: Copy
@@ -255,15 +257,15 @@ account.why: Why save your private key?
 account.save: Save your private key to access your wallet later
 account.pay-attention: Pay attention
 account.not-hold: >-
-  IoTeX.io does not hold your keys for you. We cannot access accounts recover
-  keys, nor reverse transactions
+  FreitX Network.io does not hold your keys for you. We cannot access accounts
+  recover keys, nor reverse transactions
 account.protect: Protect your keys & always check that you are on correct URL.
 account.responsible: You are responsible for your security.
 account.empty.unlock: Unlock your wallet to see details!
 account.empty.how: How to unlock wallet?
 account.wallet: Wallet
 account.change: Change Wallet
-account.testnet.token: EIOTX
+account.testnet.token: EOneX
 account.address: Account Address
 account.transaction-history: Go to transaction history
 wallet.detail.are-you-sure: Are you sure you want to do this?

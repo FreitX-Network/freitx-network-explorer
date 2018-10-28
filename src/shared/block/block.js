@@ -199,10 +199,10 @@ export class BlockSummary extends Component {
         c1: t('meta.height'),
         c2: (b.height || 0),
       },
-      // {
-      //   c1: t('block.totalForged'),
-      //   c2: (b.forged || 0),
-      // },
+      {
+        c1: t('block.totalForged'),
+        c2: (b.forged || 0),
+      },
       {
         c1: t('block.totalAmount'),
         c2: (b.amount || 0),
