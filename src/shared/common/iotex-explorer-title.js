@@ -35,7 +35,7 @@ export class IotexExplorerTitle extends Component {
       <div className='column container main-title-wrap'>
         <h1 className='title main-title'>Explorer</h1>
         <span className='live-tag'>
-          <i className='fas fa-circle live-tag-icon'/>
+          <i className='fas fa-square-full live-tag-icon'/>
           <span className='live-tag-text'>{this.props.status}</span>
         </span>
       </div>

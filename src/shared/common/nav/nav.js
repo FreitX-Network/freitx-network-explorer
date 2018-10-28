@@ -141,9 +141,6 @@ export class Nav extends Component {
                 <div id='navMenuColordark-example' className={`navbar-menu ${this.state.displayDropdownMenu ? 'is-active' : ''}`}>
                   <div className='navbar-end'>
                     <div className='navbar-item'>
-                    <IotexExplorerTitle
-                      status={this.props.status}
-                    />
                     <Navboard
                     blocks={Number(stats ? (stats.height || 0) + 1 : 0).toLocaleString()}
                     executions={Number(stats ? stats.executions || 0 : 0).toLocaleString()}
@@ -151,7 +148,7 @@ export class Nav extends Component {
                     votes={Number(stats ? stats.votes || 0 : 0).toLocaleString()}
                     bbh={stats ? stats.bh || 0 : 0}
                       />
-                      <a className='navbar-item' href={WALLET.INDEX}>{t('meta.account')}</a>
+
                     </div>
                     <div className='navbar-item'>
                       <form onSubmit={e => this.handleSubmit(e)} ref={r => (this._form = r)}>
@@ -174,6 +171,9 @@ export class Nav extends Component {
                             <button className='button'>
                               <i className='fas fa-search'/>
                             </button>
+                            <IotexExplorerTitle
+                              status={this.props.status}
+                            />
                           </div>
                         </div>
                       </form>
