@@ -80,3 +80,43 @@ container {
 .tile:not(.is-child) {
   display: block!important;
 }
+.tile.is-child {
+    margin: 0!important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.title {
+  width: 120px;
+    font-size: 15px!important;
+    font-weight: 600;
+    display: flex!important;
+    line-height: 1.2!important;
+    align-items: center!important;
+    justify-content: center;
+}
+.dashboard-wrap {
+    display: flex;
+    flex-direction: row;
+    padding: 0!important;
+}
+.navbar>.container {
+    align-items: stretch;
+    display: flex;
+    min-height: 3.25rem;
+    width: 100%;
+    max-width: 99%;
+    margin-left: 2px;
+}
+.navbar-end {
+    justify-content: space-between;
+    margin-left: 0!important;
+    width: 100%;
+    padding: 0 3%;
+}
+
+
+.title.has-text-centered {
+  text-align: center;
+}
