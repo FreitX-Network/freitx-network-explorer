@@ -95,6 +95,7 @@ vote.voter: Voter
 vote.voters: Voters
 vote.blockId: Block ID
 vote.nonce: Nonce
+vote.version: Version
 vote.error.getVote: 'Could not get vote ${id}'
 votes.out: Vote sent out
 votes.in: Vote received

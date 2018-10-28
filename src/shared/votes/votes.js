@@ -177,7 +177,8 @@ export class VotesListOnlyId extends Component {
                 <Link to={`/votes/${vote.id}`} className='link'>{singleColEllipsisText(vote.id, this.props.width, this.props.isHome)}</Link>
               </td>
               <td className='single-col-row'>
-              {singleColEllipsisText(vote.timestamp, this.props.width, this.props.isHome)}
+
+              {singleColEllipsisText((fromNow(vote.timestamp) || 0), this.props.width, this.props.isHome)}
               </td>
             </tr>
           ))}
