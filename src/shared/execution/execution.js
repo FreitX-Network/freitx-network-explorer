@@ -226,6 +226,7 @@ export class ExecutionSummary extends Component {
       );
     }
     const rows = [];
+    rows.push({c1: t('execution.id'), c2: (execution.id)});
     rows.push({c1: t('execution.executor'), c2: (<Link to={`/address/${execution.executor}`} className='link'>{execution.executor}</Link>)});
     if (execution.contract) {
       rows.push({c1: t('execution.contract'), c2: (<Link to={`/address/${execution.contract}`} className='link'>{execution.contract}</Link>)});
@@ -238,7 +239,6 @@ export class ExecutionSummary extends Component {
     rows.push({c1: t('block.title'), c2: (<Link to={`/blocks/${execution.blockId}`} className='link'>{execution.blockId}</Link>)});
     return (
       <SingleItemTable
-        subtitle={execution.id}
         rows={rows}
       />
     );

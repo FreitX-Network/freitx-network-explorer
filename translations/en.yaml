@@ -31,7 +31,7 @@ address.error.failGetAddress: 'Could not get address details for ${id}'
 address.error.failGetTransfers: 'Could not get transfers for address ${id}'
 address.error.failGetVotes: 'Could not get votes for address ${id}'
 block.title: Block Details
-block.id: Block Id
+block.id: Block Hash
 block.totalForged: Total Forged
 block.totalAmount: Total Amount
 block.generatedBy: Producer Public Key
@@ -99,13 +99,6 @@ vote.error.getVote: 'Could not get vote ${id}'
 votes.out: Vote sent out
 votes.in: Vote received
 votes.error.get: Could not get votes
-# 'rolldpos:title': Roll-DPoS
-# 'rolldpos:msg': >-
-#   A randomized delegated proof of stake algorithm, which inherits all the
-#   advantages of the original DPoS consensus framework and further enhances its
-#   capability in terms of decentralization as well as extensibility to complex
-#   blockchain architectures. The colored dots represent the delegates, and the
-#   flashing dot represents the selected producer.
 breadcrumbs.home: home
 breadcrumbs.votes: votes
 breadcrumbs.transfers: transactions
@@ -223,8 +216,8 @@ wallet.cannot_find_solidity_version: Cannot find solidity version
 receipt.success: Success
 unlock-wallet.title: Unlock your wallet
 unlock-wallet.warn.message: >-
-  Please double-check the URL & SSL cert. It should be https://www.private.freitx.network/
-  in your URL bar.
+  Please double-check the URL & SSL cert. It should be
+  https://www.private.freitx.network/ in your URL bar.
 unlock-wallet.no-wallet: Don't have a FreitX Network wallet yet?
 unlock-wallet.create: Create a new wallet
 new-wallet.copied: Copied to clipboard

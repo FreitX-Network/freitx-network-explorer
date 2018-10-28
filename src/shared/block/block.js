@@ -193,9 +193,14 @@ export class BlockSummary extends Component {
     }
     const rows = [
       {
+        c1: t('meta.id'),
+        c2: (b.id || 0),
+      },
+      {
         c1: t('meta.transactions'),
         c2: ((b.transfers || 0) + (b.votes || 0)),
-      }, {
+      },
+      {
         c1: t('meta.height'),
         c2: (b.height || 0),
       },
@@ -220,7 +225,6 @@ export class BlockSummary extends Component {
     return (
       <div>
         <SingleItemTable
-          subtitle={b.id || 0}
           rows={rows}
         />
         <br></br>

@@ -11,6 +11,8 @@ import {BLOCKS, SITE_URL, EXECUTIONS, TRANSFERS, VOTES, WALLET} from '../site-ur
 import {fetchConsensusMetrics} from '../../consensus-metrics/consensus-metrics-actions';
 import type {TCoinStatistic, TConsensusMetrics} from '../../../entities/explorer-types';
 import {Navboard} from './navboard';
+import {IotexExplorerTitle} from '../iotex-explorer-title';
+
 
 
 type PropsType = {
@@ -139,6 +141,9 @@ export class Nav extends Component {
                 <div id='navMenuColordark-example' className={`navbar-menu ${this.state.displayDropdownMenu ? 'is-active' : ''}`}>
                   <div className='navbar-end'>
                     <div className='navbar-item'>
+                    <IotexExplorerTitle
+                      status={this.props.status}
+                    />
                     <Navboard
                     blocks={Number(stats ? (stats.height || 0) + 1 : 0).toLocaleString()}
                     executions={Number(stats ? stats.executions || 0 : 0).toLocaleString()}

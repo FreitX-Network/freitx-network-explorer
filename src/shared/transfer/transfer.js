@@ -96,19 +96,25 @@ export class TransferSummary extends Component {
     }
     const rows = [
       {
+        c1: t('meta.id'),
+        c2: (transfer.id),
+      },
+      {
         c1: t('transfer.sender'),
         c2: transfer.sender === '' ? t('transfer.coinBase') : (<Link to={`/address/${transfer.sender}`} className='link'>{transfer.sender}</Link>),
-      }, {
+      },
+      {
         c1: t('transfer.recipient'),
         c2: (<Link to={`/address/${transfer.recipient}`} className='link'>{transfer.recipient}</Link>),
-      }, {
+      },
+      {
         c1: t('meta.amount'),
         c2: (transfer.amount),
       },
-      // {
-      //   c1: t('transfer.fee'),
-      //   c2: (transfer.fee),
-      // },
+      {
+        c1: t('transfer.fee'),
+        c2: (transfer.fee),
+      },
       {
         c1: t('meta.timestamp'),
         c2: fromNow(transfer.timestamp),
@@ -124,7 +130,6 @@ export class TransferSummary extends Component {
     }
     return (
       <SingleItemTable
-        subtitle={transfer.id}
         rows={rows}
       />
     );

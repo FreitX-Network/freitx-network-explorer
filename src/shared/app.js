@@ -10,7 +10,6 @@ import {Footer} from './common/footer';
 import {NavContainer} from './common/nav/nav-container';
 import {Breadcrumbs} from './common/breadcrumbs';
 import {ProgressBar} from './common/progress-bar';
-import {IotexExplorerTitle} from './common/iotex-explorer-title';
 
 export class App extends Component {
   constructor(props) {
@@ -54,9 +53,6 @@ export class App extends Component {
           width={this.props.width}
         />
         <div style={{minHeight: '100vh'}}>
-          <IotexExplorerTitle
-            status={this.props.status}
-          />
           {children}
         </div>
         <Footer/>

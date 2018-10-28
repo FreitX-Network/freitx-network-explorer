@@ -107,6 +107,10 @@ export class VoteSummary extends Component {
     }
     const rows = [
       {
+        c1: t('vote.id'),
+        c2: (v.id || 0),
+      },
+      {
         c1: t('vote.nonce'),
         c2: (v.nonce || 0),
       },
@@ -130,7 +134,6 @@ export class VoteSummary extends Component {
     return (
       <div>
         <SingleItemTable
-          subtitle={v.id}
           rows={rows}
         />
       </div>
