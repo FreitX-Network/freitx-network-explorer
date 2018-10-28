@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif!important;
 }
 
 .footer_link {
@@ -51,6 +53,8 @@ container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0 0 15px 3px #191919;
+
 
   border:1px solid red;
   .logo {
@@ -151,7 +155,7 @@ container {
     font-size: 14px;
     font-weight: 100;
     top: 12px;
-    right: -20px;
+    right: -60px;
 
   }
   .svg-inline--fa.fa-square-full {
@@ -211,5 +215,107 @@ container {
     height: 60px;
     padding: 0!important;
     background-color: #dc7350;
-    background-image: linear-gradient(to right, #dc7350 , #40c3e9); 
+    background-image: linear-gradient(to right, #dc7350 , #40c3e9);
+}
+
+.bx--data-table-v2 a, .bx--data-table-v2 td {
+    font-size: 12px;
+    width: 14%;
+    padding: 0 !important;
+}
+.bx--data-table-v2 tr {
+    height: 40px;
+}
+._b {
+    background-color: #333333;
+}
+.bx--data-table-v2 tr:hover td {
+    background-color: #3b3a3c;
+    border:none !important;
+}
+.bx--data-table-v2 tr td {
+    border:none !important;
+}
+.bx--data-table-v2 tr {
+    height: 46px;
+    /* margin-bottom: 76px; */
+    background: #191919;
+    box-shadow: 3px 7px 18px #191919;
+}
+.bx--data-table-v2 th:first-of-type, .bx--data-table-v2 td:first-of-type,
+.bx--data-table-v2 th:last-of-type, .bx--data-table-v2 td:last-of-type {
+    padding-right: 1.5rem;
+    border: none !important;
+    color: #fff;
+    height: 27px;
+    box-shadow: 0px -3px 12px #191919;
+    background: #333333;
+}
+
+.tile.is-ancestor{
+  margin: 0!important
+}
+.field.has-addons .control:first-child .input,
+.field.has-addons .control:last-child .button,
+.select.is-fullwidth,
+.field.has-addons .control:not(:first-child):not(:last-child) .select select {
+  height: 30px;
+    border-radius: 0;
+}
+
+.breadcrumb {
+    font-size: 1rem;
+    white-space: nowrap;
+    margin-top: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.column.container.main-title-wrap {
+  margin-left: 100px;
+}
+
+
+
+@media only screen and (max-width: 1600px) {
+  .navbar-end {
+      padding: 0;
+  }
+  .field.has-addons {
+    display: flex;
+    justify-content: flex-start;
+    height: 38px !important;
+    width: 85%;
+  }
+  .title.has-text-centered {
+    width: 100px;
+  }
+  .tile.is-parent {
+    padding: 0;
+  }
+
+}
+
+@media only screen and (max-width: 1440px) {
+
+
+}
+@media only screen and (max-width: 1336px) {
+
+
+}
+
+@media only screen and (max-width: 1200px) {
+
+
 }
