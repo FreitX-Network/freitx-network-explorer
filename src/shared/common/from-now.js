@@ -1,5 +1,5 @@
-import fn from 'fromnow';
+import moment from 'moment';
 
 export function fromNow(ts) {
-  return fn(ts * 1000, {max: 3, suffix: true});
+  return moment.unix(ts).format("DD/MM/YYYY HH:mm:ss")
 }

@@ -124,6 +124,7 @@
     "koa-session": "^5.5.1",
     "load-script": "^1.0.0",
     "methods": "^1.1.2",
+    "moment": "^2.22.2",
     "mysql": "^2.10.2",
     "nkn-client": "^0.4.3",
     "path": "^0.12.7",

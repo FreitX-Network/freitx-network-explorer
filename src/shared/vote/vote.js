@@ -115,6 +115,10 @@ export class VoteSummary extends Component {
         c2: (v.nonce || 0),
       },
       {
+        c1: t('meta.version'),
+        c2: (v.version || 0),
+      },
+      {
         c1: t('meta.timestamp'),
         c2: (fromNow(v.timestamp) || 0),
       },
