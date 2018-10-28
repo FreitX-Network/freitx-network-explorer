@@ -41,10 +41,10 @@ block.listOfVotes: List of Votes
 block.error.failGetBlock: 'Could not retrieve block details for ${id}'
 block.error.failGetTransfers: 'Could not retrieve transfers for block ${id}'
 block.error.failGetVotes: 'Could not get retrieve for block ${id}'
-dashboard.epochs: '# of Epochs'
-dashboard.blocks: '# of Blocks'
-dashboard.transfers: '# of Transfers'
-dashboard.votes: '# of Votes'
+dashboard.epochs: 'Epochs'
+dashboard.blocks: 'Blocks'
+dashboard.transfers: 'Transfers'
+dashboard.votes: 'Votes'
 dashboard.faps: IFTPS
 dashboard.bbh: BBH
 dashboard.epochsMsg: >-
@@ -187,7 +187,7 @@ wallet.generate.fail: Something went wrong. Please check your internet connect/ 
 meta.executions: Executions
 meta.execution: Execution
 latestExecutions.title: Latest Executions
-dashboard.executions: '# of Executions'
+dashboard.executions: 'Executions'
 dashboard.executionsMsg: Total number of contract execution created/recorded on IoTeX blockchain.
 execution.title: Execution Details
 execution.timestamp: Minted At

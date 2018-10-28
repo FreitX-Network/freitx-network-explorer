@@ -74,3 +74,9 @@ container {
     }
   }
 }
+.tile.is-ancestor:not(:last-child) {
+    margin-bottom:0!important;
+}
+.tile:not(.is-child) {
+  display: block!important;
+}

@@ -60,7 +60,7 @@ export class Navboard extends Component {
               <div className='tile is-ancestor'>
                 {row.map(s => (
                   <div className='tile is-parent'>
-                    <article className='tile is-child box box-custom'>
+                    <article className='tile is-child'>
                       <div>
                         <p className='subtitle force-teal dashboard-title'>{s.title}</p>
                       </div>
