@@ -27,18 +27,10 @@ export class Navboard extends Component {
           title: t('dashboard.transfers'),
           subtitle: this.props.transfers,
         },
-        {
-          title: t('dashboard.epochs'),
-          subtitle: this.props.epochs,
-        },
       ], [
         {
           title: `${t('dashboard.executions')}`,
           subtitle: this.props.executions,
-        },
-        {
-          title: t('dashboard.faps'),
-          subtitle: this.props.faps,
         },
       ], [
         {

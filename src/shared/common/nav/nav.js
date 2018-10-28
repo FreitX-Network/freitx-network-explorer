@@ -140,12 +140,10 @@ export class Nav extends Component {
                   <div className='navbar-end'>
                     <div className='navbar-item'>
                     <Navboard
-                    epochs={Number(consensusMetrics ? (consensusMetrics.latestEpoch || 0) : 0).toLocaleString()}
                     blocks={Number(stats ? (stats.height || 0) + 1 : 0).toLocaleString()}
                     executions={Number(stats ? stats.executions || 0 : 0).toLocaleString()}
                     transfers={Number(stats ? stats.transfers || 0 : 0).toLocaleString()}
                     votes={Number(stats ? stats.votes || 0 : 0).toLocaleString()}
-                    faps={Number(stats ? stats.aps || 0 : 0).toLocaleString()}
                     bbh={stats ? stats.bh || 0 : 0}
                       />
                       <a className='navbar-item' href={WALLET.INDEX}>{t('meta.account')}</a>
