@@ -5,7 +5,6 @@ import Helmet from 'inferno-helmet';
 import isBrowser from 'is-browser';
 import window from 'global';
 import {CommonMargin} from '../common/common-margin';
-import {PlasmaBall} from '../common/plasma-ball';
 import {fetchExecutions} from '../executions/executions-actions';
 import {fetchTransfers} from '../transfers/transfers-actions';
 import {fetchBlocks} from '../blocks/blocks-actions';
@@ -133,32 +132,6 @@ export class BlockchainExplorer extends Component {
         <Helmet
           title={`${t('blockchainExplorer.title')} - IoTeX`}
         />
-        <div className='column' style="border:1px solid red">
-          <div className='columns'>
-            <div className='column is-half'>
-              <div className='box-custom' style='width: 100%;height:100%;min-height:300px'>
-                <div>
-                  <h1 className='title roll-dpos-title'>{t('rolldpos:title')}</h1>
-                  <ToolTip
-                    iconClass={'fas fa-question-circle'}
-                    message={t('rolldpos:msg')}
-                    customPadClass={'rollDpos-tooltip'}
-                  />
-                </div>
-                <PlasmaBall delegates={delegates} currentProducer={currentProducer} offline={[]} candidates={candidates}/>
-              </div>
-            </div>
-            <Dashboard
-              epochs={Number(consensusMetrics ? (consensusMetrics.latestEpoch || 0) : 0).toLocaleString()}
-              blocks={Number(stats ? (stats.height || 0) + 1 : 0).toLocaleString()}
-              executions={Number(stats ? stats.executions || 0 : 0).toLocaleString()}
-              transfers={Number(stats ? stats.transfers || 0 : 0).toLocaleString()}
-              votes={Number(stats ? stats.votes || 0 : 0).toLocaleString()}
-              faps={Number(stats ? stats.aps || 0 : 0).toLocaleString()}
-              bbh={stats ? stats.bh || 0 : 0}
-            />
-          </div>
-        </div>
         <br></br>
         <div className='column'>
           <div className='columns'>
