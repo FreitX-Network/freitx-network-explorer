@@ -125,6 +125,12 @@ container {
 .navbar-menu, .navbar-dropdown {
   background: #fff!important;
 }
+.force-teal {
+  color: #18C3EA !important;
+  font-size: 13px;
+  display: block;
+  margin-top: -12px;
+}
 .force-teal.dashboard-title.subtitle {
     color: #4a4a4a!important;
     font-size: 12px;
@@ -154,7 +160,7 @@ container {
     color: #f2f2f2f;
     font-size: 14px;
     font-weight: 100;
-    top: 12px;
+    top: 1px;
     right: -60px;
 
   }
@@ -170,7 +176,7 @@ container {
 .navbar > .container {
     align-items: stretch;
     display: flex;
-    height: 70px;
+    height: 30px;
     width: 100%;
     max-width: 99%;
     margin-left: 2px;
@@ -181,7 +187,7 @@ container {
     height: 30px!important;
 }
 .column.container.main-title-wrap {
-  margin-top: -40px;
+  margin-top: -27px;
 }
 .tile.is-ancestor:last-child {
     margin-bottom: 0!important;
@@ -292,7 +298,7 @@ container {
 .breadcrumb {
     font-size: 1rem;
     white-space: nowrap;
-    margin-top: 15px;
+    margin-top: 4px;
 }
 
 
@@ -325,7 +331,7 @@ a.navbar-item:hover, .navbar-link:hover{
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 1510px;
+  height: 1450px;
   margin: 30px -190px 30px auto;
 
   // border: 2px solid blue;
