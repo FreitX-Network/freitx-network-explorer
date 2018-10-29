@@ -299,7 +299,23 @@ container {
     font-size: 1rem;
     white-space: nowrap;
     margin-top: 4px;
+    padding-top: 12px;
+    ul {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      li {
+        display: flex;
+        align-items: center;
+      }
+    }
 }
+.breadcrumb li+li::before {
+    color: #b5b5b5;
+    content: "\0002f";
+    margin-top: -10px;
+}
+
 
 
 
