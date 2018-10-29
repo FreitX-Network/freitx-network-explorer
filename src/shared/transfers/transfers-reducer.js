@@ -3,7 +3,7 @@ export default function reducer(state = {
   fetching: true,
   error: null,
   offset: 0,
-  count: 5,
+  count: 6,
   tip: 0,
 }, action) {
   switch (action.type) {

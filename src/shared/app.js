@@ -37,7 +37,7 @@ export class App extends Component {
         <Helmet
           link={[
             {rel: 'stylesheet', href: '//cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css'},
-            {rel: 'stylesheet', href: '//https://fonts.googleapis.com/css?family=Roboto'},
+            {rel: 'stylesheet', href: '//fonts.googleapis.com/css?family=Roboto'},
             {rel: 'stylesheet', type: 'text/css', href: `${assetURL('/stylesheets/blockchain-explorer.css')}`},
             {rel: 'stylesheet', type: 'text/css', href: `${assetURL('/stylesheets/custom.css')}`},
           ]}
