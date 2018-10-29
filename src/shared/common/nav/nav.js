@@ -62,10 +62,7 @@ export class Nav extends Component {
       this.setState(state => {
         state.height = nextProps.statistic.height;
       }, () => {
-        this.props.fetchExecutions({offset: 0, count: this.props.executions.count, tip: this.state.height});
-        this.props.fetchTransfers({offset: 0, count: this.props.transfers.count, tip: this.state.height, showCoinBase: false});
-        this.props.fetchBlocks({offset: 0, count: this.props.blocks.count, tip: this.state.height});
-        this.props.fetchVotes({offset: 0, count: this.props.votes.count, tip: this.state.height});
+
       });
     }
   }
@@ -182,15 +179,6 @@ export class Nav extends Component {
                 </div>
               </div>
             </nav>
-            <div className='info-bar nav-price'>
-              <div className='content has-text-centered'>
-                <div className='columns is-mobile' style={{marginTop: '0rem'}}>
-                  <div className='column is-half nav-price-col'>IOTX/USD: {this.props.price ? this.props.price.usd : 0}</div>
-                  <div className='column is-half nav-price-col'>BBH: {this.props.votesData}</div>
-                </div>
-              </div>
-            </div>
-
           </NavWrapper>
         </div>
 

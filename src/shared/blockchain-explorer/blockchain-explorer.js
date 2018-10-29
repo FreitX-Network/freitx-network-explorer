@@ -17,7 +17,6 @@ import {TransfersListOnlyId} from '../transfers/transfers';
 import {BlocksListOnlyId} from '../blocks/blocks';
 import {VotesListOnlyId} from '../votes/votes';
 import {fetchVotes} from '../votes/votes-actions';
-import {fetchConsensusMetrics} from '../consensus-metrics/consensus-metrics-actions';
 import type {TConsensusMetrics} from '../../entities/explorer-types';
 import {ToolTip} from '../common/tooltip';
 import type {TExecution} from '../../entities/explorer-types';
@@ -32,7 +31,6 @@ export class BlockchainExplorer extends Component {
     fetchTransfers: fetchTransfers,
     fetchBlocks: fetchBlocks,
     fetchVotes: fetchVotes,
-    fetchConsensusMetrics: fetchConsensusMetrics,
     executions: {
       offset: number,
       count: number,
@@ -75,14 +73,12 @@ export class BlockchainExplorer extends Component {
   constructor(props: any) {
     super(props);
     this.state = {
-      fetchConsensusMetricsId: 0,
       height: 0,
     };
   }
 
   componentWillMount() {
     if (isBrowser) {
-      this.props.fetchConsensusMetrics();
       this.props.fetchExecutions({offset: 0, count: this.props.executions.count, tip: this.state.height});
       this.props.fetchTransfers({offset: 0, count: this.props.transfers.count, tip: this.state.height, showCoinBase: false});
       this.props.fetchBlocks({offset: 0, count: this.props.blocks.count, tip: this.state.height});
@@ -103,19 +99,6 @@ export class BlockchainExplorer extends Component {
     }
   }
 
-  componentDidMount() {
-    const fetchConsensusMetricsId = window.setInterval(
-      () => this.props.fetchConsensusMetrics(),
-      5000,
-    );
-    this.setState({fetchConsensusMetricsId});
-  }
-
-  componentWillUnmount() {
-    window.clearInterval(this.state.fetchConsensusMetricsId);
-
-    window.removeEventListener('resize', this.updateWindowDimensions);
-  }
 
   // eslint-disable-next-line complexity
   render() {
