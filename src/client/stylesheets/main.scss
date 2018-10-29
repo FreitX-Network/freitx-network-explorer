@@ -58,7 +58,7 @@ container {
 
   border:1px solid red;
   .logo {
-    width: 100%;
+    width: 160px;
     height: 160px;
   }
   .navbar-menu_global{
@@ -220,11 +220,11 @@ container {
 
 .bx--data-table-v2 a, .bx--data-table-v2 td {
     font-size: 12px;
-    width: 14%;
+    width: 100%;
     padding: 0 !important;
 }
 .bx--data-table-v2 tr {
-    height: 40px;
+    height: 55px;
 }
 ._b {
     background-color: #333333;
@@ -244,12 +244,22 @@ container {
 }
 .bx--data-table-v2 th:first-of-type, .bx--data-table-v2 td:first-of-type,
 .bx--data-table-v2 th:last-of-type, .bx--data-table-v2 td:last-of-type {
-    padding-right: 1.5rem;
-    border: none !important;
-    color: #fff;
-    height: 27px;
-    box-shadow: 0px -3px 12px #191919;
-    background: #333333;
+  padding-right: 1.5rem;
+  border: none !important;
+  color: #fff;
+  width: 100%;
+  height: 48px;
+  box-shadow: 0px -3px 12px #191919;
+  background: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.single-col-header {
+    text-align: center !important;
+    font-size: 22px;
+    word-break: break-all;
 }
 
 .tile.is-ancestor{
@@ -271,11 +281,69 @@ container {
 
 
 
+a.navbar-item:hover, .navbar-link:hover{
+  color: #18C3EA!important;
+}
+.static-button {
+    background-color: #151b21 !important;
+    border-color:#18C3EA!important;
+    color: #6c7175 !important;
+}
+._t {
+  border-color: #18C3EA!important;
+}
+._x:hover, ._y:hover, ._t:hover {
+    border-color: #18C3EA!important;
+    background:  #18C3EA!important;
+    color: #fff;
+}
+.columns.lorem {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 1870px;
+}
+.column.lorem {
+  display: flex;
+  width: 100%;
+  position: relative;
+  margin: 30px auto;
+  &.l1 {
+    margin-bottom: 50px;
+    height: 700px;
+  }
+  &.l2 {
+    margin-bottom: 50px;
+    height: 700px;
+  }
+  &.l3 {
+    margin-bottom: 50px;
+    height: 700px;
+  }
+  &.l4 {
+    margin-bottom: 50px;
+    height: 700px;
+  }
 
+  border:1px solid red;
 
+  .single-col-table {
+    margin-bottom: 3em;
+    width: 100%;
+    position: relative;
+  }
+  .bx--data-table-v2 tr {
+    display: flex;
+    flex-direction: row;
+    td {
+        width: 100%;
+        display: flex;
+        align-items:  center;
+        justify-content: center;
+    }
+  }
 
-
-
+}
 
 
 

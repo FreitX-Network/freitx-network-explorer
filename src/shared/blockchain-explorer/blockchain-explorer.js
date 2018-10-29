@@ -116,8 +116,8 @@ export class BlockchainExplorer extends Component {
         />
         <br></br>
         <div className='column'>
-          <div className='columns'>
-            <div className='column'>
+          <div className='columns lorem'>
+            <div className='column lorem l1'>
               <SingleColTable
                 title={t('latestBlocks.title')}
                 items={this.props.blocks.items}
@@ -137,7 +137,7 @@ export class BlockchainExplorer extends Component {
                 />
               </SingleColTable>
             </div>
-            <div className='column'>
+            <div className='column lorem l2'>
               <SingleColTable
                 title={t('latestExecutions.title')}
                 items={this.props.executions.items}
@@ -157,7 +157,7 @@ export class BlockchainExplorer extends Component {
                 />
               </SingleColTable>
             </div>
-            <div className='column'>
+            <div className='column lorem l3'>
               <SingleColTable
                 title={t('latestTransfers.title')}
                 items={this.props.transfers.items}
@@ -177,7 +177,7 @@ export class BlockchainExplorer extends Component {
                 />
               </SingleColTable>
             </div>
-            <div className='column'>
+            <div className='column lorem l4'>
               <SingleColTable
                 title={t('latestVotes.title')}
                 items={this.props.votes.items}
