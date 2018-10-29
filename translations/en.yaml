@@ -21,6 +21,7 @@ meta.vote: Vote
 meta.votes: Votes
 meta.payload: Payload
 meta.account: Wallet
+meta.dashboard: Dashboard
 address.title: Address Summary
 address.totalBalance: Total Balance
 address.nonce: Nonce

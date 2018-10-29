@@ -6,13 +6,6 @@ import {fonts} from './styles/style-font';
 import {colors} from './styles/style-color';
 import {colorHover} from './color-hover';
 
-const FREITX_LINK = 'https://www.freitx.network';
-const MEDIUM_LINK = 'https://medium.com/iotex';
-const TELEGRAM_LINK = 'https://t.me/IoTeXGroup';
-const REDDIT_LINK = 'https://www.reddit.com/r/IoTeX/';
-const TWITTER_LINK = 'https://twitter.com/iotex_io?lang=en';
-const GITHUB_LINK = 'https://github.com/iotexproject';
-
 export function Footer() {
   return (
     <FooterStyle className='footer'>
@@ -20,15 +13,9 @@ export function Footer() {
         <div className='content has-text-centered'>
           <div className='columns'>
             <div className='column is-one-third'>
-              <LinkStyle href={FREITX_LINK}>{t('footer.website')}</LinkStyle>
-              <LinkStyle href={MEDIUM_LINK}>{t('footer.blog')}</LinkStyle>
-              <LinkStyle href={TELEGRAM_LINK}>{t('footer.chat')}</LinkStyle>
             </div>
             <div className='column is-one-third'><p>© 2018 FreitX Network</p></div>
             <div className='column is-one-third'>
-              <LinkStyle href={REDDIT_LINK}><FooterIcon className='fab fa-reddit-square'/></LinkStyle>
-              <LinkStyle href={TWITTER_LINK}><FooterIcon className='fab fa-twitter-square'/></LinkStyle>
-              <LinkStyle href={GITHUB_LINK}><FooterIcon className='fab fa-github-square'/></LinkStyle>
             </div>
           </div>
         </div>
