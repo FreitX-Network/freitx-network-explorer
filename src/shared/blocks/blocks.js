@@ -67,7 +67,7 @@ export class Blocks extends Component {
     return (
       <div className='column container'>
         <Helmet
-          title={`${t('blocks.title')} - IoTeX`}
+          title={`${t('blocks.title')} - FreitX Network Blockchain`}
         />
         <h1 className='title'>{t('blocks.title')}</h1>
         <TableWrapper

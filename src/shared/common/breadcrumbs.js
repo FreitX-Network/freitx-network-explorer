@@ -70,7 +70,7 @@ export class Breadcrumbs extends Component {
                 return (
                   <li key={index} className={notClickablePath(p.address) || index + 1 === length ? 'is-active' : ''}>
                     <Link to={`/${p.address}`}
-                      className='force-teal'>{ellipsisText(p.name.toLowerCase(), this.props.width)}</Link>
+                      className='force-teal'>{ellipsisText(p.name.toUpperCase(), this.props.width)}</Link>
                   </li>
                 );
               })
