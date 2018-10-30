@@ -2,7 +2,6 @@
 
 import Component from 'inferno-component';
 import {t} from '../../../lib/iso-i18n';
-import {ToolTip} from '../../common/tooltip';
 
 export class Navboard extends Component {
   props: {

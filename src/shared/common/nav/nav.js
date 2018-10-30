@@ -10,7 +10,6 @@ import {t} from '../../../lib/iso-i18n';
 import {BLOCKS, SITE_URL, EXECUTIONS, TRANSFERS, VOTES, WALLET} from '../site-url';
 import {fetchConsensusMetrics} from '../../consensus-metrics/consensus-metrics-actions';
 import type {TCoinStatistic, TConsensusMetrics} from '../../../entities/explorer-types';
-import {Navboard} from './navboard';
 import {IotexExplorerTitle} from '../iotex-explorer-title';
 
 
@@ -23,7 +22,6 @@ export class Nav extends Component {
   props: {
     fetchConsensusMetrics: fetchConsensusMetrics,
     statistic: TCoinStatistic,
-    votes: number,
     consensus: {
       metrics: TConsensusMetrics,
     },
@@ -114,10 +112,7 @@ export class Nav extends Component {
   }
 
   render() {
-    const stats = this.props.statistic;
     const consensusMetrics = this.props.consensus && this.props.consensus.metrics || {};
-    const votesData = Number(stats ? stats.votes || 0 : 0).toLocaleString();
-
     return (
       <div>
         <div className='navbar is-fixed-top' role='navigation'>
@@ -138,14 +133,6 @@ export class Nav extends Component {
                 <div id='navMenuColordark-example' className={`navbar-menu ${this.state.displayDropdownMenu ? 'is-active' : ''}`}>
                   <div className='navbar-end'>
                     <div className='navbar-item'>
-                    <Navboard
-                    blocks={Number(stats ? (stats.height || 0) + 1 : 0).toLocaleString()}
-                    executions={Number(stats ? stats.executions || 0 : 0).toLocaleString()}
-                    transfers={Number(stats ? stats.transfers || 0 : 0).toLocaleString()}
-                    votes={Number(stats ? stats.votes || 0 : 0).toLocaleString()}
-                    bbh={stats ? stats.bh || 0 : 0}
-                      />
-
                     </div>
                     <div className='navbar-item'>
                       <form onSubmit={e => this.handleSubmit(e)} ref={r => (this._form = r)}>
