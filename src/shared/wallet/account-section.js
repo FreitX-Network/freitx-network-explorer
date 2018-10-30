@@ -69,7 +69,7 @@ export class AccountSection extends Component {
     const {wallet, address, createNew, setWallet} = this.props;
 
     return (
-      <div className='wallet'>
+      <div className='wallet wallet_none'>
         {wallet ? this.wallet(wallet, address, setWallet) : (createNew ? this.newWallet() : this.emptyWallet())}
       </div>
     );

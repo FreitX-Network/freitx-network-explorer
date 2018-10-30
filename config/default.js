@@ -8,7 +8,7 @@ module.exports = {
   server: {
     protocol: 'http:',
     host: 'localhost',
-    port: process.env.PORT || 4004,
+    port: process.env.PORT || 4014,
     staticDir: './dist',
     routePrefix: '/',
   },
