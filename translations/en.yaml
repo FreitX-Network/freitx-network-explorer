@@ -112,6 +112,8 @@ wallet.title.wallet: Wallet
 wallet.tab.transfer: 'Send ${token}'
 wallet.tab.vote: Vote for delegate
 wallet.tab.contract: Smart Contracts
+wallet.tab.interact: Interact
+wallet.tab.deploy: Deploy
 wallet.transactionDetail.title: Transaction Detail
 wallet.transactionDetail.raw: Raw Transaction
 wallet.transactionDetail.signed: Transaction Signature

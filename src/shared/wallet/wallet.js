@@ -9,16 +9,18 @@ import type {TWallet} from '../../entities/wallet-types';
 import {t} from '../../lib/iso-i18n';
 import type {TAddressDetails} from '../../entities/explorer-types';
 import {fetchAddressId} from '../address/address-actions';
-import {Contract} from './contract/contract';
 import {AccountSection} from './account-section';
 import {Transfer} from './transfer/transfer';
 import {Vote} from './vote/vote';
 import {DeployPreloadHeader} from './contract/deploy';
 import {UnlockWallet} from './unlock-wallet';
+import {Deploy} from './contract/deploy'
+import {Interact} from './contract/interact';
 
 const TRANSFER = 0;
 const VOTE = 1;
-const CONTRACT = 2;
+const INTERACT = 2;
+const DEPLOY = 3;
 
 export class Wallet extends Component {
   props: {
@@ -85,9 +87,13 @@ export class Wallet extends Component {
             onClick={() => this.setState({selectedTab: VOTE})}>
             <a>{t('wallet.tab.vote')}</a>
           </li>
-          <li className={`${selectedTab === CONTRACT ? 'is-active' : ''}`}
-            onClick={() => this.setState({selectedTab: CONTRACT})}>
-            <a>{t('wallet.tab.contract')}</a>
+          <li className={`${selectedTab === INTERACT ? 'is-active' : ''}`}
+            onClick={() => this.setState({selectedTab: INTERACT})}>
+            <a>{t('wallet.tab.interact')}</a>
+          </li>
+          <li className={`${selectedTab === DEPLOY ? 'is-active' : ''}`}
+            onClick={() => this.setState({selectedTab: DEPLOY})}>
+            <a>{t('wallet.tab.deploy')}</a>
           </li>
         </ul>
       </div>
@@ -98,9 +104,12 @@ export class Wallet extends Component {
       tab = <Vote wallet={wallet} address={this.props.address} updateWalletInfo={this.updateWalletInfo}/>;
       break;
     }
-    case CONTRACT: {
-      tab = <Contract wallet={wallet} address={this.props.address} serverUrl={serverUrl}
-        updateWalletInfo={this.updateWalletInfo}/>;
+    case INTERACT: {
+      tab = <Interact wallet={wallet} address={this.props.address} updateWalletInfo={this.updateWalletInfo}/>;
+      break;
+    }
+    case DEPLOY: {
+      tab = <Deploy wallet={wallet} address={this.props.address} updateWalletInfo={this.updateWalletInfo}/>;
       break;
     }
     default: {
