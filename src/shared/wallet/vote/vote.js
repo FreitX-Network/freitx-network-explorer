@@ -29,7 +29,7 @@ export class Vote extends Component {
     return (
       <div className='column'>
         <Helmet
-          title={`${t('wallet.vote.title')} - IoTeX`}
+          title={`${t('wallet.vote.title')} - FreitX Network Blockchain`}
         />
         <div>
           <VoteInput wallet={wallet} address={address} updateWalletInfo={this.props.updateWalletInfo}/>

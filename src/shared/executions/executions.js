@@ -67,7 +67,7 @@ export class Executions extends Component {
     return (
       <div className='column container'>
         <Helmet
-          title={`${t('meta.executions')} - IoTeX`}
+          title={`${t('meta.executions')} - FreitX Network Blockchain`}
         />
         <div>
           <h1 className='title'>{t('meta.executions')}</h1>
@@ -194,4 +194,3 @@ export class ExecutionsListOnlyId extends Component {
     );
   }
 }
-

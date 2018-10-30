@@ -19,7 +19,7 @@ export function formatBlockHistory(seconds) {
 }
 
 export function setNavRoutes(server) {
-  const {gateways: {iotexCore, coinmarketcap}} = server;
+  const {gateways: {iotexCore}} = server;
 
   async function getStatisticApi(ctx, next) {
     try {
@@ -37,17 +37,7 @@ export function setNavRoutes(server) {
     }
   }
 
-  async function getCoinPrice(ctx, next) {
-    try {
-      const response = await coinmarketcap.fetchCoinPrice();
-      const d = response.data[0];
-      const price = {usd: d.price_usd, eth: d.price_eth};
-      ctx.body = {ok: true, price};
-    } catch (error) {
-      ctx.body = {ok: false, error: {code: 'FAIL_GET_COIN_PRICE', message: 'nav.error.coin'}};
-    }
-  }
+
 
   server.post('getStatistic', NAV.STATISTIC, getStatisticApi);
-  server.post('getCoinPrice', NAV.PRICE, getCoinPrice);
 }

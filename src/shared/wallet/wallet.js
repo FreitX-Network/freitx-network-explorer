@@ -157,7 +157,7 @@ export class Wallet extends Component {
       <div className='column container'>
         <div style={{margin: '48px'}}/>
         <Helmet
-          title={`${t('wallet.title.wallet')} - IoTeX`}
+          title={`${t('wallet.title.wallet')} - FreitX Network Blockchain`}
         />
         <DeployPreloadHeader/>
         <div className='column container'>

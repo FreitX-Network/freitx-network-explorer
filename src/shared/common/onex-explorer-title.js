@@ -4,7 +4,7 @@ import Component from 'inferno-component';
 import document from 'global/document';
 import window from 'global/window';
 
-export class IotexExplorerTitle extends Component {
+export class OnexExplorerTitle extends Component {
   props: {
     status: string,
   };

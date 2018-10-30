@@ -30,7 +30,7 @@ export class Transfer extends Component {
     return (
       <div className='column container'>
         <Helmet
-          title={`${t('transfer.title')} - IoTeX`}
+          title={`${t('transfer.title')} - FreitX Network Blockchain`}
         />
         <div>
           <h1 className='title'>{t('transfer.title')}</h1>

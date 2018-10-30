@@ -66,7 +66,7 @@ export class Transfers extends Component {
     return (
       <div className='column container'>
         <Helmet
-          title={`${t('meta.transfers')} - IoTeX`}
+          title={`${t('meta.transfers')} - FreitX Network Blockchain`}
         />
         <div>
           <h1 className='title'>{t('meta.transfers')}</h1>
@@ -177,4 +177,3 @@ export class TransfersListOnlyId extends Component {
     );
   }
 }
-

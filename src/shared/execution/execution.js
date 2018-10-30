@@ -62,7 +62,7 @@ export class Execution extends Component {
     return (
       <div className='column container'>
         <Helmet
-          title={`${t('execution.title')} - IoTeX`}
+          title={`${t('execution.title')} - FreitX Network Blockchain`}
         />
         <div>
           <h1 className='title'>{t('execution.title')}</h1>

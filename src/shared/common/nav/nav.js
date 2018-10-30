@@ -11,7 +11,7 @@ import {BLOCKS, SITE_URL, EXECUTIONS, TRANSFERS, VOTES, WALLET} from '../site-ur
 import {fetchConsensusMetrics} from '../../consensus-metrics/consensus-metrics-actions';
 import type {TCoinStatistic, TConsensusMetrics} from '../../../entities/explorer-types';
 import {Navboard} from './navboard';
-import {IotexExplorerTitle} from '../iotex-explorer-title';
+import {OnexExplorerTitle} from '../onex-explorer-title';
 
 
 
@@ -168,7 +168,7 @@ export class Nav extends Component {
                             <button className='button'>
                               <i className='fas fa-search'/>
                             </button>
-                            <IotexExplorerTitle
+                            <OnexExplorerTitle
                               status={this.props.status}
                             />
                           </div>

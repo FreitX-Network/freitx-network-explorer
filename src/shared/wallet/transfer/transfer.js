@@ -29,7 +29,7 @@ export class Transfer extends Component {
     return (
       <div className='column'>
         <Helmet
-          title={`${t('wallet.transfer.title')} - IoTeX`}
+          title={`${t('wallet.transfer.title')} - FreitX Network Blockchain`}
         />
         <div>
           <TransferInput wallet={wallet} address={address} updateWalletInfo={this.props.updateWalletInfo}/>

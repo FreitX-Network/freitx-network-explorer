@@ -102,7 +102,7 @@ export class Contract extends Component {
     return (
       <div className='column'>
         <Helmet
-          title={`${t('wallet.contract.title')} - IoTeX`}
+          title={`${t('wallet.contract.title')} - FreitX Network Blockchain`}
         />
         {this.toolInputs(selectedTab, wallet, address, updateWalletInfo, serverUrl)}
         <CommonMargin/>

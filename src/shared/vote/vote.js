@@ -35,7 +35,7 @@ export class Vote extends Component {
     return (
       <div className='column container'>
         <Helmet
-          title={`${t('vote.title')} - IoTeX`}
+          title={`${t('vote.title')} - FreitX Network Blockchain`}
         />
         <div>
           <h1 className='title'>{t('vote.title')}</h1>
