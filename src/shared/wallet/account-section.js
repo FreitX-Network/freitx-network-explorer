@@ -44,22 +44,20 @@ export class AccountSection extends Component {
 
   wallet(wallet: TWallet, address: TAddressDetails, setWallet: any) {
     return (
-      <div className='wallet-margin'>
+      <div className='wallet-container'>
         <div>
-          <p className='inline-item'><img style={{paddingRight: '5px'}} id='wallet' src={assetURL('/wallet.png')}/> {t('account.wallet')}</p>
-          <a className='float-right' onClick={() => setWallet(null)}>{t('account.change')}</a>
+          <p className='wallet-item'>{t('account.wallet')}</p>
         </div>
         <div style={{alignContent: 'center'}}>
-          <p id='iotx-balance'>{address ? address.totalBalance : 0}<b>{t('account.testnet.token')}</b></p>
+          <p id='balance'>{address ? address.totalBalance : 0}<b className='main-color'>{t('account.testnet.token')}</b></p>
+          <p id='balance'>{address ? address.totalBalance : 0}<b className='main-color'>{t('account.testnet.token.FRX')}</b></p>
         </div>
         <div>
-          <p>{t('account.address')}</p>
-          <p>{wallet.rawAddress}</p>
-        </div>
-        <div className='transaction-history-tag'>
-          <a style={{float: 'bottom'}} href={`/address/${wallet.rawAddress}`}>
-            {t('account.transaction-history')}
-          </a>
+          <p className='wallet-address'>{t('account.address')}</p>
+          <p className='wallet-rawaddress'>{wallet.rawAddress}</p>
+          <a className='wallet-options' href={`/address/${wallet.rawAddress}`}>
+          {t('account.transaction-history')}</a>
+          <a className='wallet-options' onClick={() => setWallet(null)}>{t('account.change')}</a>
         </div>
       </div>
     );
@@ -69,7 +67,7 @@ export class AccountSection extends Component {
     const {wallet, address, createNew, setWallet} = this.props;
 
     return (
-      <div className='wallet wallet_none'>
+      <div className='wallet'>
         {wallet ? this.wallet(wallet, address, setWallet) : (createNew ? this.newWallet() : this.emptyWallet())}
       </div>
     );
