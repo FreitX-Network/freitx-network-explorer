@@ -33,21 +33,23 @@ export class Vote extends Component {
 
   render() {
     return (
-      <div className='column container'>
-        <Helmet
-          title={`${t('vote.title')} - FreitX Network Blockchain`}
-        />
-        <div>
-          <h1 className='title'>{t('vote.title')}</h1>
-          <VoteSummary
-            vote={this.props.state.vote}
-            fetching={this.props.state.fetching}
-            error={this.props.state.error}
-            id={this.props.params.id}
-            fetchVoteId={this.props.fetchVoteId}
+      <div className='hub'>
+        <div className='column container'>
+          <Helmet
+            title={`${t('vote.title')} - FreitX Network Blockchain`}
           />
+          <div>
+            <h1 className='title'>{t('vote.title')}</h1>
+            <VoteSummary
+              vote={this.props.state.vote}
+              fetching={this.props.state.fetching}
+              error={this.props.state.error}
+              id={this.props.params.id}
+              fetchVoteId={this.props.fetchVoteId}
+            />
+          </div>
+          <CommonMargin/>
         </div>
-        <CommonMargin/>
       </div>
     );
   }

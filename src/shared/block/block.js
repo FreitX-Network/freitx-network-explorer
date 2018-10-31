@@ -62,28 +62,30 @@ export class Block extends Component {
 
   render() {
     return (
-      <div className='column container'>
-        <Helmet
-          title={`${t('block.title')} - IoTeX`}
-        />
-        <div>
-          <h1 className='title'>{t('block.title')}</h1>
-          <BlockSummary
-            id={this.props.params.id}
-            fetching={this.props.state.fetching}
-            error={this.props.state.error}
-            block={this.props.state.block}
-            fetchBlockId={this.props.fetchBlockId}
-            executions={this.props.state.executions}
-            transfers={this.props.state.transfers}
-            votes={this.props.state.votes}
-            fetchBlockExecutionsId={this.props.fetchBlockExecutionsId}
-            fetchBlockTransfersId={this.props.fetchBlockTransfersId}
-            fetchBlockVotesId={this.props.fetchBlockVotesId}
-            width={this.props.width}
+      <div className='hub'>
+        <div className='column container'>
+          <Helmet
+            title={`${t('block.title')} - IoTeX`}
           />
+          <div>
+            <h1 className='title'>{t('block.title')}</h1>
+            <BlockSummary
+              id={this.props.params.id}
+              fetching={this.props.state.fetching}
+              error={this.props.state.error}
+              block={this.props.state.block}
+              fetchBlockId={this.props.fetchBlockId}
+              executions={this.props.state.executions}
+              transfers={this.props.state.transfers}
+              votes={this.props.state.votes}
+              fetchBlockExecutionsId={this.props.fetchBlockExecutionsId}
+              fetchBlockTransfersId={this.props.fetchBlockTransfersId}
+              fetchBlockVotesId={this.props.fetchBlockVotesId}
+              width={this.props.width}
+            />
+          </div>
+          <CommonMargin/>
         </div>
-        <CommonMargin/>
       </div>
     );
   }

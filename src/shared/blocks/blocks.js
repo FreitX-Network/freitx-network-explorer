@@ -65,29 +65,31 @@ export class Blocks extends Component {
 
   render() {
     return (
-      <div className='column container'>
-        <Helmet
-          title={`${t('blocks.title')} - FreitX Network Blockchain`}
-        />
-        <h1 className='title'>{t('blocks.title')}</h1>
-        <TableWrapper
-          fetching={this.props.state.fetching}
-          error={this.props.state.error}
-          offset={this.props.state.offset}
-          count={this.props.state.count}
-          items={this.props.state.items}
-          fetch={this.props.fetchBlocks}
-          tip={this.props.state.tip}
-          name={t('blocks.title')}
-          displayPagination={true}
-        >
-          {<BlocksListOnlyId
-            blocks={this.props.state.items}
-            width={this.props.width}
-            isHome={false}
-          />}
-        </TableWrapper>
-        <CommonMargin/>
+      <div className='hub'>
+        <div className='column container'>
+          <Helmet
+            title={`${t('blocks.title')} - FreitX Network Blockchain`}
+          />
+          <h1 className='title'>{t('blocks.title')}</h1>
+          <TableWrapper
+            fetching={this.props.state.fetching}
+            error={this.props.state.error}
+            offset={this.props.state.offset}
+            count={this.props.state.count}
+            items={this.props.state.items}
+            fetch={this.props.fetchBlocks}
+            tip={this.props.state.tip}
+            name={t('blocks.title')}
+            displayPagination={true}
+          >
+            {<BlocksListOnlyId
+              blocks={this.props.state.items}
+              width={this.props.width}
+              isHome={false}
+            />}
+          </TableWrapper>
+          <CommonMargin/>
+        </div>
       </div>
     );
   }

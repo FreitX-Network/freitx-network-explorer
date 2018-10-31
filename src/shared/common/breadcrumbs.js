@@ -61,23 +61,25 @@ export class Breadcrumbs extends Component {
   render() {
     const breadcrumbs = cleanPath(this.state.url);
     return (
-      <BreadCrumbStyle className='container column'>
-        <nav className='breadcrumb' aria-label='breadcrumbs'>
-          <ul>
-            {breadcrumbs.length === 0 || breadcrumbs.length === 1 && breadcrumbs[0].address === '' ? null :
-              breadcrumbs.map((p, index) => {
-                const length = breadcrumbs.length;
-                return (
-                  <li key={index} className={notClickablePath(p.address) || index + 1 === length ? 'is-active' : ''}>
-                    <Link to={`/${p.address}`}
-                      className='force-teal'>{ellipsisText(p.name.toUpperCase(), this.props.width)}</Link>
-                  </li>
-                );
-              })
-            }
-          </ul>
-        </nav>
-      </BreadCrumbStyle>
+      <div className='hub'>
+        <BreadCrumbStyle className='container column'>
+          <nav className='breadcrumb' aria-label='breadcrumbs'>
+            <ul>
+              {breadcrumbs.length === 0 || breadcrumbs.length === 1 && breadcrumbs[0].address === '' ? null :
+                breadcrumbs.map((p, index) => {
+                  const length = breadcrumbs.length;
+                  return (
+                    <li key={index} className={notClickablePath(p.address) || index + 1 === length ? 'is-active' : ''}>
+                      <Link to={`/${p.address}`}
+                        className='force-teal'>{ellipsisText(p.name.toUpperCase(), this.props.width)}</Link>
+                    </li>
+                  );
+                })
+              }
+            </ul>
+          </nav>
+        </BreadCrumbStyle>
+      </div>
     );
   }
 }

@@ -1,3 +1,10 @@
+.hub {
+  width: calc(100% - 200px);
+  margin-left: 200px;
+  display: flex;
+  justify-content: center;
+}
+
 .box-custom {
   background-color: #151b21 !important;
   border-width: 1px;
@@ -139,7 +146,7 @@
 .tooltip .tooltiptext-right::after {
   content: "";
   position: absolute;
-  top: 20px;
+  top: 12px;
   margin-top: -5px;
   border: 5px solid transparent;
 }
@@ -444,11 +451,11 @@ container {
 }
 .column.container {
   width: calc(100% - 200px);
-  margin-left: 200px;
+  // margin-left: 200px;
 }
 .container {
   width: calc(100% - 200px);
-  margin-left: 200px;
+  // margin-left: 200px;
 
 }
 .footer{
@@ -547,7 +554,8 @@ container {
   color: #18C3EA !important;
   font-size: 13px;
   display: block;
-  margin-top: -12px;
+  margin-top: 0px;
+  margin-left: 0px;
 }
 .force-teal.dashboard-title.subtitle {
     color: #4a4a4a!important;
@@ -774,6 +782,7 @@ container {
     width: 100%;
     padding: 0 !important;
     color: #a7a7a7;
+    text-align: center;
 }
 .bx--data-table-v2 tr {
     height: 55px;
@@ -962,7 +971,7 @@ pre {
 .breadcrumb li+li::before {
     color: #b5b5b5;
     content: "\0002f";
-    margin-top: -10px;
+    margin-top: 0px;
 }
 
 

@@ -38,23 +38,25 @@ export class Address extends Component {
 
   render() {
     return (
-      <div className='column container'>
-        <Helmet
-          title={`${t('address.title')} - IoTeX`}
-        />
-        <div>
-          <h1 className='title'>{t('address.title')}</h1>
-          <AddressSummary
-            id={this.props.params.id}
-            state={this.props.state}
-            fetchAddressId={this.props.fetchAddressId}
-            fetchAddressExecutionsId={this.props.fetchAddressExecutionsId}
-            fetchAddressTransfersId={this.props.fetchAddressTransfersId}
-            fetchAddressVotersId={this.props.fetchAddressVotersId}
-            width={this.props.width}
+      <div className='hub'>
+        <div className='column container'>
+          <Helmet
+            title={`${t('address.title')} - IoTeX`}
           />
+          <div>
+            <h1 className='title'>{t('address.title')}</h1>
+            <AddressSummary
+              id={this.props.params.id}
+              state={this.props.state}
+              fetchAddressId={this.props.fetchAddressId}
+              fetchAddressExecutionsId={this.props.fetchAddressExecutionsId}
+              fetchAddressTransfersId={this.props.fetchAddressTransfersId}
+              fetchAddressVotersId={this.props.fetchAddressVotersId}
+              width={this.props.width}
+            />
+          </div>
+          <CommonMargin/>
         </div>
-        <CommonMargin/>
       </div>
     );
   }

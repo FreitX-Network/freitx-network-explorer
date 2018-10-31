@@ -45,8 +45,10 @@ export class Execution extends Component {
 
     if (this.props.state.execution && this.props.state.execution.isPending) {
       return (
-        <div className='column container'>
-          <PendingMessage/>
+        <div className='hub'>
+          <div className='column container'>
+            <PendingMessage/>
+          </div>
         </div>
       );
     }
@@ -60,29 +62,31 @@ export class Execution extends Component {
       );
     }
     return (
-      <div className='column container'>
-        <Helmet
-          title={`${t('execution.title')} - FreitX Network Blockchain`}
-        />
-        <div>
-          <h1 className='title'>{t('execution.title')}</h1>
-          <ExecutionSummary
-            execution={this.props.state.execution}
-            fetching={this.props.state.fetching}
-            error={this.props.state.error}
-            id={this.props.params.id}
-            fetchExecutionId={this.props.fetchExecutionId}
+      <div className='hub'>
+        <div className='column container'>
+          <Helmet
+            title={`${t('execution.title')} - FreitX Network Blockchain`}
           />
-          <Receipt
-            receipt={receipt}
-            fetching={fetchingReceipt}
-            error={receiptError}
-            id={this.props.params.id}
-            fetchReceipt={this.props.fetchExecutionReceipt}
-          />
-          {executions}
+          <div>
+            <h1 className='title'>{t('execution.title')}</h1>
+            <ExecutionSummary
+              execution={this.props.state.execution}
+              fetching={this.props.state.fetching}
+              error={this.props.state.error}
+              id={this.props.params.id}
+              fetchExecutionId={this.props.fetchExecutionId}
+            />
+            <Receipt
+              receipt={receipt}
+              fetching={fetchingReceipt}
+              error={receiptError}
+              id={this.props.params.id}
+              fetchReceipt={this.props.fetchExecutionReceipt}
+            />
+            {executions}
+          </div>
+          <CommonMargin/>
         </div>
-        <CommonMargin/>
       </div>
     );
   }

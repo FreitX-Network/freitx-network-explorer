@@ -64,31 +64,33 @@ export class Transfers extends Component {
 
   render() {
     return (
-      <div className='column container'>
-        <Helmet
-          title={`${t('meta.transfers')} - FreitX Network Blockchain`}
-        />
-        <div>
-          <h1 className='title'>{t('meta.transfers')}</h1>
-          <TableWrapper
-            fetching={this.props.state.fetching}
-            error={this.props.state.error}
-            offset={this.props.state.offset}
-            count={this.props.state.count}
-            items={this.props.state.items}
-            fetch={this.props.fetchTransfers}
-            tip={this.props.state.tip}
-            name={t('meta.transfers')}
-            displayPagination={true}
-          >
-            {<TransfersListOnlyId
-              transfers={this.props.state.items}
-              width={this.props.width}
-              isHome={false}
-            />}
-          </TableWrapper>
+      <div className='hub'>
+        <div className='column container'>
+          <Helmet
+            title={`${t('meta.transfers')} - FreitX Network Blockchain`}
+          />
+          <div>
+            <h1 className='title'>{t('meta.transfers')}</h1>
+            <TableWrapper
+              fetching={this.props.state.fetching}
+              error={this.props.state.error}
+              offset={this.props.state.offset}
+              count={this.props.state.count}
+              items={this.props.state.items}
+              fetch={this.props.fetchTransfers}
+              tip={this.props.state.tip}
+              name={t('meta.transfers')}
+              displayPagination={true}
+            >
+              {<TransfersListOnlyId
+                transfers={this.props.state.items}
+                width={this.props.width}
+                isHome={false}
+              />}
+            </TableWrapper>
+          </div>
+          <CommonMargin/>
         </div>
-        <CommonMargin/>
       </div>
     );
   }

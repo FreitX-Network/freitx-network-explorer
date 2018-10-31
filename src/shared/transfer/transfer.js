@@ -28,21 +28,23 @@ export class Transfer extends Component {
 
   render() {
     return (
-      <div className='column container'>
-        <Helmet
-          title={`${t('transfer.title')} - FreitX Network Blockchain`}
-        />
-        <div>
-          <h1 className='title'>{t('transfer.title')}</h1>
-          <TransferSummary
-            transfer={this.props.state.transfer}
-            fetching={this.props.state.fetching}
-            error={this.props.state.error}
-            id={this.props.params.id}
-            fetchTransferId={this.props.fetchTransferId}
+      <div className='hub'>
+        <div className='column container'>
+          <Helmet
+            title={`${t('transfer.title')} - FreitX Network Blockchain`}
           />
+          <div>
+            <h1 className='title'>{t('transfer.title')}</h1>
+            <TransferSummary
+              transfer={this.props.state.transfer}
+              fetching={this.props.state.fetching}
+              error={this.props.state.error}
+              id={this.props.params.id}
+              fetchTransferId={this.props.fetchTransferId}
+            />
+          </div>
+          <CommonMargin/>
         </div>
-        <CommonMargin/>
       </div>
     );
   }
