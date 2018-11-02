@@ -42,6 +42,15 @@
   margin-bottom: 3em;
 }
 
+.column {
+  .single-col-table {
+    .title {
+      width: 100%;
+    }
+  }
+}
+
+
 .main-title-wrap {
   padding-bottom: 3em;
 }
@@ -1241,7 +1250,11 @@ a.navbar-item:hover, .navbar-link:hover{
 }
 
 
-
+.footer .column.is-one-third p {
+    line-height: 1.2;
+    text-align: center;
+    width: 100%;
+}
 
 
 .column.container.main-title-wrap {
@@ -1251,9 +1264,39 @@ a.navbar-item:hover, .navbar-link:hover{
 
 
 @media only screen and (max-width: 1800px) {
+  .container.lend {
+    max-width: calc(100% - 200px);
+    margin: 0 0 0 200px;
+    display: flex;
+    justify-content: center;
+
+  }
   .columns.lorem {
     margin: 30px -30px 30px auto;
   }
+  .container.column._a._e._f {
+    max-width: calc(100% - 200px);
+    margin-left: 200px;
+    display: flex;
+    align-items: center;
+  }
+  .navbar > .container {
+      height: 30px;
+      width: 100%;
+      max-width: 100%;
+      margin-left: 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+  }
+  .container>.navbar .navbar-menu,
+  .navbar>.container .navbar-menu {
+      margin-right: 0;
+      max-width: 100%;
+      width: 100%;
+  }
+
+
 }
 @media only screen and (max-width: 1600px) {
   .columns.lorem {
@@ -1274,6 +1317,14 @@ a.navbar-item:hover, .navbar-link:hover{
   .tile.is-parent {
     padding: 0;
   }
+  .bx--data-table-v2 a, .bx--data-table-v2 td {
+    font-size: 9px;
+  }
+  .header-col {
+      font-size: 11px!important;
+  }
+
+
 
 }
 
@@ -1283,10 +1334,84 @@ a.navbar-item:hover, .navbar-link:hover{
 }
 @media only screen and (max-width: 1336px) {
 
+  .title.has-text-centered {
+    font-size: 11px!important;
+  }
+  .field.has-addons {
+    width: 89%;
+    .control._d {
+      width: 80%;
+      &:nth-child(2){
+        width: 65%;
+      }
+    }
+    .select select:not([multiple]) {
+        padding-right: 0;
+    }
+    .select.is-fullwidth {
+      width: 100%;
+    }
+    button {
+      margin-top: -3px;
+    }
+  }
+
+  .select:not(.is-multiple):not(.is-loading)::after {
+      right: 7px;
+  }
+  .column.container.main-title-wrap {
+    margin-left: 41px;
+    padding: 0;
+    .live-tag {
+      &:before {
+        top: 3px;
+        right: -70px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .bx--data-table-v2 thead {
+    font-size: 11px;
+  }
+  .single-col-header {
+    font-size: 11px;
+  }
+  .force-teal {
+    font-size: 10px;
+  }
+  .button, .file-cta, .file-name, .input, .pagination-ellipsis, .pagination-link, .pagination-next, .pagination-previous, .select select, .textarea {
+      font-size: 11px;
+  }
+  .footer {
+    .column.is-one-third {
+      p {
+        line-height: 1.2;
+        font-size: 12px;
+        text-align: center;
+        width: 100%;
+      }
+    }
+  }
 
 }
 
 @media only screen and (max-width: 1200px) {
 
+  .title.has-text-centered {
+    width: 87px;
+    font-size: 10px !important;
+  }
 
+}
+
+
+@media only screen and (max-width: 1200px) {
+
+  .container > .navbar .navbar-menu, .navbar > .container .navbar-menu {
+      margin-right: 0;
+      max-width: 100%;
+      width: 100%;
+      margin-top: 60px;
+  }
 }

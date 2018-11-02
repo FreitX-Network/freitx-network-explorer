@@ -110,7 +110,7 @@ export class BlockchainExplorer extends Component {
     const candidates = consensusMetrics.candidates || [];
 
     return (
-      <div className='container'>
+      <div className='container lend'>
         <Helmet
           title={`${t('blockchainExplorer.title')}`}
         />
