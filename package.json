@@ -45,7 +45,7 @@
       "src/server/gateways/wallet-core/rpc_pb.js",
       "src/server/gateways/wallet-core/rpc_grpc_pb.js",
       "src/server/gateways/wallet-core/wallet-core.js",
-      "src/server/gateways/iotex-core/iotex-core.js",
+      "src/server/gateways/freitx-core/freitx-core.js",
       "src/**/*.test.js",
       "src/**/__tests__/**"
     ],

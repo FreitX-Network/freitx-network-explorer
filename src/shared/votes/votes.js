@@ -163,7 +163,6 @@ export class VotesListOnlyId extends Component {
         <thead>
           <tr>
             <th className='single-col-header'>{t('vote.id')}</th>
-            <th className='single-col-header'>{t('meta.timestamp')}</th>
           </tr>
         </thead>
         <tbody>
@@ -177,10 +176,6 @@ export class VotesListOnlyId extends Component {
                   /> : null
                 }
                 <Link to={`/votes/${vote.id}`} className='link'>{singleColEllipsisText(vote.id, this.props.width, this.props.isHome)}</Link>
-              </td>
-              <td className='single-col-row tte2'>
-
-              {singleColEllipsisText((fromNow(vote.timestamp) || 0), this.props.width, this.props.isHome)}
               </td>
             </tr>
           ))}

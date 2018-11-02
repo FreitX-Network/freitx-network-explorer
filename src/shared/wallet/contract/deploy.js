@@ -14,7 +14,7 @@ import type {TRawExecutionRequest} from '../../../entities/wallet-types';
 import {assetURL} from '../../../lib/asset-url';
 import {BroadcastFail, BroadcastSuccess} from '../broadcastedTransaction';
 import {acceptableNonce, isValidBytes, onlyNumber} from '../validator';
-import type {GExecution} from '../../../server/gateways/iotex-core/iotex-core-types';
+import type {GExecution} from '../../../server/gateways/freitx-core/freitx-core-types';
 import {clearButton, greenButton} from '../../common/buttons';
 
 const window = require('global/window');

@@ -44,7 +44,7 @@ function sendOnCallMsg() {
   initClient();
   if (client !== null) {
     const time = new Date().toString();
-    const msg = `IoTeX Explorer backend is OFFLINE\n${time}`;
+    const msg = `FreitX Explorer backend is OFFLINE\n${time}`;
     sendSMS(`+${onCallNumber}`, msg);
   }
 }

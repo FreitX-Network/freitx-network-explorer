@@ -3,7 +3,7 @@ import process from 'global/process';
 require('dotenv').config();
 
 module.exports = {
-  project: 'iotex-explorer',
+  project: 'freitx-explorer',
   env: 'development',
   server: {
     protocol: 'http:',
@@ -16,7 +16,7 @@ module.exports = {
     logger: {
       enabled: true,
       baseDir: '/var/log/',
-      topicName: 'iotex-explorer',
+      topicName: 'freitx-explorer',
       level: 'debug',
       kafka: {
         leafHost: 'localhost',
@@ -24,7 +24,7 @@ module.exports = {
       },
     },
     iotexCore: {
-      serverUrl: process.env.IOTEX_CORE_URL || 'http://localhost:14004/',
+      serverUrl: 'http://localhost:14004/',
     },
     walletCore: {
       serverUrl: process.env.IOTEX_WALLET_URL || 'localhost:42124',

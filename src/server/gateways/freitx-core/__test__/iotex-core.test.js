@@ -1,7 +1,7 @@
 // @flow
 import test from 'ava';
-import {fromGTransfer, fromGBlock, fromGVote, isLatest} from '../iotex-core-types';
-import type {GTransfer, GBlockGenerator, GBlock, GVote} from '../iotex-core-types';
+import {fromGTransfer, fromGBlock, fromGVote, isLatest} from '../freitx-core-types';
+import type {GTransfer, GBlockGenerator, GBlock, GVote} from '../freitx-core-types';
 
 function getGBlock(): GBlock {
   const bG = {

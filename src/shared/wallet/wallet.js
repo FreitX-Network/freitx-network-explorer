@@ -56,7 +56,7 @@ export class Wallet extends Component {
   componentDidMount() {
     if (isBrowser) {
       // Fetch address every 1 seconds
-      const fetchAddressIntervalId = window.setInterval(() => this.updateWalletInfo(), 1000);
+      const fetchAddressIntervalId = window.setInterval(() => this.updateWalletInfo(), 9000);
       this.setState({fetchAddressIntervalId});
     }
   }

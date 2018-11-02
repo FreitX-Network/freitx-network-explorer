@@ -65,7 +65,7 @@ export class Block extends Component {
       <div className='hub'>
         <div className='column container'>
           <Helmet
-            title={`${t('block.title')} - IoTeX`}
+            title={`${t('block.title')} - FreitX Network`}
           />
           <div>
             <h1 className='title'>{t('block.title')}</h1>

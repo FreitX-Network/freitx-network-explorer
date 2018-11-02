@@ -21,7 +21,7 @@ import twilio from '../../../shared/common/twilio';
 import type {TRawExecutionRequest} from '../../../entities/wallet-types';
 import type {TSendExecutionResponse} from '../../../entities/explorer-types';
 import type {TExecution} from '../../../entities/explorer-types';
-import {fromGTransfer, fromGExecution, fromGBlock, fromGReceipt, fromGVote, isLatest} from './iotex-core-types';
+import {fromGTransfer, fromGExecution, fromGBlock, fromGReceipt, fromGVote, isLatest} from './freitx-core-types';
 import type {
   GAddressDetails,
   GBlock,
@@ -34,7 +34,7 @@ import type {
   GExecution,
   GVote,
   GReceipt,
-} from './iotex-core-types';
+} from './freitx-core-types';
 
 type Opts = {
   serverUrl: string,
@@ -54,7 +54,7 @@ export interface IGExplorer {
   // get the balance of an address
   getAddressBalance(address: string): number,
 
-  // get the address detail of an iotex address
+  // get the address detail of an freitx address
   getAddressDetails(address: string): GAddressDetails,
 
   // get list of executions by start block height, execution offset and limit
@@ -124,7 +124,7 @@ export interface IGExplorer {
   readExecutionState(contractAddress: string, slot: number): string,
 }
 
-export class IotexCoreExplorer {
+export class FreitxCoreExplorer {
   client: any;
   exp: IGExplorer;
   opts: Opts;
@@ -150,7 +150,7 @@ export class IotexCoreExplorer {
       try {
         this.exp = this.client.proxy('Explorer');
       } catch (perr) {
-        logger.error('client failed to connect to iotex-core', {err: perr, opts: this.opts});
+        logger.error('client failed to connect to freitx-core', {err: perr, opts: this.opts});
         return;
       }
       logger.info(`barrister contract "Explorer" loaded from ${this.opts.serverUrl}`);
@@ -213,7 +213,7 @@ export class IotexCoreExplorer {
     }
   }
 
-  // get the address detail of an iotex address
+  // get the address detail of an freitx address
   async getAddressDetails(address: string): Promise<TAddressDetails> {
     return this.fetchValue('addresses', address, async() => {
       return await promisify(this.exp.getAddressDetails)(address);

@@ -157,8 +157,8 @@ wallet.transactions.header: Actions
 wallet.transactions.transfer: Create Transfer
 wallet.transactions.vote: Create Vote
 wallet.transactions.send: Send Transaction
-wallet.transfer.title: Send OneX
-wallet.vote.title: Vote for Delegate
+wallet.transfer.title: Send
+wallet.vote.title: Bond for Producing
 wallet.transaction.title: Transaction
 wallet.interact.abiTemplate: >-
   [{ "type":"contructor", "inputs": [{ "name":"param1", "type":"uint256",
@@ -174,12 +174,12 @@ wallet.contract.header: Actions
 wallet.contract.interact: Interact
 wallet.contract.deploy: Deploy
 wallet.deploy.deploy: Deploy Contract
-wallet.deploy.signTransaction: Sign Transaction
+wallet.deploy.signTransaction: Sign
 input.bool.true: 'True'
 input.bool.false: 'False'
 wallet.account.placehold.privateKey: Paste your private key here
 wallet.input.solidity: Solidity (optional)
-wallet.deploy.generateAbiAndByteCode: Generate ABI and Byte Code
+wallet.deploy.generateAbiAndByteCode: Generate
 wallet.generate.fail: Something went wrong. Please check your internet connect/ try again
 meta.executions: Contracts
 meta.execution: Contract
@@ -267,7 +267,7 @@ account.testnet.token.FRX: FRX
 account.address: Address
 account.transaction-history: Transaction History
 wallet.detail.are-you-sure: Are you sure you want to do this?
-wallet.vote.input.title: Send Vote
+wallet.vote.input.title: Bond
 wallet.vote.fail: Please try to vote later
 wallet.vote.button.new: Send new vote
 wallet.vote.detail-title: You are about to vote ...

@@ -10,7 +10,7 @@ import {greenButton} from '../../common/buttons';
 import {WALLET} from '../../common/site-url';
 import {fetchPost} from '../../../lib/fetch-post';
 import {isINTType} from '../validator';
-import type {GExecution} from '../../../server/gateways/iotex-core/iotex-core-types';
+import type {GExecution} from '../../../server/gateways/freitx-core/freitx-core-types';
 import type {TWallet} from '../../../entities/wallet-types';
 import {encodeInputData} from './abi-to-byte';
 

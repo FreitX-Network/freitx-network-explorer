@@ -10,7 +10,7 @@ import {WALLET} from '../../common/site-url';
 import {fetchPost} from '../../../lib/fetch-post';
 import {BroadcastFail, BroadcastSuccess} from '../broadcastedTransaction';
 import {Dialogue} from '../../common/dialogue/dialogue';
-import type {GExecution} from '../../../server/gateways/iotex-core/iotex-core-types';
+import type {GExecution} from '../../../server/gateways/freitx-core/freitx-core-types';
 import {cancelButton, clearButton, greenButton} from '../../common/buttons';
 import {AbiFunctions} from './abi-functions';
 
