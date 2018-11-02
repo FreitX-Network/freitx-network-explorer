@@ -17,20 +17,21 @@ meta.loading: Loading
 meta.all: View All
 meta.block: Block
 meta.blocks: Blocks
-meta.vote: Vote
-meta.votes: Votes
+meta.vote: Bond
+meta.votes: Bonds
 meta.payload: Payload
 meta.account: Wallet
 meta.dashboard: Dashboard
+meta.version: Version
 address.title: Address Summary
 address.totalBalance: Total Balance
 address.nonce: Nonce
-address.voteDetails: Vote Details
+address.voteDetails: Bond Details
 address.listOfTransfers: List of Transactions
 address.listOfExecutions: List of Contracts
 address.error.failGetAddress: 'Could not get address details for ${id}'
 address.error.failGetTransfers: 'Could not get transfers for address ${id}'
-address.error.failGetVotes: 'Could not get votes for address ${id}'
+address.error.failGetVotes: 'Could not get bonds for address ${id}'
 block.title: Block Details
 block.id: Block Hash
 block.totalAmount: Total Amount
@@ -38,14 +39,14 @@ block.totalForged: Total Forged
 block.generatedBy: Producer Public Key
 block.size: Size (in Bytes)
 block.listOfTransfers: List of Transactions
-block.listOfVotes: List of Votes
+block.listOfVotes: List of Bonds
 block.error.failGetBlock: 'Could not retrieve block details for ${id}'
 block.error.failGetTransfers: 'Could not retrieve transfers for block ${id}'
 block.error.failGetVotes: 'Could not get retrieve for block ${id}'
 dashboard.epochs: Epochs
 dashboard.blocks: Blocks
 dashboard.transfers: Transactions
-dashboard.votes: Votes
+dashboard.votes: Bonds
 dashboard.faps: IFTPS
 dashboard.bbh: Genesis
 dashboard.epochsMsg: >-
@@ -54,16 +55,16 @@ dashboard.epochsMsg: >-
   produce the blocks on behalf of the whole network.
 dashboard.blocksMsg: Total number of blocks built on FreitX Network blockchain.
 dashboard.transfersMsg: Total number of token transfer created/recorded on FreitX Network blockchain.
-dashboard.votesMsg: Total number of votes for delegates on FreitX Network blockchain.
+dashboard.votesMsg: Total number of bonds for producers on FreitX Network blockchain.
 dashboard.fapsMsg: >-
   Instant Finalized Transaction Rate (IFTPS) - The number of instantly finalized
-  actions (Transactions + votes) per second.
+  actions (Transactions + bonds) per second.
 dashboard.bbhMsg: >-
   Block Building History - How long the FreitX Network blockchain has been
   running (timestamp of the current block - timestamp of the first block)
 latestBlocks.title: Current Blocks
 latestTransfers.title: Current Transactions
-latestVotes.title: Current Votes
+latestVotes.title: Current Bonds
 blocks.title: Blocks
 blocks.forged: Forged
 blocks.error.get: Could not get blocks
@@ -80,7 +81,7 @@ transfers.error.get: Could not get transactions
 footer.website: Website
 footer.blog: Blog
 footer.chat: Chat
-votes.title: Votes
+votes.title: Bonds
 nav.error.statistic: Could not get statistics
 nav.error.coin: Could not get coin price
 consensus.error.fail: Could not get consensus metrics
@@ -89,20 +90,20 @@ empty.no: 'No'
 empty.noMore: No More
 empty.yet: Yet
 error.unknown: Something Went Wrong
-vote.title: Vote Details
-vote.id: Vote Hash
+vote.title: Bond Details
+vote.id: Bond Hash
 vote.votee: Votee
 vote.voter: Voter
 vote.voters: Voters
 vote.blockId: Block ID
 vote.nonce: Nonce
 vote.version: Version
-vote.error.getVote: 'Could not get vote ${id}'
-votes.out: Vote sent out
-votes.in: Vote received
-votes.error.get: Could not get votes
+vote.error.getVote: 'Could not get bond ${id}'
+votes.out: Bond sent out
+votes.in: Bond received
+votes.error.get: Could not get bonds
 breadcrumbs.home: home
-breadcrumbs.votes: votes
+breadcrumbs.votes: bonds
 breadcrumbs.transfers: transactions
 breadcrumbs.blocks: blocks
 breadcrumbs.address: address

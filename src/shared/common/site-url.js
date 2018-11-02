@@ -1,7 +1,7 @@
 // @flow
 
 export const SITE_URL = '/';
-export const CONSENSUS_API = '/api/getConsensusMetrics';
+export const CONSENSUS_API = '/api/getFreitxChainData';
 
 export class ADDRESS {
 
@@ -29,7 +29,7 @@ export class ADDRESS {
 export class VOTE {
 
   static get INDEX(): string {
-    return '/votes/:id/';
+    return '/bonds/:id/';
   }
 
   static get GET_VOTE(): string {
@@ -40,11 +40,11 @@ export class VOTE {
 export class VOTES {
 
   static get INDEX(): string {
-    return '/votes/';
+    return '/bonds/';
   }
 
   static get GET(): string {
-    return '/api/getVotes';
+    return '/api/getBonds';
   }
 }
 
@@ -63,7 +63,7 @@ export class BLOCK {
   }
 
   static get GET_VOTES(): string {
-    return '/api/getBlockVotesId';
+    return '/api/getBlockBondsId';
   }
 
   static get GET_EXECUTIONS(): string {
