@@ -120,7 +120,7 @@ export class VotesList extends Component {
         <thead>
           <tr>
             <th>{t('vote.id')}</th>
-            <th>{t('meta.timestamp')}</th>
+            <th style={{ border: '2px solid red'}}>{t('meta.timestamp')}</th>
             <th>{t('vote.blockId')}</th>
           </tr>
         </thead>

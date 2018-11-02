@@ -71,16 +71,17 @@ export class UnlockWallet extends Component {
 
   unlock(priKey: string, priKeyError: string, message: string, fetching: boolean) {
     return (
-      <div>
+      <div className='new_wallet'>
         <Dialogue
           getSetActiveFn={setDialogueActive => this.setDialogueActive = setDialogueActive}
+          style={{color: '#000'}}
           title={t('wallet.unlock.new.title')}
           cancelButton={cancelButton(this.setDialogueNotActiveButton)}
           submitButton={greenButton(t('wallet.unlock.new.yes'), false, this.newWalletClick, false)}>
-          <p>{t('wallet.unlock.new.p1')}</p>
-          <p>{t('wallet.unlock.new.p2')}</p>
+          <p className='black'>{t('wallet.unlock.new.p1')}</p>
+          <p className='black'>{t('wallet.unlock.new.p2')}</p>
         </Dialogue>
-        <p className='wallet-title'>{t('unlock-wallet.title')}</p>
+        <p className='black wallet-title'>{t('unlock-wallet.title')}</p>
 
         <article className='message is-warning'>
           <div className='message-body'>{t('unlock-wallet.warn.message')}</div>

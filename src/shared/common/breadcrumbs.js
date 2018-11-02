@@ -61,7 +61,6 @@ export class Breadcrumbs extends Component {
   render() {
     const breadcrumbs = cleanPath(this.state.url);
     return (
-      <div className='hub'>
         <BreadCrumbStyle className='container column'>
           <nav className='breadcrumb' aria-label='breadcrumbs'>
             <ul>
@@ -79,7 +78,6 @@ export class Breadcrumbs extends Component {
             </ul>
           </nav>
         </BreadCrumbStyle>
-      </div>
     );
   }
 }

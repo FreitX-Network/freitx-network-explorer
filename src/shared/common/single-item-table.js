@@ -24,7 +24,7 @@ export class SingleItemTable extends Component {
         <table className='bx--data-table-v2'>
           <tbody>
             {this.props.rows.map((r: Row) => (
-              <tr className='bx--parent-row-v2' data-parent-row>
+              <tr className='bx--parent-row-v2 tr_row' data-parent-row>
                 <td className='header-col'>{r.c1}</td>
                 <td>{r.c2}</td>
               </tr>

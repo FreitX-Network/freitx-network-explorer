@@ -21,11 +21,11 @@ export function BroadcastSuccess(txHash: string, type: string, action: any) {
   }
   return (
     <div>
-      <p style={{fontSize: '34px', fontWeight: 'bold'}}><i style={{color: '#07a35a'}} className='far fa-check-circle'/> {t('broadcast.success')}</p>
+      <p style={{fontSize: '30px', fontWeight: 'bold'}}><i style={{color: '#07a35a'}} className='far fa-check-circle'/> {t('broadcast.success')}</p>
 
-      <p>{t('broadcast.warn.one')}</p>
-      <p>{t('broadcast.warn.two')}</p>
-      <p>{t('broadcast.warn.three')} <strong>{txHash}</strong></p>
+      <p className="p_left top">{t('broadcast.warn.one')}</p>
+      <p className="p_left">{t('broadcast.warn.two')}</p>
+      <p className="p_left bottom">{t('broadcast.warn.three')} <strong>{txHash}</strong></p>
 
       {greenButton(t('broadcast.button.check'), false, null, false, `${index}${txHash}`, '_blank')}
       {'\u0020'}

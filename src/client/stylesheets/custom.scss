@@ -233,6 +233,8 @@ a.navbar-item:hover {
 
 .c2-table {
   color: #000000 !important;
+  font-size: 14px;
+  padding: 0 20px 0 12px;
 }
 
 // Navbar
@@ -392,15 +394,43 @@ a.navbar-item:hover, .navbar-link:hover {
 .private-key {
   font-size: 24px;
   font-weight: bold;
-  color: #e54937;
-  background-color: rgb(253, 237, 235);
+  color: #18C3EA!important;
   padding-left: 10px;
   padding-right: 10px;
   max-width: 130px;
   margin-left: 10px;
   display: inline-block;
-}
 
+}
+.message-body.sms{
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  height: auto;
+  &:before {
+    display: none;
+  }
+  p.sms_p_block{
+    width: 100%;
+    position: relative;
+    padding-left: 20px;
+    text-align: left;
+    line-height: 1.2;
+    font-size: 14px;
+    display: inline-grid;
+    margin-bottom: 15px;
+    &:before{
+      position: absolute;
+      content: '';
+      width: 10px;
+      height: 10px;
+      transform: rotate(45deg);
+      background:#18C3EA;
+      top:9px;
+      left: 0;
+    }
+  }
+}
 .contract-card {
   width: 100%;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.16);
@@ -669,6 +699,17 @@ container {
   position: relative;
   box-shadow: 3px 3px 12px #191919;
 }
+.notification {
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    padding: 15px;
+    position: relative;
+    font-weight: bold;
+}
+.notification.is-danger {
+    background-color: #ff3860;
+    color: #fff;
+}
 .column.is-three-quarters {
   .label{
     color: #fff;
@@ -699,7 +740,27 @@ container {
           box-shadow: none!important;
         }
         &::placeholder {
-          padding: 0 16px;
+          // padding: 0 16px;
+          font-size: 14px;
+          color: #fff!important;
+        }
+        &::-webkit-input-placeholder {
+          // padding: 0 16px;
+          font-size: 14px;
+          color: #fff!important;
+        }
+        &:-moz-placeholder {
+            // padding: 0 16px;
+            font-size: 14px;
+            color: #fff!important;
+        }
+        &::-moz-placeholder {
+            // padding: 0 16px;
+            font-size: 14px;
+            color: #fff!important;
+        }
+        &:-ms-input-placeholder {
+          // padding: 0 16px;
           font-size: 14px;
           color: #fff!important;
         }
@@ -722,7 +783,6 @@ container {
     border-radius: 0 !important;
     height: 40px;
     position: relative;
-    z-index: 1212;
     &:hover {
       background: #18C3EA !important;
       border-color: #18C3EA !important;
@@ -756,6 +816,7 @@ container {
       background: #18C3EA;
       top: 16px;
       left: 6px;
+      transform: rotate(45deg);
     }
 }
 .message.is-warning .message-body{
@@ -777,15 +838,57 @@ container {
     }
   }
 }
+.bx--parent-row-v2.tr_row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  .header-col {
+    width: 160px!important;
+    padding: 3px 15px!important;
+    text-align: right!important;
+    display: flex;
+    justify-content: flex-end!important;
+    align-items: center;
+  }
+  td {
+    width: calc(100% - 160px)!important;
+    padding: 3px 15px!important;
+    text-align: left!important;
+    display: flex;
+    justify-content: flex-start!important;
+    align-items: center;
+    a{
+      text-align: left;
+    }
+  }
+  .td_item {
+    width: calc(100% - 200px)!important;
+    padding: 3px 15px!important;
+    text-align: left!important;
+    display: flex;
+    justify-content: flex-start!important;
+    align-items: center;
+  }
+  .td_item2 {
+    width: 200px!important;
+    padding: 3px 15px!important;
+  }
+}
 .bx--data-table-v2 a, .bx--data-table-v2 td {
-    font-size: 12px;
+    font-size: 11px;
     width: 100%;
     padding: 0 !important;
     color: #a7a7a7;
     text-align: center;
+    line-height: 1.2;
 }
 .bx--data-table-v2 tr {
-    height: 55px;
+    height: 45px;
+}
+.bx--data-table-v2 tbody {
+    font-size: 1rem;
+    background-color: transparent!important;
 }
 ._b {
     background-color: #333333!important;
@@ -799,6 +902,7 @@ container {
 }
 .column.is-three-quarters {
   position: relative;
+  margin-bottom: 100px;
   div{
     div{
       div{
@@ -811,6 +915,14 @@ container {
         }
       }
     }
+  }
+  .modal {
+      position: fixed!important;
+      z-index: 40;
+  }
+  .modal.is-active {
+      display: flex;
+      background: rgba(0,0,0,0.7);
   }
 }
 .column.is-three-quarters div .help.is-danger{
@@ -853,6 +965,41 @@ pre {
   margin-top: 15px;
   box-shadow: none!important;
 }
+.column.is-three-quarters div .p_left {
+  text-align: left;
+  padding-left: 25px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  position: relative;
+  display:block;
+  &:before {
+    position: absolute;
+    content: '';
+    width: 9px;
+    height: 9px;
+    background: #18c3ea;
+    transform: rotate(45deg);
+    display: flex;
+    left: 0;
+    top: 3px;
+  }
+  &.top {
+    margin-top: 25px;
+  }
+  &.bottom {
+    margin-bottom: 50px;
+  }
+}
+.modal-card {
+  .modal-card-head {
+    .modal-card-title {
+      color: #000!important;
+    }
+  }
+}
+.column.is-three-quarters .new_wallet div .black {
+  color: #000!important;
+}
 .column.is-three-quarters div p {
     color: #fff;
     font-size: 14px;
@@ -861,9 +1008,15 @@ pre {
     a {
       color: #18C3EA;
     }
+    strong {
+      color: #fff;
+    }
 }
 .wallet_none {
   display: none!important;
+}
+.bx--data-table-v2 thead {
+  background: transparent!important;
 }
 .bx--data-table-v2 tr:hover td {
     background-color: #3b3a3c;
@@ -872,12 +1025,7 @@ pre {
 .bx--data-table-v2 tr td {
     border:none !important;
 }
-.bx--data-table-v2 tr {
-    height: 40px;
-    /* margin-bottom: 76px; */
-    background: #191919;
-    box-shadow: 3px 7px 18px #191919;
-}
+
 .bx--data-table-v2 th:first-of-type, .bx--data-table-v2 td:first-of-type,
 .bx--data-table-v2 th:last-of-type, .bx--data-table-v2 td:last-of-type {
   padding-right: 1.5rem;
@@ -885,7 +1033,7 @@ pre {
   color: #fff;
   width: 100%;
   height: 38px;
-  box-shadow: 0px -3px 12px #191919;
+  box-shadow: 0px -3px 10px #171616;;
   background: #333333;
   display: flex;
   align-items: center;

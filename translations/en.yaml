@@ -33,8 +33,8 @@ address.error.failGetTransfers: 'Could not get transfers for address ${id}'
 address.error.failGetVotes: 'Could not get votes for address ${id}'
 block.title: Block Details
 block.id: Block Hash
-block.totalForged: Total Forged
 block.totalAmount: Total Amount
+block.totalForged: Total Forged
 block.generatedBy: Producer Public Key
 block.size: Size (in Bytes)
 block.listOfTransfers: List of Transactions
