@@ -176,6 +176,22 @@ export class Nav extends Component {
                       </form>
                     </div>
                   </div>
+
+
+                  <div className='min_wd navbar-menu_global' style={{paddingTop: '0px', borderTop: '0px'}}>
+                    <a className='navbar-item' href={SITE_URL}>{t('meta.dashboard')}</a>
+                    <a className='navbar-item' href={WALLET.INDEX}>{t('meta.account')}</a>
+                    <a className='navbar-item' href={EXECUTIONS.INDEX}>{t('meta.executions')}</a>
+                    <a className='navbar-item' href={TRANSFERS.INDEX}>{t('meta.transfers')}</a>
+                    <a className='navbar-item' href={BLOCKS.INDEX}>{t('meta.blocks')}</a>
+                    <a className='navbar-item' href={VOTES.INDEX}>{t('meta.votes')}</a>
+
+                  </div>
+
+
+
+
+
                 </div>
               </div>
             </nav>

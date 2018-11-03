@@ -4,6 +4,20 @@
   display: flex;
   justify-content: center;
 }
+.min_wd.navbar-menu_global{
+  display: none;
+}
+.column.container.rtr {
+    margin-top: -54px;
+    padding-top: 40px;
+    margin-left: 200px;
+    width: calc(100% - 200px);
+    > .column.container {
+      width: 100%!important;
+      padding: 4%;
+    }
+}
+
 
 .box-custom {
   background-color: #151b21 !important;
@@ -1191,17 +1205,17 @@ a.navbar-item:hover, .navbar-link:hover{
   align-items: center;
   justify-content: space-between;
 }
-.single-col-row.tte {
-  width: calc(100% - 200px) !important;
-  padding: 3px 15px !important;
-  a{
-    text-align: left;
-  }
-}
-.single-col-row.tte2 {
-  width: 200px !important;
-  padding: 3px 15px !important;
-}
+// .single-col-row.tte {
+//   width: calc(100% - 200px) !important;
+//   padding: 3px 15px !important;
+//   a{
+//     text-align: left;
+//   }
+// }
+// .single-col-row.tte2 {
+//   width: 200px !important;
+//   padding: 3px 15px !important;
+// }
 
 
 
@@ -1261,6 +1275,35 @@ a.navbar-item:hover, .navbar-link:hover{
   margin-left: 100px;
 }
 
+.new-wallet-text {
+  * {
+    color: #fff;
+    line-height: 1.2;
+  }
+  p:nth-child(2n + 2) {
+    display: block;
+    margin-bottom: 15px;
+    * {
+      display: block;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.hub.exe {
+  .single-col-table:first-child(1) {
+    .bx--data-table-v2 {
+      border:3px solid red;
+    }
+  }
+
+  // .bx--data-table-v2 {
+  //   border:3px solid red;
+  // }
+
+
+}
+
 
 
 @media only screen and (max-width: 1800px) {
@@ -1318,7 +1361,7 @@ a.navbar-item:hover, .navbar-link:hover{
     padding: 0;
   }
   .bx--data-table-v2 a, .bx--data-table-v2 td {
-    font-size: 9px;
+    font-size: 11px;
   }
   .header-col {
       font-size: 11px!important;
@@ -1329,13 +1372,11 @@ a.navbar-item:hover, .navbar-link:hover{
 }
 
 @media only screen and (max-width: 1440px) {
-
-
 }
 @media only screen and (max-width: 1336px) {
 
   .title.has-text-centered {
-    font-size: 11px!important;
+    font-size: 13px!important;
   }
   .field.has-addons {
     width: 89%;
@@ -1372,27 +1413,73 @@ a.navbar-item:hover, .navbar-link:hover{
   }
 
   .bx--data-table-v2 thead {
-    font-size: 11px;
+    font-size: 13px;
   }
   .single-col-header {
-    font-size: 11px;
+    font-size: 13px;
   }
   .force-teal {
-    font-size: 10px;
+    font-size: 13px;
   }
   .button, .file-cta, .file-name, .input, .pagination-ellipsis, .pagination-link, .pagination-next, .pagination-previous, .select select, .textarea {
-      font-size: 11px;
+      font-size: 13px;
   }
   .footer {
     .column.is-one-third {
       p {
         line-height: 1.2;
-        font-size: 12px;
+        font-size: 13px;
         text-align: center;
         width: 100%;
       }
     }
   }
+  .message-body {
+    font-size: 13px;
+    &:before {
+        width: 7px;
+        height: 7px;
+        top: 18px;
+    }
+    &.sms {
+      p.sms_p_block {
+        font-size: 13px;
+        &:before {
+            width: 7px;
+            height: 7px;
+            top: 10px;
+        }
+      }
+    }
+  }
+  .column.is-three-quarters{
+    div {
+      p{
+        font-size: 13px;
+      }
+    }
+    .wallet-title {
+      font-size: 16px !important;
+    }
+    .label {
+        font-size: 16px;
+    }
+    .field.has-addons .control.is-expanded input {
+      font-size: 11px;
+      &::placeholder{
+        font-size: 13px;
+      }
+    }
+  }
+
+  .wallet {
+    .centered-text {
+      p {
+        font-size: 13px;
+      }
+    }
+  }
+
 
 }
 
@@ -1406,7 +1493,7 @@ a.navbar-item:hover, .navbar-link:hover{
 }
 
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1088px) {
 
   .container > .navbar .navbar-menu, .navbar > .container .navbar-menu {
       margin-right: 0;
@@ -1414,4 +1501,248 @@ a.navbar-item:hover, .navbar-link:hover{
       width: 100%;
       margin-top: 60px;
   }
+
+  .navbar.is-fixed-top {
+    display: none!important;
+  }
+  .container.column._a._e._f {
+    margin-top: -54px;
+    padding-top: 40px;
+  }
+  .column.container.rtr {
+    margin-top: -54px;
+    padding-top: 40px;
+
+  }
+
+}
+
+@media only screen and (max-width: 992px) {
+
+  .left_menu {
+    width: 150px;
+    .logo {
+        width: 120px;
+    }
+    .navbar-menu_global {
+      width: 66%;
+      .navbar-item {
+        font-size: 13px;
+      }
+    }
+  }
+
+  .column.container.rtr {
+    max-width: calc(100% - 150px);
+    width: 100%;
+    margin-left: 150px;
+    position: relative;
+    z-index: 999999;
+    .column.is-three-quarters {
+      margin-bottom: 40px;
+      padding: 5px;
+    }
+    .modal-card {
+      position: relative;
+      z-index: 999999;
+    }
+  }
+
+
+  .container.column._a._e._f,
+  .footer,
+  .container.lend,
+  .hub{
+     max-width: calc(100% - 150px);
+     width: 100%;
+     margin-left: 150px;
+   }
+
+
+   .hub {
+     .column.container, {
+       width: 100%;
+     }
+   }
+
+   .title.has-text-centered {
+     font-size: 11px!important;
+   }
+   .column.container.main-title-wrap {
+     .live-tag {
+       &:before {
+         font-size: 11px;
+       }
+     }
+   }
+   .bx--data-table-v2 thead {
+     font-size: 11px;
+   }
+   .single-col-header {
+     font-size: 11px;
+   }
+   .force-teal {
+     font-size: 11px;
+   }
+   .button, .file-cta, .file-name, .input, .pagination-ellipsis, .pagination-link, .pagination-next, .pagination-previous, .select select, .textarea {
+       font-size: 11px;
+   }
+   .footer {
+     .column.is-one-third {
+       p {
+         line-height: 1.2;
+         font-size: 11px;
+       }
+     }
+   }
+   .message-body {
+     font-size: 11px;
+     &.sms {
+       p.sms_p_block {
+         font-size: 11px;
+       }
+     }
+   }
+   .column.is-three-quarters{
+     div {
+       p{
+         font-size: 11px;
+       }
+     }
+     .wallet-title {
+       font-size: 14px !important;
+     }
+     .label {
+         font-size: 14px;
+     }
+     .field.has-addons .control.is-expanded input {
+       font-size: 11px;
+       &::placeholder{
+         font-size: 11px;
+       }
+     }
+   }
+   .wallet {
+     .centered-text {
+       p {
+         font-size: 11px;
+       }
+     }
+   }
+
+   .column.container{
+     .column.container{
+       max-width: 100%;
+       width: 100%;
+     }
+   }
+
+   .bx--parent-row-v2.tr_row .header-col {
+      width: 100px !important;
+      padding: 3px 8px !important;
+   }
+   .bx--parent-row-v2.tr_row td {
+      width: calc(100% - 100px) !important;
+      padding: 3px 8px !important;
+      font-size: 10px;
+   }
+   .bx--parent-row-v2.tr_row .td_item2{
+       width: 100px !important;
+       padding: 3px 8px !important;
+       font-size: 11px;
+   }
+   .bx--parent-row-v2.tr_row .td_item {
+      width: calc(100% - 100px) !important;
+      padding: 3px 6px !important;
+      font-size: 10px;
+      overflow: hidden;
+    }
+    .bx--parent-row-v2.tr_row .header-col {
+      width: 100px !important;
+      padding: 3px 8px !important;
+    }
+    .bx--parent-row-v2.tr_row td{
+      width: calc(100% - 100px) !important;
+      padding: 3px 8px !important;
+      font-size: 10px;
+      overflow: hidden;
+    }
+    td {
+      overflow: hidden;
+    }
+
+
+
+
+}
+
+@media only screen and (max-width: 780px) {
+
+  .left_menu {
+    width: 120px;
+    .logo {
+        width: 100px;
+        height: 80px;
+        margin-bottom: 30px;
+    }
+    .navbar-menu_global {
+      width: 100%;
+      .navbar-item {
+        font-size: 13px;
+      }
+    }
+  }
+  .column.container.rtr {
+    max-width: calc(100% - 120px);
+    width: 100%;
+    margin-left: 120px;
+  }
+  .container.column._a._e._f,
+  .footer,
+  .container.lend,
+  .hub{
+     max-width: calc(100% - 120px);
+     width: 100%;
+     margin-left: 120px;
+   }
+
+
+    .container.lend{
+      display: flex;
+      justify-content: center;
+      > .column {
+        width: 100%;
+        position: relative;
+        padding: 3%;
+
+
+        border: 2px solid red;
+      }
+      ._g {
+        display: none;
+      }
+    }
+
+    .footer._a._h._i, .footer._a._e._f {
+      > .container {
+        width: 100%;
+        padding: 0!important;
+        > .content.has-text-centered {
+            > .columns {
+                width: 100%;
+                padding: 0;
+                margin: 0;
+              .column.is-one-third {
+                width: 100%;
+                text-align: center;
+              }
+            }
+        }
+      }
+    }
+
+
+
+
+
 }

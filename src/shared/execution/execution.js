@@ -62,7 +62,7 @@ export class Execution extends Component {
       );
     }
     return (
-      <div className='hub'>
+      <div className='hub exe'>
         <div className='column container'>
           <Helmet
             title={`${t('execution.title')} - FreitX Network Blockchain`}

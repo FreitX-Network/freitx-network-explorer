@@ -154,7 +154,7 @@ export class Wallet extends Component {
   render() {
 
     return (
-      <div className='column container'>
+      <div className='column container rtr'>
         <div style={{margin: '48px'}}/>
         <Helmet
           title={`${t('wallet.title.wallet')} - FreitX Network Blockchain`}
