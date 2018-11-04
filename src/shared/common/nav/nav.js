@@ -35,7 +35,6 @@ export class Nav extends Component {
     this.state = {
       displayDropdownMenu: false,
       fetchCoinStatistic: 0,
-      fetchCoinPrice: 0,
       fetchConsensusMetricsId: 0,
       height: 0,
     };
@@ -53,7 +52,6 @@ export class Nav extends Component {
     if (isBrowser) {
       this.props.fetchConsensusMetrics();
       this.props.fetchCoinStatistic();
-      this.props.fetchCoinPrice();
     }
   }
 
@@ -71,15 +69,13 @@ export class Nav extends Component {
     if (isBrowser) {
       const fetchConsensusMetricsId = window.setInterval(() => this.props.fetchConsensusMetrics(),5000,);
       const fetchCoinStatistic = window.setInterval(() => this.props.fetchCoinStatistic(), 30000);
-      const fetchCoinPrice = window.setInterval(() => this.props.fetchCoinPrice(), 30000);
-      this.setState({fetchCoinStatistic, fetchCoinPrice, fetchConsensusMetricsId});
+      this.setState({fetchCoinStatistic, fetchConsensusMetricsId});
     }
   }
 
   componentWillUnmount() {
     window.clearInterval(this.state.fetchConsensusMetricsId);
     window.clearInterval(this.state.fetchCoinStatistic);
-    window.clearInterval(this.state.fetchCoinPrice);
   }
 
   handleSubmit(e: {preventDefault: any}) {
@@ -180,11 +176,11 @@ export class Nav extends Component {
 
                   <div className='min_wd navbar-menu_global' style={{paddingTop: '0px', borderTop: '0px'}}>
                     <a className='navbar-item' href={SITE_URL}>{t('meta.dashboard')}</a>
-                    <a className='navbar-item' href={WALLET.INDEX}>{t('meta.account')}</a>
-                    <a className='navbar-item' href={EXECUTIONS.INDEX}>{t('meta.executions')}</a>
-                    <a className='navbar-item' href={TRANSFERS.INDEX}>{t('meta.transfers')}</a>
                     <a className='navbar-item' href={BLOCKS.INDEX}>{t('meta.blocks')}</a>
+                    <a className='navbar-item' href={TRANSFERS.INDEX}>{t('meta.transfers')}</a>
                     <a className='navbar-item' href={VOTES.INDEX}>{t('meta.votes')}</a>
+                    <a className='navbar-item' href={EXECUTIONS.INDEX}>{t('meta.executions')}</a>
+                    <a className='navbar-item' href={WALLET.INDEX}>{t('meta.account')}</a>
 
                   </div>
 
@@ -210,11 +206,11 @@ export class Nav extends Component {
 
           <div className='navbar-menu_global' style={{paddingTop: '0px', borderTop: '0px'}}>
             <a className='navbar-item' href={SITE_URL}>{t('meta.dashboard')}</a>
-            <a className='navbar-item' href={WALLET.INDEX}>{t('meta.account')}</a>
-            <a className='navbar-item' href={EXECUTIONS.INDEX}>{t('meta.executions')}</a>
-            <a className='navbar-item' href={TRANSFERS.INDEX}>{t('meta.transfers')}</a>
             <a className='navbar-item' href={BLOCKS.INDEX}>{t('meta.blocks')}</a>
+            <a className='navbar-item' href={TRANSFERS.INDEX}>{t('meta.transfers')}</a>
             <a className='navbar-item' href={VOTES.INDEX}>{t('meta.votes')}</a>
+            <a className='navbar-item' href={EXECUTIONS.INDEX}>{t('meta.executions')}</a>
+            <a className='navbar-item' href={WALLET.INDEX}>{t('meta.account')}</a>
 
           </div>
 
