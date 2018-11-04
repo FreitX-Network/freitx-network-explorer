@@ -3,7 +3,7 @@ import {rootReducer} from '../common/root/root-reducer';
 import {EXECUTIONS} from '../common/site-url';
 
 export function setExecutionsHandler(server) {
-  const {gateways: {iotexCore}} = server;
+  const {gateways: {freitxCore}} = server;
 
   function executionsHandler(ctx, next) {
     ctx.isoRender({
@@ -21,7 +21,7 @@ export function setExecutionsHandler(server) {
 
       ctx.body = {
         ok: true,
-        executions: await iotexCore.getLastExecutionsByRange(
+        executions: await freitxCore.getLastExecutionsByRange(
           ctx.request.body.tip,
           ctx.request.body.offset,
           ctx.request.body.count),

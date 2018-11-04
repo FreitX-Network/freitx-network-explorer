@@ -14,21 +14,21 @@ class ServiceError extends Error {
 
 export class RpcService {
   server: any;
-  iotexCore: any;
+  freitxCore: any;
   walletCore: any;
 
   constructor(server: any) {
     this.server = server;
-    this.iotexCore = this.server.gateways.iotexCore;
+    this.freitxCore = this.server.gateways.freitxCore;
     this.walletCore = this.server.gateways.walletCore;
   }
 
   async getAddressId(req: any) {
-    return await this.iotexCore.getAddressDetails(req.id);
+    return await this.freitxCore.getAddressDetails(req.id);
   }
 
   async signContractAbi(req: any) {
-    const address = await this.iotexCore.getAddressDetails(req.wallet.rawAddress);
+    const address = await this.freitxCore.getAddressDetails(req.wallet.rawAddress);
     if (req.rawTransaction.nonce <= address.nonce) {
       throw new ServiceError(-32600, 'NONCE_TOO_LOW');
     }
@@ -48,11 +48,11 @@ export class RpcService {
     try {
       let result;
       if (type === 'transfer') {
-        result = await this.iotexCore.sendTransfer(signedTransaction);
+        result = await this.freitxCore.sendTransfer(signedTransaction);
       } else if (type === 'vote') {
-        result = await this.iotexCore.sendVote(signedTransaction);
+        result = await this.freitxCore.sendVote(signedTransaction);
       } else {
-        result = await this.iotexCore.sendSmartContract(signedTransaction);
+        result = await this.freitxCore.sendSmartContract(signedTransaction);
       }
       return {
         hash: result.hash,
@@ -65,7 +65,7 @@ export class RpcService {
 
   async getReceiptByExecutionId(req: any) {
     try {
-      return await this.iotexCore.getReceiptByExecutionId(req);
+      return await this.freitxCore.getReceiptByExecutionId(req);
     } catch (error) {
       logger.error('FAIL_GET_RECEIPT', error);
       throw new ServiceError(-32600, 'FAIL_GET_RECEIPT');
@@ -74,7 +74,7 @@ export class RpcService {
 
   async readExecutionState(req: any) {
     try {
-      return await this.iotexCore.readExecutionState(req);
+      return await this.freitxCore.readExecutionState(req);
     } catch (error) {
       logger.error('FAIL_READ_EXECUTION_STATE', error);
       throw new ServiceError(-32600, 'FAIL_READ_EXECUTION_STATE');

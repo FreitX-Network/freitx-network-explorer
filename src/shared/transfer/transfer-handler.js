@@ -3,7 +3,7 @@ import {rootReducer} from '../common/root/root-reducer';
 import {TRANSFER} from '../common/site-url';
 
 export function setTransferHandler(server) {
-  const {gateways: {iotexCore}} = server;
+  const {gateways: {freitxCore}} = server;
 
   function transferHandler(ctx, next) {
     ctx.isoRender({
@@ -17,7 +17,7 @@ export function setTransferHandler(server) {
     const {id} = ctx.request.body;
 
     try {
-      ctx.body = {ok: true, transfer: await iotexCore.getTransferById(ctx.request.body.id)};
+      ctx.body = {ok: true, transfer: await freitxCore.getTransferById(ctx.request.body.id)};
     } catch (error) {
       ctx.body = {ok: false, error: {code: 'FAIL_GET_TRANSFER', message: 'transfer.error.get', data: {id}}};
     }

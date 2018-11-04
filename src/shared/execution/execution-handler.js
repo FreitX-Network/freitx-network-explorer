@@ -3,7 +3,7 @@ import {rootReducer} from '../common/root/root-reducer';
 import {EXECUTION} from '../common/site-url';
 
 export function setExecutionHandler(server) {
-  const {gateways: {iotexCore}} = server;
+  const {gateways: {freitxCore}} = server;
 
   function executionHandler(ctx, next) {
     ctx.isoRender({
@@ -17,7 +17,7 @@ export function setExecutionHandler(server) {
     const {id} = ctx.request.body;
 
     try {
-      ctx.body = {ok: true, execution: await iotexCore.getExecutionById(id)};
+      ctx.body = {ok: true, execution: await freitxCore.getExecutionById(id)};
     } catch (error) {
       ctx.body = {ok: false, message: 'execution.error.failGetExecution', data: {id}};
     }
@@ -25,7 +25,7 @@ export function setExecutionHandler(server) {
 
   async function getExecutionReceipt(ctx, next) {
     try {
-      ctx.body = {ok: true, receipt: await iotexCore.getReceiptByExecutionId(ctx.request.body.id)};
+      ctx.body = {ok: true, receipt: await freitxCore.getReceiptByExecutionId(ctx.request.body.id)};
     } catch (error) {
       ctx.body = {ok: false, message: error};
     }
@@ -33,7 +33,7 @@ export function setExecutionHandler(server) {
 
   async function getContractExecutions(ctx, next) {
     try {
-      ctx.body = {ok: true, executions: await iotexCore.getExecutionsByAddress(ctx.request.body.id, ctx.request.body.offset, ctx.request.body.count)};
+      ctx.body = {ok: true, executions: await freitxCore.getExecutionsByAddress(ctx.request.body.id, ctx.request.body.offset, ctx.request.body.count)};
     } catch (error) {
       ctx.body = {ok: false, error};
     }

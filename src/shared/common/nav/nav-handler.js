@@ -19,13 +19,13 @@ export function formatBlockHistory(seconds) {
 }
 
 export function setNavRoutes(server) {
-  const {gateways: {iotexCore}} = server;
+  const {gateways: {freitxCore}} = server;
 
   async function getStatisticApi(ctx, next) {
     try {
-      const statistic = await iotexCore.getCoinStatistic();
-      const block1 = await iotexCore.getLastBlocksByRange(1, 1);
-      const latestBlock = await iotexCore.getLastBlocksByRange(statistic.height, 1);
+      const statistic = await freitxCore.getCoinStatistic();
+      const block1 = await freitxCore.getLastBlocksByRange(1, 1);
+      const latestBlock = await freitxCore.getLastBlocksByRange(statistic.height, 1);
       statistic.bh = formatBlockHistory(
         block1[0] && latestBlock[0] && latestBlock[0].height >= block1[0].height ?
           latestBlock[0].timestamp - block1[0].timestamp : 0

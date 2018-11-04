@@ -7,7 +7,7 @@ export const WalletContainer = connect(
   function mapStateToProps(state) {
     return {
       address: state.address.address,
-      serverUrl: state.base.iotexCore.serverUrl,
+      serverUrl: state.base.freitxCore.serverUrl,
     };
   },
   dispatch => ({

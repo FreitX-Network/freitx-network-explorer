@@ -4,9 +4,9 @@ import {WalletCore} from './wallet-core/wallet-core';
 
 export function setGateways(server) {
   server.gateways = server.gateways || {};
-  server.gateways.iotexCore = new FreitxCoreExplorer(server.config.gateways.iotexCore);
+  server.gateways.freitxCore = new FreitxCoreExplorer(server.config.gateways.freitxCore);
   server.gateways.walletCore = new WalletCore(server.config.gateways.walletCore);
 
-  server.gateways.iotexCore.init()
+  server.gateways.freitxCore.init()
     .catch(e => logger.error('failed to init gateways', {err: e}));
 }

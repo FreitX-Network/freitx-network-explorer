@@ -3,7 +3,7 @@ import {rootReducer} from '../common/root/root-reducer';
 import {VOTE} from '../common/site-url';
 
 export function setVoteRoutes(server) {
-  const {gateways: {iotexCore}} = server;
+  const {gateways: {freitxCore}} = server;
 
   function voteHandler(ctx, next) {
     ctx.isoRender({
@@ -17,7 +17,7 @@ export function setVoteRoutes(server) {
     const {id} = ctx.request.body;
 
     try {
-      ctx.body = {ok: true, vote: await iotexCore.getVoteByID(ctx.request.body.id)};
+      ctx.body = {ok: true, vote: await freitxCore.getVoteByID(ctx.request.body.id)};
     } catch (error) {
       ctx.body = {ok: false, error: {code: 'FAIL_GET_VOTE', message: 'vote.error.getVote', data: {id}}};
     }

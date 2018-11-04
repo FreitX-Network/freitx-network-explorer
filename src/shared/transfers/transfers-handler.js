@@ -3,7 +3,7 @@ import {rootReducer} from '../common/root/root-reducer';
 import {TRANSFERS} from '../common/site-url';
 
 export function setTransfersHandler(server) {
-  const {gateways: {iotexCore}} = server;
+  const {gateways: {freitxCore}} = server;
 
   function transfersHandler(ctx, next) {
     ctx.isoRender({
@@ -23,7 +23,7 @@ export function setTransfersHandler(server) {
 
       ctx.body = {
         ok: true,
-        transfers: await iotexCore.getLastTransfersByRange(tip, offset, count, showCoinBase !== undefined ? showCoinBase : true),
+        transfers: await freitxCore.getLastTransfersByRange(tip, offset, count, showCoinBase !== undefined ? showCoinBase : true),
         offset,
         count,
         tip,

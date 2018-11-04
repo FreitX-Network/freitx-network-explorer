@@ -3,7 +3,7 @@ import {rootReducer} from '../common/root/root-reducer';
 import {BLOCKS} from '../common/site-url';
 
 export function setBlocksRoutes(server) {
-  const {gateways: {iotexCore}} = server;
+  const {gateways: {freitxCore}} = server;
 
   function blocksHandler(ctx, next) {
     ctx.isoRender({
@@ -23,7 +23,7 @@ export function setBlocksRoutes(server) {
 
       ctx.body = {
         ok: true,
-        blocks: await iotexCore.getLastBlocksByRange(tip - offset, count),
+        blocks: await freitxCore.getLastBlocksByRange(tip - offset, count),
         offset,
         count,
         tip,

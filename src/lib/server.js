@@ -30,7 +30,7 @@ export type Config = {
     mysql: {
       enabled: boolean,
     },
-    iotexCore: {
+    freitxCore: {
       serverUrl: string,
     }
   },

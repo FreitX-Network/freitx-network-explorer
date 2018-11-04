@@ -2,7 +2,7 @@ import {WALLET} from '../../common/site-url';
 import {logger} from '../../../lib/integrated-gateways/logger';
 
 export function setContractRoutes(server) {
-  const {gateways: {walletCore, iotexCore}} = server;
+  const {gateways: {walletCore, freitxCore}} = server;
 
   function handleInput(args) {
     const errors = [];
@@ -30,7 +30,7 @@ export function setContractRoutes(server) {
 
     // Generate transaction details
     try {
-      const address = await iotexCore.getAddressDetails(wallet.rawAddress);
+      const address = await freitxCore.getAddressDetails(wallet.rawAddress);
       if (rawSmartContractRequest.nonce <= address.nonce) {
         ctx.body = {
           ok: false,
@@ -60,7 +60,7 @@ export function setContractRoutes(server) {
 
     // Generate transaction details
     try {
-      const address = await iotexCore.getAddressDetails(wallet.rawAddress);
+      const address = await freitxCore.getAddressDetails(wallet.rawAddress);
       if (rawTransaction.nonce <= address.nonce) {
         ctx.body = {
           ok: false,
@@ -85,7 +85,7 @@ export function setContractRoutes(server) {
     try {
       ctx.body = {
         ok: true,
-        result: await iotexCore.readExecutionState(rawTransaction),
+        result: await freitxCore.readExecutionState(rawTransaction),
       };
     } catch (error) {
       logger.error('FAIL_READ_EXECUTION', error);

@@ -3,7 +3,7 @@ import {rootReducer} from '../common/root/root-reducer';
 import {BLOCK} from '../common/site-url';
 
 export function setBlockRoutes(server) {
-  const {gateways: {iotexCore}} = server;
+  const {gateways: {freitxCore}} = server;
 
   function blockHandler(ctx, next) {
     ctx.isoRender({
@@ -17,7 +17,7 @@ export function setBlockRoutes(server) {
     const {id} = ctx.request.body;
 
     try {
-      ctx.body = {ok: true, block: await iotexCore.getBlockById(id)};
+      ctx.body = {ok: true, block: await freitxCore.getBlockById(id)};
     } catch (error) {
       ctx.body = {ok: false, error: {code: 'FAIL_GET_BLOCK_ID', message: 'block.error.failGetBlock', data: {id}}};
     }
@@ -27,7 +27,7 @@ export function setBlockRoutes(server) {
     try {
       ctx.body = {
         ok: true,
-        executions: await iotexCore.getExecutionsByBlockID(ctx.request.body.id, ctx.request.body.offset, ctx.request.body.count),
+        executions: await freitxCore.getExecutionsByBlockID(ctx.request.body.id, ctx.request.body.offset, ctx.request.body.count),
         offset: ctx.request.body.offset,
         count: ctx.request.body.count,
       };
@@ -42,7 +42,7 @@ export function setBlockRoutes(server) {
     try {
       ctx.body = {
         ok: true,
-        transfers: await iotexCore.getTransfersByBlockID(id, offset, count),
+        transfers: await freitxCore.getTransfersByBlockID(id, offset, count),
         offset: ctx.request.body.offset,
         count: ctx.request.body.count,
       };
@@ -57,7 +57,7 @@ export function setBlockRoutes(server) {
     try {
       ctx.body = {
         ok: true,
-        votes: await iotexCore.getVotesByBlockID(id, offset, count),
+        votes: await freitxCore.getVotesByBlockID(id, offset, count),
         offset: ctx.request.body.offset,
         count: ctx.request.body.count,
       };

@@ -23,7 +23,7 @@ module.exports = {
         leafPort: 9093,
       },
     },
-    iotexCore: {
+    freitxCore: {
       serverUrl: 'http://localhost:14004/',
     },
     walletCore: {

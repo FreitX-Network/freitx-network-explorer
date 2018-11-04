@@ -3,7 +3,7 @@ import {rootReducer} from '../common/root/root-reducer';
 import {DELEGATES} from '../common/site-url';
 
 export function setDelegateRoutes(server) {
-  const {gateways: {iotexCore}} = server;
+  const {gateways: {freitxCore}} = server;
 
   function delegateHandler(ctx, next) {
     ctx.isoRender({
@@ -17,7 +17,7 @@ export function setDelegateRoutes(server) {
     try {
       ctx.body = {
         ok: true,
-        delegates: await iotexCore.getCandidateMetrics(),
+        delegates: await freitxCore.getCandidateMetrics(),
       };
     } catch (error) {
       ctx.body = {ok: false, error: {code: 'FAIL_GET_DELEGATES', message: 'delegates.error.fail'}};

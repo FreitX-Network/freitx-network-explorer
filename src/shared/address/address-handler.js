@@ -3,7 +3,7 @@ import {rootReducer} from '../common/root/root-reducer';
 import {ADDRESS} from '../common/site-url';
 
 export function setAddressRoutes(server) {
-  const {gateways: {iotexCore}} = server;
+  const {gateways: {freitxCore}} = server;
 
   function addressHandler(ctx, next) {
     ctx.isoRender({
@@ -17,7 +17,7 @@ export function setAddressRoutes(server) {
     const {id} = ctx.request.body;
 
     try {
-      ctx.body = {ok: true, address: await iotexCore.getAddressDetails(id)};
+      ctx.body = {ok: true, address: await freitxCore.getAddressDetails(id)};
     } catch (error) {
       ctx.body = {ok: false, error: {code: 'FAIL_GET_ADDRESS', message: 'address.error.failGetAddress', data: {id}}};
     }
@@ -27,7 +27,7 @@ export function setAddressRoutes(server) {
     try {
       ctx.body = {
         ok: true,
-        executions: await iotexCore.getExecutionsByAddress(ctx.request.body.id, ctx.request.body.offset, ctx.request.body.count),
+        executions: await freitxCore.getExecutionsByAddress(ctx.request.body.id, ctx.request.body.offset, ctx.request.body.count),
         offset: ctx.request.body.offset,
         count: ctx.request.body.count,
       };
@@ -42,7 +42,7 @@ export function setAddressRoutes(server) {
     try {
       ctx.body = {
         ok: true,
-        transfers: await iotexCore.getTransfersByAddress(id, offset, count),
+        transfers: await freitxCore.getTransfersByAddress(id, offset, count),
         offset: ctx.request.body.offset,
         count: ctx.request.body.count,
       };
@@ -72,7 +72,7 @@ export function setAddressRoutes(server) {
     const {id, offset, count} = ctx.request.body;
 
     try {
-      const votes = await iotexCore.getVotesByAddress(id, offset, count);
+      const votes = await freitxCore.getVotesByAddress(id, offset, count);
       ctx.body = {
         ok: true,
         voters: cleanVotes(votes),

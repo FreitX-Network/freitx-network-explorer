@@ -3,7 +3,7 @@ import {rootReducer} from '../common/root/root-reducer';
 import {VOTES} from '../common/site-url';
 
 export function setVotesRoutes(server) {
-  const {gateways: {iotexCore}} = server;
+  const {gateways: {freitxCore}} = server;
 
   function votesHandler(ctx, next) {
     ctx.isoRender({
@@ -23,7 +23,7 @@ export function setVotesRoutes(server) {
 
       ctx.body = {
         ok: true,
-        votes: await iotexCore.getLastVotesByRange(tip, offset, count),
+        votes: await freitxCore.getLastVotesByRange(tip, offset, count),
         offset,
         count,
         tip,

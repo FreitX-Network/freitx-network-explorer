@@ -14,7 +14,7 @@ export function viewBaseState(server: Server) {
         siteURL: server.siteURL,
         analytics: server.config.analytics,
         csrfToken: ctx.csrf,
-        iotexCore: server.config.gateways.iotexCore,
+        freitxCore: server.config.gateways.freitxCore,
       },
     };
 

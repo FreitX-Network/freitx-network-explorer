@@ -18,7 +18,7 @@ function handleInput(args) {
 }
 
 export function setWalletRoutes(server) {
-  const {gateways: {walletCore, iotexCore}} = server;
+  const {gateways: {walletCore, freitxCore}} = server;
 
   function walletHandler(ctx, next) {
     ctx.isoRender({
@@ -64,7 +64,7 @@ export function setWalletRoutes(server) {
     }
 
     try {
-      const address = await iotexCore.getAddressDetails(wallet.rawAddress);
+      const address = await freitxCore.getAddressDetails(wallet.rawAddress);
       if (rawTransfer.nonce <= address.nonce) {
         ctx.body = {
           ok: false,
@@ -93,7 +93,7 @@ export function setWalletRoutes(server) {
     }
 
     try {
-      const address = await iotexCore.getAddressDetails(wallet.rawAddress);
+      const address = await freitxCore.getAddressDetails(wallet.rawAddress);
       if (rawVote.nonce <= address.nonce) {
         ctx.body = {
           ok: false,
@@ -116,10 +116,10 @@ export function setWalletRoutes(server) {
     const {rawTransaction, type} = ctx.request.body;
     try {
       const result = type === 'transfer' ?
-        await iotexCore.sendTransfer(rawTransaction) :
+        await freitxCore.sendTransfer(rawTransaction) :
         (type === 'vote' ?
-          await iotexCore.sendVote(rawTransaction) :
-          await iotexCore.sendSmartContract(rawTransaction)
+          await freitxCore.sendVote(rawTransaction) :
+          await freitxCore.sendSmartContract(rawTransaction)
         );
       ctx.body = {
         ok: true,
