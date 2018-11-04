@@ -50,7 +50,6 @@ export class AccountSection extends Component {
         </div>
         <div style={{alignContent: 'center'}}>
           <p id='balance'>{address ? address.totalBalance : 0}<b className='main-color'>{t('account.testnet.token')}</b></p>
-          <p id='balance'>{address ? address.totalBalance : 0}<b className='main-color'>{t('account.testnet.token.FRX')}</b></p>
         </div>
         <div>
           <p className='wallet-address'>{t('account.address')}</p>
