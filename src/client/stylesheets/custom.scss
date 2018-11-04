@@ -535,9 +535,6 @@ container {
   flex-direction: column;
   align-items: center;
   box-shadow: 0 0 15px 3px #191919;
-
-
-  // border:1px solid red;
   .logo {
     width: 160px;
     height: 160px;
@@ -553,9 +550,24 @@ container {
       display: block;
       color: #fff;
       font-size: 16px;
+      position: relative;
       &:hover {
+        color: #18C3EA!important;
         background: transparent!important;
+        &::before {
+          position: absolute;
+          content: '';
+          width: 9px;
+          height: 9px;
+          background: #18C3EA;
+          right: -12px;
+          top: 15px;
+          transform: rotate(45deg);
+        }
       }
+    }
+    .navbar-link:hover{
+      color: #18C3EA!important;
     }
   }
 }
@@ -719,7 +731,6 @@ container {
     background-image: linear-gradient(to right, #dc7350 , #40c3e9);
 }
 .column.is-three-quarters {
-  // border:  3px solid red;
   background: #3b3b3c;
   padding: 60px;
   position: relative;
@@ -1151,9 +1162,6 @@ pre {
 
 
 
-a.navbar-item:hover, .navbar-link:hover{
-  color: #18C3EA!important;
-}
 .static-button {
     background-color: #151b21 !important;
     border-color:#18C3EA!important;
@@ -1240,8 +1248,6 @@ a.navbar-item:hover, .navbar-link:hover{
     height: 400px;
   }
 
-  // border:1px solid red;
-
   .single-col-table {
     margin-bottom: 3em;
     width: 100%;
@@ -1290,19 +1296,6 @@ a.navbar-item:hover, .navbar-link:hover{
   }
 }
 
-.hub.exe {
-  .single-col-table:first-child(1) {
-    .bx--data-table-v2 {
-      border:3px solid red;
-    }
-  }
-
-  // .bx--data-table-v2 {
-  //   border:3px solid red;
-  // }
-
-
-}
 
 
 
@@ -1670,8 +1663,35 @@ a.navbar-item:hover, .navbar-link:hover{
     td {
       overflow: hidden;
     }
-
-
+    .tabs a {
+        font-size: 13px;
+    }
+    .field.abi-field div strong {
+      font-size: 13px;
+      line-height: 1.2;
+    }
+    .wallet-item, .wallet-address {
+        font-size: 13px;
+    }
+    #balance {
+      padding-top: 6px;
+      padding-bottom: 6px;
+      padding-left: 10px;
+      font-size: 13px;
+    }
+    .wallet-rawaddress {line-height: 1.2;}
+    .textarea:not([rows]), pre {
+        font-size: 11px;
+        line-height: 1.2;
+    }
+    .modal-card-body {
+      .dialogue-table {
+        td {
+          font-size: 11px;
+          line-height: 1.2;
+        }
+      }
+    }
 
 
 }
@@ -1689,6 +1709,13 @@ a.navbar-item:hover, .navbar-link:hover{
       width: 100%;
       .navbar-item {
         font-size: 13px;
+        &:hover {
+          &:before {
+            width: 6px;
+            height: 6px;
+            right: -3px;
+          }
+        }
       }
     }
   }
@@ -1715,8 +1742,6 @@ a.navbar-item:hover, .navbar-link:hover{
         position: relative;
         padding: 3%;
 
-
-        border: 2px solid red;
       }
       ._g {
         display: none;
@@ -1741,7 +1766,18 @@ a.navbar-item:hover, .navbar-link:hover{
       }
     }
 
-
+    .column.is-one-quarter {
+      display: flex;
+      justify-content: flex-start!important;
+      text-align: left;
+    }
+    .blur_img_block {
+      display: none!important;
+    }
+    .column.is-three-quarters .field.has-addons .control.is-expanded .help.is-danger {
+        font-size: 11px;
+        line-height: 1.1;
+    }
 
 
 
