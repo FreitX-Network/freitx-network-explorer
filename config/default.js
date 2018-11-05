@@ -27,7 +27,7 @@ module.exports = {
       serverUrl: 'http://localhost:14004/',
     },
     walletCore: {
-      serverUrl: process.env.IOTEX_WALLET_URL || 'localhost:42124',
+      serverUrl: '159.89.223.147:42124' || process.env.IOTEX_WALLET_URL,
     },
   },
   analytics: {
