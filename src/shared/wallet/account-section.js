@@ -30,7 +30,7 @@ export class AccountSection extends Component {
 
   emptyWallet() {
     return (
-      <div className='blur_img_block' style={{position: 'relative'}}>
+      <div className='blur_img_block wallet_none' style={{position: 'relative'}}>
         <img id='globe'
           className='blur-image'
           style={{maxWidth: '100%'}}
