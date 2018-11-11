@@ -46,7 +46,7 @@ export class TableWrapper extends Component {
       <div>
         <br/>
         <div className='field is-grouped is-grouped-centered'>
-          <p className='control'>
+          <p className='control btn_arrow'>
             <Button className={`button ${offset === 0 || fetching ? 'is-static static-button' : ''}`}
               onClick={() => {
                 fetch({
@@ -56,10 +56,11 @@ export class TableWrapper extends Component {
                   id: id || '',
                 });
                 this.setState({fetched: false});
-              }}>{t('meta.previous')}
+              }}>
+              <i class="fas fa-angle-left"></i>
             </Button>
           </p>
-          <p className='control'>
+          <p className='control btn_arrow'>
             <Button className={`button ${fetching || (!items || items && items.length < count) ? 'is-static static-button' : ''}`}
               onClick={() => {
                 fetch({
@@ -69,7 +70,8 @@ export class TableWrapper extends Component {
                   id: id || '',
                 });
                 this.setState({fetched: false});
-              }}>{t('meta.next')}</Button>
+              }}>
+              <i class="fas fa-angle-right"></i></Button>
           </p>
         </div>
       </div>
@@ -101,7 +103,7 @@ export class TableWrapper extends Component {
           <div>
             <br/>
             <div className='field is-grouped is-grouped-centered'>
-              <p className='control'>
+              <p className='control pk'>
                 <Link to={`/${name}`} className='link force-teal'>{t('meta.all')} {name}</Link>
               </p>
             </div>
