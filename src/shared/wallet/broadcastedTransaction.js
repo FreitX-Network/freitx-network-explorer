@@ -40,7 +40,7 @@ export function BroadcastFail(errorMessage: string, suggestedMessage: string, ac
       <p style={{fontSize: '34px', fontWeight: 'bold'}}><i style={{color: '#e54837'}} className='far fa-times-circle'/> {t('broadcast.fail')}</p>
 
       <p>{t('broadcast.fail.network')}</p>
-      <ul>
+      <ul className="err_red">
         <li>{t('broadcast.error.message')} {t(errorMessage)}</li>
         <li>{t('broadcast.suggested.action')} <strong>{t(suggestedMessage)}</strong></li>
       </ul>

@@ -354,7 +354,6 @@ export class Interact extends Component {
             name='contractAddress'
             value={this.state.contractAddress}
             error={t(this.state.errors_contractAddress)}
-            placeholder='io...'
             update={(name, value) => this.handleInputChange(name, value)}/>
 
           <TextInputField

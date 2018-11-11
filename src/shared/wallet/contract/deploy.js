@@ -216,7 +216,7 @@ export class Deploy extends Component {
             )}
           </table>
           <div>
-            <p>{t('wallet.detail.are-you-sure')}</p>
+            <p className="err_red">{t('wallet.detail.are-you-sure')}</p>
           </div>
         </div>
       </TransactionDetailSection>

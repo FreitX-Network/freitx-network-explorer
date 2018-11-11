@@ -150,7 +150,6 @@ export class VoteInput extends Component {
             name='votee'
             value={this.state.votee}
             error={t(this.state.errors_votee)}
-            placeholder='io...'
             update={(name, value) => this.handleInputChange(name, value)}
           />
 
@@ -204,7 +203,7 @@ export class VoteInput extends Component {
             )}
           </table>
           <div>
-            <p>{t('wallet.detail.are-you-sure')}</p>
+            <p className="err_red">{t('wallet.detail.are-you-sure')}</p>
           </div>
         </div>
       </TransactionDetailSection>

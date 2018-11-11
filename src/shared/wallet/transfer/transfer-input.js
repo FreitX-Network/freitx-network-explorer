@@ -165,7 +165,6 @@ export class TransferInput extends Component {
             name='recipient'
             value={this.state.recipient}
             error={t(this.state.errors_recipient)}
-            placeholder='io...'
             update={(name, value) => this.handleInputChange(name, value)}
           />
 
@@ -249,7 +248,7 @@ export class TransferInput extends Component {
             )}
           </table>
           <div>
-            <p>{t('wallet.transfer.balance-after', {balance: balance - cleanedTransfer.amount})} {t('account.testnet.token')}<br/>{t('wallet.detail.are-you-sure')}</p>
+            <p>{t('wallet.transfer.balance-after', {balance: balance - cleanedTransfer.amount})} {t('account.testnet.token')}<br/><strong className="err_red">{t('wallet.detail.are-you-sure')}</strong></p>
           </div>
         </div>
       </TransactionDetailSection>
