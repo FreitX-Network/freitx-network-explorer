@@ -149,6 +149,7 @@ export class VoteInput extends Component {
             label={t('wallet.input.to')}
             name='votee'
             value={this.state.votee}
+            placeholder='¯\_(ツ)_/¯'
             error={t(this.state.errors_votee)}
             update={(name, value) => this.handleInputChange(name, value)}
           />
@@ -158,7 +159,7 @@ export class VoteInput extends Component {
             name='nonce'
             value={this.state.nonce}
             error={t(this.state.errors_nonce)}
-            placeholder='10'
+            placeholder='0'
             extra={this.state.nonceMessage}
             update={(name, value) => this.handleInputChange(name, value)}>
           </TextInputField>

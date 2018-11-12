@@ -169,7 +169,7 @@ export class ExecutionsListOnlyId extends Component {
     return (
       <table  className='exect bx--data-table-v2'>
         <thead>
-          <tr className='bx--parent-row-v2 ko tr_row'>
+          <tr className='bx--parent-row-v2 tte_group'>
             <th className={isHome ? 'single-col-header' : '', 'td_item'}>{t('execution.hash')}</th>
             {!isHome && (
               <th className='td_item2'>{t('execution.timestamp')}</th>
@@ -178,8 +178,8 @@ export class ExecutionsListOnlyId extends Component {
         </thead>
         <tbody>
           {executions.map((execution: TExecution) => (
-            <tr className='bx--parent-row-v2 ko2 tr_row' data-parent-row>
-              <td className={isHome ? 'single-col-row' : '', 'td_item'}>
+            <tr className='bx--parent-row-v2 tte_group' data-parent-row>
+              <td className={isHome ? 'single-col-row tte' : '', 'td_item'}>
                 <Link to={`/executions/${execution.id}`} className='link'>
                   {singleColEllipsisText(execution.id, this.props.width, isHome)}
                 </Link>

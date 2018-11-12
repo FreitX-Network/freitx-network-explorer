@@ -190,11 +190,12 @@ dashboard.executions: Contracts
 dashboard.executionsMsg: >-
   Total number of contract execution created/recorded on FreitX Network
   blockchain.
-execution.title: Execution Details
+execution.title: Contract Details
 execution.timestamp: Created At
-execution.executor: Executor
+execution.executor: Contracter
+execution.id: Contract Hash
 execution.contract: Contract
-execution.hash: Execution Hash
+execution.hash: Contract Hash
 block.listOfExecutions: List of Contracts
 execution.error.failGetExecution: 'Could not get execution details for ${id}'
 executions.error.get: Could not get contracts
@@ -221,7 +222,9 @@ wallet.input.unknown: Unknown error
 wallet.cannot_find_solidity_version: Cannot find solidity version
 receipt.success: Success
 unlock-wallet.title: Unlock your wallet
-unlock-wallet.warn.message: null
+unlock-wallet.warn.message: >-
+  Please URL & SSL cert. It should be https://www.private.freitx.network in your
+  URL bar.
 unlock-wallet.no-wallet: Don't have a wallet yet?
 unlock-wallet.create: Create a new wallet
 new-wallet.copied: Copied to clipboard
@@ -308,7 +311,7 @@ wallet.unlock.new.p2: >-
   wallet. In case if you lose your private key, It cannot be regained.
 wallet.unlock.new.yes: 'I understand, continue'
 wallet.transactioNDetail.yes: 'Yes, make transaction'
-wallet.input.nonce.suggestion: 'Note: nonce <= ${nonce} will be rejected.'
+wallet.input.nonce.suggestion: 'Low Nonce <= ${nonce}'
 input.error.nonceTooLow: Nonce too low
 transaction.pending: >-
   Transaction has been proceeded to the network and will be verified as soon as

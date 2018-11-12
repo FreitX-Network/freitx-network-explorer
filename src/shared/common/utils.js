@@ -18,9 +18,8 @@ export function ellipsisText(s, width) {
 export function singleColEllipsisText(s, width, isHome) {
   if (width > NARROW_WIDTH && isHome) {
     const length = s.length;
-    const newLen = Math.floor(width / length) - 6;
+    const newLen = Math.floor(width / length) ;
     const subLen = newLen >= MIN_SUB_LENGTH ? newLen : MIN_SUB_LENGTH;
-    return `${s.substring(0, subLen)}...${s.substring(length - subLen, length)}`;
   }
   if (width <= 600) {
     const length = s.length;

@@ -352,6 +352,7 @@ export class Interact extends Component {
           <TextInputField
             label={t('wallet.input.contract')}
             name='contractAddress'
+            placeholder='¯\_(ツ)_/¯'
             value={this.state.contractAddress}
             error={t(this.state.errors_contractAddress)}
             update={(name, value) => this.handleInputChange(name, value)}/>
@@ -361,7 +362,7 @@ export class Interact extends Component {
             name='nonce'
             value={this.state.nonce}
             error={t(this.state.errors_nonce)}
-            placeholder='1'
+            placeholder='0'
             extra={this.state.nonceMessage}
             update={(name, value) => this.handleInputChange(name, value)}/>
 

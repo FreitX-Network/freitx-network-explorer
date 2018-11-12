@@ -165,6 +165,7 @@ export class TransferInput extends Component {
             name='recipient'
             value={this.state.recipient}
             error={t(this.state.errors_recipient)}
+            placeholder='¯\_(ツ)_/¯'
             update={(name, value) => this.handleInputChange(name, value)}
           />
 
@@ -173,7 +174,7 @@ export class TransferInput extends Component {
             name='amount'
             value={this.state.amount}
             error={t(this.state.errors_amount)}
-            placeholder='1'
+            placeholder='0'
             update={(name, value) => this.handleInputChange(name, value)}>
             <p className='control'>
               <a className='button is-static'>{t('account.testnet.token')}</a>
@@ -237,7 +238,7 @@ export class TransferInput extends Component {
           <table className='dialogue-table'>
             <tr>
               <td style={{lineHeight: '3.5'}}>{t('wallet.transfer.amount')}</td>
-              <td className='c2-table'><p style={{fontSize: '32px', display: 'inline-block'}}>{cleanedTransfer.amount}</p> {t('account.testnet.token')}</td>
+              <td className='c2-table '><p className='err_red' style={{fontSize: '32px', display: 'inline-block'}}>{cleanedTransfer.amount}</p> {t('account.testnet.token')}</td>
             </tr>
             {rows.map(r =>
               (<tr>
@@ -248,7 +249,7 @@ export class TransferInput extends Component {
             )}
           </table>
           <div>
-            <p>{t('wallet.transfer.balance-after', {balance: balance - cleanedTransfer.amount})} {t('account.testnet.token')}<br/><strong className="err_red">{t('wallet.detail.are-you-sure')}</strong></p>
+            <p className='err_red'><strong>{t('wallet.transfer.balance-after', {balance: balance - cleanedTransfer.amount})} {t('account.testnet.token')}<br/>{t('wallet.detail.are-you-sure')}</strong></p>
           </div>
         </div>
       </TransactionDetailSection>
