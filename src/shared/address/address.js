@@ -1,5 +1,6 @@
 // @flow
 
+import {fromRau} from 'iotex-client-js/dist/account/utils';
 import Component from 'inferno-component';
 import Helmet from 'inferno-helmet';
 import isBrowser from 'is-browser';
@@ -38,25 +39,23 @@ export class Address extends Component {
 
   render() {
     return (
-      <div className='hub'>
-        <div className='column container'>
-          <Helmet
-            title={`${t('address.title')} - FreitX`}
+      <div className='column container'>
+        <Helmet
+          title={`${t('address.title')} - IoTeX`}
+        />
+        <div>
+          <h1 className='title'>{t('address.title')}</h1>
+          <AddressSummary
+            id={this.props.params.id}
+            state={this.props.state}
+            fetchAddressId={this.props.fetchAddressId}
+            fetchAddressExecutionsId={this.props.fetchAddressExecutionsId}
+            fetchAddressTransfersId={this.props.fetchAddressTransfersId}
+            fetchAddressVotersId={this.props.fetchAddressVotersId}
+            width={this.props.width}
           />
-          <div>
-            <h1 className='title'>{t('address.title')}</h1>
-            <AddressSummary
-              id={this.props.params.id}
-              state={this.props.state}
-              fetchAddressId={this.props.fetchAddressId}
-              fetchAddressExecutionsId={this.props.fetchAddressExecutionsId}
-              fetchAddressTransfersId={this.props.fetchAddressTransfersId}
-              fetchAddressVotersId={this.props.fetchAddressVotersId}
-              width={this.props.width}
-            />
-          </div>
-          <CommonMargin/>
         </div>
+        <CommonMargin/>
       </div>
     );
   }
@@ -194,7 +193,7 @@ export class AddressSummary extends Component {
     const rows = [
       {
         c1: t('address.totalBalance'),
-        c2: (a.totalBalance || 0),
+        c2: <span>{fromRau(a.totalBalance || 0)}</span>,
       }, {
         c1: t('address.nonce'),
         c2: (a.nonce || 0),

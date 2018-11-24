@@ -8,6 +8,7 @@ export const WalletContainer = connect(
     return {
       address: state.address.address,
       serverUrl: state.base.freitxCore.serverUrl,
+      chainId: state.base.chainId,
     };
   },
   dispatch => ({

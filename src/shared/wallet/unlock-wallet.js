@@ -17,6 +17,7 @@ export class UnlockWallet extends Component {
     setWallet: any,
     createNew: boolean,
     setCreateNew: any,
+    chainId: number,
   };
 
   constructor(props: any) {
@@ -47,10 +48,11 @@ export class UnlockWallet extends Component {
   }
 
   unlockWallet() {
+    const {chainId} = this.props;
     const {priKey} = this.state;
     this.setState({fetching: true});
 
-    fetchPost(WALLET.UNLOCK_WALLET, {priKey}).then(res => {
+    fetchPost(WALLET.UNLOCK_WALLET, {priKey, chainId}).then(res => {
       if (!res.ok) {
         this.setState({priKeyError: res.error.message, message: res.error.message, fetching: false});
       } else {
@@ -70,18 +72,18 @@ export class UnlockWallet extends Component {
   }
 
   unlock(priKey: string, priKeyError: string, message: string, fetching: boolean) {
+    const {chainId} = this.props;
     return (
-      <div className='new_wallet'>
+      <div>
         <Dialogue
           getSetActiveFn={setDialogueActive => this.setDialogueActive = setDialogueActive}
-          style={{color: '#000'}}
           title={t('wallet.unlock.new.title')}
           cancelButton={cancelButton(this.setDialogueNotActiveButton)}
           submitButton={greenButton(t('wallet.unlock.new.yes'), false, this.newWalletClick, false)}>
           <p className='black'>{t('wallet.unlock.new.p1')}</p>
           <p className='black'>{t('wallet.unlock.new.p2')}</p>
         </Dialogue>
-        <p className='black wallet-title'>{t('unlock-wallet.title')}</p>
+        <p className='wallet-title'>{t('unlock-wallet.title')}</p>
 
         <article className='message is-warning'>
           <div className='message-body'>{t('unlock-wallet.warn.message')}</div>
@@ -99,9 +101,13 @@ export class UnlockWallet extends Component {
         {greenButton(t('wallet.account.unlock'), Boolean(!priKey || priKeyError), this.unlockWallet, fetching)}
         <div style={{paddingTop: '24px'}}>
           <p>{t('unlock-wallet.no-wallet')}
-            <a style={{paddingLeft: '10px'}} onClick={() => {
-              this.setDialogueActive(true);
-            }}>{t('unlock-wallet.create')}</a>
+            {chainId === 1 ? (
+              <a style={{paddingLeft: '10px'}} onClick={() => {
+                this.setDialogueActive(true);
+              }}>{t('unlock-wallet.create')}</a>
+            ) : (
+              <span style={{paddingLeft: '10px'}}>{t('unlock-wallet.main-chain')}</span>
+            )}
           </p>
         </div>
       </div>
@@ -109,12 +115,12 @@ export class UnlockWallet extends Component {
   }
 
   render() {
-    const {wallet, setWallet, createNew} = this.props;
+    const {wallet, setWallet, createNew, chainId} = this.props;
     const {priKey, message, priKeyError, fetching} = this.state;
 
     if (createNew && !wallet) {
       return (
-        <NewWallet setWallet={setWallet}/>
+        <NewWallet setWallet={setWallet} chainId={chainId}/>
       );
     }
 

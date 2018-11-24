@@ -21,16 +21,22 @@ export class VoteInput extends Component {
     wallet: TWallet,
     address: TAddressDetails,
     updateWalletInfo: any,
+    gasPrice: string,
+    gasLimit: number,
   };
 
   constructor(props: any) {
     super(props);
     this.state = {
       votee: '',
+      gasPrice: this.props.gasPrice || '0',
+      gasLimit: this.props.gasLimit || 1000000,
       nonce: this.props.address ? this.props.address.pendingNonce : 1,
       currentNonce: this.props.address ? this.props.address.nonce : 1,
       errors_votee: '',
       errors_nonce: '',
+      errors_gasPrice: '',
+      errors_gasLimit: '',
       nonceMessage: t('wallet.input.nonce.suggestion', {nonce: this.props.address ? this.props.address.nonce : 0}),
       message: '',
       rawTransaction: null,
@@ -91,6 +97,14 @@ export class VoteInput extends Component {
       }
       break;
     }
+    case 'gasPrice': {
+      this.updateFormState(name, value, '');
+      break;
+    }
+    case 'gasLimit': {
+      this.updateFormState(name, value, value && onlyNumber(value));
+      break;
+    }
     default: {
       break;
     }
@@ -128,13 +142,15 @@ export class VoteInput extends Component {
 
   generateVote() {
     const {wallet} = this.props;
-    const {votee, nonce} = this.state;
+    const {votee, nonce, gasPrice, gasLimit} = this.state;
 
     const rawVote: TRawVoteRequest = {
       version: PROTOCOL_VERSION,
       nonce,
-      voter: wallet.rawAddress,
-      votee,
+      voterAddress: wallet.rawAddress,
+      voteeAddress: votee,
+      gasPrice,
+      gasLimit,
     };
     fetchPost(WALLET.GENERATE_VOTE, {rawVote, wallet}).then(res => {
       this.receiveResponse(res);
@@ -149,8 +165,8 @@ export class VoteInput extends Component {
             label={t('wallet.input.to')}
             name='votee'
             value={this.state.votee}
-            placeholder='¯\_(ツ)_/¯'
             error={t(this.state.errors_votee)}
+            placeholder='io...'
             update={(name, value) => this.handleInputChange(name, value)}
           />
 
@@ -159,10 +175,28 @@ export class VoteInput extends Component {
             name='nonce'
             value={this.state.nonce}
             error={t(this.state.errors_nonce)}
-            placeholder='0'
+            placeholder='10'
             extra={this.state.nonceMessage}
             update={(name, value) => this.handleInputChange(name, value)}>
           </TextInputField>
+
+          <TextInputField
+            label={t('wallet.input.gasPrice')}
+            name='gasPrice'
+            value={this.state.gasPrice}
+            error={t(this.state.errors_gasPrice)}
+            placeholder='0'
+            update={(name, value) => this.handleInputChange(name, value)}
+          />
+
+          <TextInputField
+            label={t('wallet.input.gasLimit')}
+            name='gasLimit'
+            value={this.state.gasLimit}
+            error={t(this.state.errors_gasLimit)}
+            placeholder={0}
+            update={(name, value) => this.handleInputChange(name, value)}
+          />
 
           <br/>
           {greenButton(t('wallet.input.generate'), this.state.hasErrors, this.generateVote, generating)}
@@ -204,7 +238,7 @@ export class VoteInput extends Component {
             )}
           </table>
           <div>
-            <p className="err_red">{t('wallet.detail.are-you-sure')}</p>
+            <p className='err_red'>{t('wallet.detail.are-you-sure')}</p>
           </div>
         </div>
       </TransactionDetailSection>

@@ -1,4 +1,5 @@
 // @flow
+import {fromRau} from 'iotex-client-js/dist/account/utils';
 import Component from 'inferno-component';
 import Helmet from 'inferno-helmet';
 import isBrowser from 'is-browser';
@@ -63,30 +64,30 @@ export class Execution extends Component {
     }
     return (
       <div className='hub exe'>
-        <div className='column container'>
-          <Helmet
+      <div className='column container'>
+        <Helmet
             title={`${t('execution.title')} - FreitX Network Blockchain`}
+        />
+        <div>
+          <h1 className='title'>{t('execution.title')}</h1>
+          <ExecutionSummary
+            execution={this.props.state.execution}
+            fetching={this.props.state.fetching}
+            error={this.props.state.error}
+            id={this.props.params.id}
+            fetchExecutionId={this.props.fetchExecutionId}
           />
-          <div>
-            <h1 className='title'>{t('execution.title')}</h1>
-            <ExecutionSummary
-              execution={this.props.state.execution}
-              fetching={this.props.state.fetching}
-              error={this.props.state.error}
-              id={this.props.params.id}
-              fetchExecutionId={this.props.fetchExecutionId}
-            />
-            <Receipt
-              receipt={receipt}
-              fetching={fetchingReceipt}
-              error={receiptError}
-              id={this.props.params.id}
-              fetchReceipt={this.props.fetchExecutionReceipt}
-            />
-            {executions}
-          </div>
-          <CommonMargin/>
+          <Receipt
+            receipt={receipt}
+            fetching={fetchingReceipt}
+            error={receiptError}
+            id={this.props.params.id}
+            fetchReceipt={this.props.fetchExecutionReceipt}
+          />
+          {executions}
         </div>
+        <CommonMargin/>
+      </div>
       </div>
     );
   }
@@ -230,12 +231,11 @@ export class ExecutionSummary extends Component {
       );
     }
     const rows = [];
-    rows.push({c1: t('execution.id'), c2: (execution.id)});
     rows.push({c1: t('execution.executor'), c2: (<Link to={`/address/${execution.executor}`} className='link'>{execution.executor}</Link>)});
     if (execution.contract) {
       rows.push({c1: t('execution.contract'), c2: (<Link to={`/address/${execution.contract}`} className='link'>{execution.contract}</Link>)});
     }
-    rows.push({c1: t('meta.amount'), c2: (execution.amount)});
+    rows.push({c1: t('meta.amount'), c2: (<span>{fromRau(execution.amount)} OneX</span>)});
     rows.push({c1: t('execution.gas'), c2: (execution.gas)});
     rows.push({c1: t('execution.input'), c2: (execution.data)});
     rows.push({c1: t('execution.nonce'), c2: (execution.nonce)});
@@ -243,6 +243,7 @@ export class ExecutionSummary extends Component {
     rows.push({c1: t('block.title'), c2: (<Link to={`/blocks/${execution.blockId}`} className='link'>{execution.blockId}</Link>)});
     return (
       <SingleItemTable
+        subtitle={execution.id}
         rows={rows}
       />
     );

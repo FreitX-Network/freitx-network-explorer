@@ -1,6 +1,6 @@
 {
-  "name": "@iotex/iotex-explorer",
-  "version": "1.0.0",
+  "name": "@freitx-network/freitx-network-explorer",
+  "version": "1.7.4",
   "description": "field_description",
   "main": "server.js",
   "scripts": {
@@ -45,7 +45,7 @@
       "src/server/gateways/wallet-core/rpc_pb.js",
       "src/server/gateways/wallet-core/rpc_grpc_pb.js",
       "src/server/gateways/wallet-core/wallet-core.js",
-      "src/server/gateways/freitx-core/freitx-core.js",
+      "src/server/gateways/iotex-core/iotex-core.js",
       "src/**/*.test.js",
       "src/**/__tests__/**"
     ],
@@ -109,6 +109,7 @@
     "inferno-router": "^3.9.0",
     "inferno-server": "^3.9.0",
     "inferno-side-effect": "1.1.0",
+    "iotex-client-js": "^0.1.4",
     "is-browser": "^2.0.1",
     "js-sha3": "^0.8.0",
     "js-yaml": "^3.12.0",
@@ -124,7 +125,6 @@
     "koa-session": "^5.5.1",
     "load-script": "^1.0.0",
     "methods": "^1.1.2",
-    "moment": "^2.22.2",
     "mysql": "^2.10.2",
     "nkn-client": "^0.4.3",
     "path": "^0.12.7",
@@ -147,7 +147,6 @@
     "url-join": "^2.0.2",
     "webpack-manifest-plugin": "^2.0.3",
     "winston": "^2.4.2",
-    "ws": "^3.3.2",
     "xhr": "^2.5.0"
   },
   "devDependencies": {
@@ -174,7 +173,8 @@
     "jsdom": "11.5.1",
     "jsdom-global": "3.0.2",
     "nyc": "^11.9.0",
-    "webpack": "^4.19.0"
+    "webpack": "^4.19.0",
+    "webpack-bundle-analyzer": "^3.0.3"
   },
   "engines": {
     "node": "v8.11.3",

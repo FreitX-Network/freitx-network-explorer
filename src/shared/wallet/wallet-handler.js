@@ -1,7 +1,9 @@
+/* eslint-disable max-statements */
 import {rootReducer} from '../common/root/root-reducer';
 import {WALLET} from '../common/site-url';
 import {logger} from '../../lib/integrated-gateways/logger';
 import {createViewRoutes} from './wallet-view-routes';
+import {intFromHexLE} from './transfer/int-from-hex';
 
 function handleInput(args) {
   const errors = [];
@@ -18,7 +20,7 @@ function handleInput(args) {
 }
 
 export function setWalletRoutes(server) {
-  const {gateways: {walletCore, freitxCore}} = server;
+  const {gateways: {walletCore, freitxCore, crossChain, iotxRpcMethods}} = server;
 
   function walletHandler(ctx, next) {
     ctx.isoRender({
@@ -29,10 +31,11 @@ export function setWalletRoutes(server) {
   }
 
   async function generateKeyPair(ctx, next) {
+    const {chainId} = ctx.request.body;
     try {
       ctx.body = {
         ok: true,
-        wallet: await walletCore.generateWallet(),
+        wallet: await walletCore.generateWallet(chainId),
       };
     } catch (error) {
       logger.error('FAIL_GENERATE_KEY_PAIR', error.stack);
@@ -41,12 +44,12 @@ export function setWalletRoutes(server) {
   }
 
   async function unlockWallet(ctx, next) {
-    const {priKey} = ctx.request.body;
+    const {priKey, chainId} = ctx.request.body;
 
     try {
       ctx.body = {
         ok: true,
-        wallet: await walletCore.unlockWallet(priKey),
+        wallet: await walletCore.unlockWallet(priKey, chainId),
       };
     } catch (error) {
       logger.error('FAIL_UNLOCK_WALLET', error);
@@ -55,7 +58,7 @@ export function setWalletRoutes(server) {
   }
 
   async function generateTransfer(ctx, next) {
-    const {wallet, rawTransfer} = ctx.request.body;
+    const {wallet, rawTransfer, isCrossChainTransfer} = ctx.request.body;
     const errors = handleInput(rawTransfer);
 
     if (!errors.ok) {
@@ -73,9 +76,27 @@ export function setWalletRoutes(server) {
         return;
       }
 
+      let rawTransaction;
+      if (isCrossChainTransfer) {
+        const createDeposit = {
+          amount: rawTransfer.amount,
+          sender: rawTransfer.sender,
+          recipient: rawTransfer.recipient,
+          gasLimit: rawTransfer.gasLimit,
+          gasPrice: rawTransfer.gasPrice,
+          version: rawTransfer.version,
+          senderPubKey: wallet.publicKey,
+          nonce: rawTransfer.nonce,
+        };
+        const resp = await walletCore.signCreateDeposit({createDeposit, address: wallet});
+        rawTransaction = resp && resp.createDeposit;
+      } else {
+        rawTransaction = await walletCore.signTransfer(wallet, rawTransfer);
+      }
+
       ctx.body = {
         ok: true,
-        rawTransaction: await walletCore.signTransfer(wallet, rawTransfer),
+        rawTransaction,
       };
     } catch (error) {
       logger.error('FAIL_SIGN_TRANSFER', error);
@@ -113,14 +134,24 @@ export function setWalletRoutes(server) {
   }
 
   async function sendTransaction(ctx, next) {
-    const {rawTransaction, type} = ctx.request.body;
+    const {rawTransaction, type, isCrossChainTransfer} = ctx.request.body;
     try {
-      const result = type === 'transfer' ?
-        await freitxCore.sendTransfer(rawTransaction) :
-        (type === 'vote' ?
-          await freitxCore.sendVote(rawTransaction) :
-          await freitxCore.sendSmartContract(rawTransaction)
-        );
+      let result;
+      switch (type) {
+      case 'transfer':
+        if (isCrossChainTransfer) {
+          result = await iotxRpcMethods.createDeposit(rawTransaction);
+        } else {
+          result = await iotxRpcMethods.sendTransfer(rawTransaction);
+        }
+        break;
+      case 'vote':
+        result = await freitxCore.sendVote(rawTransaction);
+        break;
+      default:
+        result = await freitxCore.sendSmartContract(rawTransaction);
+        break;
+      }
       ctx.body = {
         ok: true,
         hash: result.hash,
@@ -131,10 +162,33 @@ export function setWalletRoutes(server) {
     }
   }
 
+  async function continueDeposit(ctx, next) {
+    const {targetChainId, hash, rawTransaction, wallet} = ctx.request.body;
+    const {returnValue} = await iotxRpcMethods.getReceiptByExecutionID(hash);
+    const index = intFromHexLE(returnValue);
+    const settleDeposit = {
+      ...rawTransaction,
+      index,
+    };
+    ctx.response.body = await crossChain.signAndSettleDeposit({chainId: targetChainId, settleDeposit, wallet});
+  }
+
+  async function signAndSettleDeposit(ctx, next) {
+    const {settleDeposit, wallet} = ctx.request.body;
+    let resp = await walletCore.signSettleDeposit({settleDeposit, address: wallet});
+    if (!resp || !resp.settleDeposit) {
+      return ctx.response.body = {ok: false, error: {code: 'FAIL_SETTLE_DEPOSIT', message: 'failed to settle deposit'}};
+    }
+    resp = await iotxRpcMethods.settleDeposit(resp.settleDeposit);
+    ctx.response.body = resp;
+  }
+
   server.get('wallet', WALLET.INDEX, walletHandler);
-  server.get('generate key pair', WALLET.GENERATE_KEY_PAIR, generateKeyPair);
+  server.post('generate key pair', WALLET.GENERATE_KEY_PAIR, generateKeyPair);
   server.post('unlock wallet', WALLET.UNLOCK_WALLET, unlockWallet);
   server.post('generate transfer', WALLET.GENERATE_TRANSFER, generateTransfer);
   server.post('generate vote', WALLET.GENERATE_VOTE, generateVote);
   server.post('send transaction', WALLET.SEND_TRANSACTION, sendTransaction);
+  server.post('continue deposit', WALLET.CONTINUE_DEPOSIT, continueDeposit);
+  server.post('sign and settle deposit', WALLET.SIGN_AND_SETTLE_DEPOSIT, signAndSettleDeposit);
 }

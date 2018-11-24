@@ -159,6 +159,11 @@ wallet.transactions.header: Actions
 wallet.transactions.transfer: Create Transfer
 wallet.transactions.vote: Create Vote
 wallet.transactions.send: Broadcast
+wallet.transfer.crossChain.settling: Settling the cross-chain transfer...
+unlock-wallet.main-chain: Please go to mainchain to create a wallet.
+wallet.transfer.crossChain: >-
+  This is a cross-chain transfer from the current chain with ID ${chainId} to
+  the one with ID ${targetChainId}
 wallet.transfer.title: Send
 wallet.vote.title: Bond for Producing
 wallet.transaction.title: Transaction
@@ -300,6 +305,7 @@ wallet.contract.choose: Choose an action
 wallet.contract.interactWith: Interact with contract
 wallet.contract.deployContract: Deploy contract
 abi.input: Input
+input.error.float.invalid: Only number
 abi.return: Return
 wallet.error.failReadExecution: >-
   Failed to read execution. Please double check the contract address / your

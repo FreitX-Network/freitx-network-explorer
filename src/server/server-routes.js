@@ -1,5 +1,6 @@
 // @flow
 
+import config from 'config';
 import type {Server} from '../lib/server';
 import {setBlockchainExplorerRoutes} from '../shared/blockchain-explorer/blockchain-explorer-handler';
 import {setExecutionHandler} from '../shared/execution/execution-handler';
@@ -33,6 +34,19 @@ export function setServerRoutes(server: Server) {
       server.logger.error('Testing an error');
     }
   );
+
+  server.use(async function globalConfig(ctx, next) {
+    const chains = config.chains;
+    const href = ctx.href;
+    ctx.setState('base.chains', chains);
+    ctx.setState('base.href', href);
+    const curChain = chains.find(c => {
+      return href.indexOf(c.url) === 0;
+    });
+    const chainId = curChain ? curChain.id : 1;
+    ctx.setState('base.chainId', chainId);
+    await next();
+  });
 
   setJsonRpcRoutes(server);
   setNavRoutes(server);

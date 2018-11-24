@@ -1,8 +1,14 @@
 // @flow
 
-import type {TWallet, TRawTransfer, TRawVote, TRawExecutionRequest} from '../../../entities/wallet-types';
+import type {
+  TWallet,
+  TRawTransfer,
+  TRawVote,
+  TRawExecutionRequest,
+  TCreateDeposit, TSettleDeposit,
+} from '../../../entities/wallet-types';
 import {logger} from '../../../lib/integrated-gateways/logger';
-import type {GExecution} from '../iotex-core/iotex-core-types';
+import type {GExecution} from '../freitx-core/freitx-core-types';
 
 const grpc = require('grpc');
 const messages = require('./rpc_pb');
@@ -20,41 +26,114 @@ function makeMessagesAddress(wallet: TWallet): any {
   return address;
 }
 
-function makeMessagesTransfer(transfer: TRawTransfer): any {
+type WalletTransfer = {
+  nonce: number,
+  signature: string,
+  amount: string,
+  sender: string,
+  recipient: string,
+  payload: string,
+  gasLimit: number,
+  gasPrice: string,
+  version: number,
+  isCoinbase: boolean,
+  senderPubKey: string,
+}
+
+function makeMessagesTransfer(transfer: WalletTransfer): any {
   const t = new messages.Transfer();
-  t.setVersion(transfer.version);
   t.setNonce(transfer.nonce);
   t.setSignature(transfer.signature);
   t.setAmount(transfer.amount);
   t.setSender(transfer.sender);
   t.setRecipient(transfer.recipient);
   t.setPayload(transfer.payload);
-  t.setSenderpubkey(transfer.senderPubKey);
+  t.setGaslimit(transfer.gasLimit);
+  t.setGasprice(transfer.gasPrice);
+  t.setVersion(transfer.version);
   t.setIscoinbase(transfer.isCoinbase);
+  t.setSenderpubkey(transfer.senderPubKey);
   return t;
 }
 
-function makeMessagesVote(vote: TRawVote): any {
+type WalletVote = {
+  nonce: number,
+  signature: string,
+  voterAddress: string,
+  voteeAddress: string,
+  gasLimit: number,
+  gasPrice: string,
+  version: number,
+  selfPubKey: string,
+}
+
+function makeMessagesVote(vote: WalletVote): any {
   const v = new messages.Vote();
-  v.setVersion(vote.version);
   v.setNonce(vote.nonce);
   v.setSignature(vote.signature);
-  v.setSelfpubkey(vote.voterPubKey);
-  v.setVoteraddress(vote.voter);
-  v.setVoteeaddress(vote.votee);
+  v.setVoteraddress(vote.voterAddress);
+  v.setVoteeaddress(vote.voteeAddress);
+  v.setGaslimit(vote.gasLimit);
+  v.setGasprice(vote.gasPrice);
+  v.setVersion(vote.selfPubKey);
   return v;
 }
 
-function makeMessagesExecution(smartContract: TRawExecutionRequest, executor: string): any {
+type WalletSmartContract = {
+  nonce: number,
+  signature: string,
+  amount: string,
+  executor: string,
+  contract: string,
+  gasLimit: number,
+  gasPrice: string,
+  data: string,
+  version: number,
+  executorPubKey: string,
+}
+
+function makeMessagesExecution(smartContract: WalletSmartContract, executor: string): any {
   const sc = new messages.Execution();
-  sc.setVersion(smartContract.version);
   sc.setNonce(smartContract.nonce);
-  sc.setExecutor(executor);
-  sc.setData(smartContract.byteCode);
-  sc.setGas(smartContract.gasLimit);
-  sc.setContract(smartContract.contract);
+  sc.setSignature(smartContract.signature);
   sc.setAmount(smartContract.amount);
+  sc.setExecutor(executor);
+  sc.setContract(smartContract.contract);
+  sc.setGaslimit(smartContract.gasLimit);
+  sc.setGasprice(smartContract.gasPrice);
+  sc.setData(smartContract.data);
+  sc.setVersion(smartContract.version);
+  sc.setExecutorpubkey(smartContract.executorPubKey);
   return sc;
+}
+
+function makeCreateDeposit(cd: TCreateDeposit): any {
+  const c = new messages.CreateDeposit();
+  c.setNonce(cd.nonce);
+  c.setSignature(cd.signature);
+  c.setAmount(cd.amount);
+  c.setSender(cd.sender);
+  c.setRecipient(cd.recipient);
+  c.setGaslimit(cd.gasLimit);
+  c.setGasprice(cd.gasPrice);
+  c.setVersion(cd.version);
+  c.setSenderpubkey(cd.senderPubKey);
+  return c;
+}
+
+function makeSettleDeposit(sd: TSettleDeposit): any {
+  const s = new messages.SettleDeposit();
+  s.setNonce(sd.nonce);
+  s.setSignature(sd.signature);
+  s.setAmount(sd.amount);
+  s.setIndex(sd.index);
+  s.setSender(sd.sender);
+  s.setRecipient(sd.recipient);
+  s.setGaslimit(sd.gasLimit);
+  s.setGasprice(sd.gasPrice);
+  s.setVersion(sd.version);
+  s.setSenderpubkey(sd.senderPubKey);
+  return s;
 }
 
 export class WalletCore {
@@ -68,8 +147,9 @@ export class WalletCore {
   }
 
   // get the address detail of an iotex address
-  async generateWallet(): Promise<TWallet> {
+  async generateWallet(chainId: number): Promise<TWallet> {
     const request = new messages.NewWalletRequest();
+    request.setChainid(chainId);
 
     return new Promise((resolve, reject) => {
       this.client.newWallet(request, (error, response) => {
@@ -82,7 +162,7 @@ export class WalletCore {
           };
           resolve(wallet);
         } else {
-          logger.error(error);
+          logger.error('failed to generateWallet', error);
           reject(error.details);
         }
       });
@@ -90,9 +170,10 @@ export class WalletCore {
   }
 
   // get list of transfers by start block height, transfer offset and limit
-  async unlockWallet(priKey: string): Promise<TWallet> {
+  async unlockWallet(priKey: string, chainId: number): Promise<TWallet> {
     const request = new messages.UnlockRequest();
     request.setPrivatekey(priKey);
+    request.setChainid(chainId);
 
     return new Promise((resolve, reject) => {
       this.client.unlock(request, (error, response) => {
@@ -105,7 +186,7 @@ export class WalletCore {
           };
           resolve(wallet);
         } else {
-          logger.error(error);
+          logger.error('failed to unlockWallet', error);
           reject(error.details);
         }
       });
@@ -124,19 +205,21 @@ export class WalletCore {
         if (!error) {
           const res = response.getTransfer();
           const signedTransfer: TRawTransfer = {
-            version: res.getVersion(),
             nonce: res.getNonce(),
             signature: res.getSignature(),
             amount: res.getAmount(),
             sender: res.getSender(),
             recipient: res.getRecipient(),
             payload: res.getPayload(),
+            gasLimit: res.getGaslimit(),
+            gasPrice: res.getGasprice(),
+            version: res.getVersion(),
             senderPubKey: res.getSenderpubkey(),
             isCoinbase: res.getIscoinbase(),
           };
           resolve(signedTransfer);
         } else {
-          logger.error(error);
+          logger.error('failed to signTransfer', error);
           reject(error.details);
         }
       });
@@ -155,16 +238,18 @@ export class WalletCore {
         if (!error) {
           const res = response.getVote();
           const signedVote: TRawVote = {
-            version: res.getVersion(),
             nonce: res.getNonce(),
             signature: res.getSignature(),
             voter: res.getVoteraddress(),
             votee: res.getVoteeaddress(),
             voterPubKey: res.getSelfpubkey(),
+            gasLimit: res.getGaslimit(),
+            gasPrice: res.getGasprice(),
+            version: res.getVersion(),
           };
           resolve(signedVote);
         } else {
-          logger.error(error);
+          logger.error('failed to signVote', error);
           reject(error.details);
         }
       });
@@ -182,28 +267,89 @@ export class WalletCore {
       this.client.signExecution(request, (error, response) => {
         if (!error) {
           const res = response.getExecution();
-          const signedExecution: GExecution = {
+          const signedExecution = {
             version: res.getVersion(),
             nonce: res.getNonce(),
             signature: res.getSignature(),
+            executorPubKey: res.getExecutorpubkey(),
+            amount: res.getAmount(),
             executor: res.getExecutor(),
             contract: res.getContract(),
-            executorPubKey: res.getExecutorpubkey(),
-            gas: res.getGas(),
+            gasLimit: res.getGaslimit(),
             gasPrice: res.getGasprice(),
             data: res.getData(),
-            ID: '',
-            amount: res.getAmount(),
-            blockID: '',
-            isPending: false,
-            timestamp: 0,
           };
           resolve(signedExecution);
         } else {
-          logger.error(error);
+          logger.error('failed to signSmartContract', error);
           reject(error.details);
         }
       });
     });
+  }
+
+  async signCreateDeposit({createDeposit, address}: { createDeposit: TCreateDeposit, address: TWallet }): Promise<{ createDeposit: TCreateDeposit }> {
+    const request = new messages.SignCreateDepositRequest();
+    const convertedAddress = makeMessagesAddress(address);
+    const convertedCreateDeposit = makeCreateDeposit(createDeposit);
+    request.setAddress(convertedAddress);
+    request.setCreatedeposit(convertedCreateDeposit);
+
+    return new Promise((resolve, reject) => {
+      this.client.signCreateDeposit(request, (err, resp) => {
+        if (err) {
+          logger.error(`failed to signCreateDeposit: ${err.stack}`);
+          return reject(err);
+        }
+
+        const res = resp.getCreatedeposit();
+        resolve({
+          createDeposit: {
+            nonce: res.getNonce(),
+            signature: res.getSignature(),
+            amount: res.getAmount(),
+            sender: res.getSender(),
+            recipient: res.getRecipient(),
+            gasLimit: res.getGaslimit(),
+            gasPrice: res.getGasprice(),
+            version: res.getVersion(),
+            senderPubKey: res.getSenderpubkey(),
+          },
+        });
+      });
+    });
+  }
+
+  async signSettleDeposit({settleDeposit, address}: { settleDeposit: TSettleDeposit, address: TWallet }): Promise<{ settleDeposit: TSettleDeposit }> {
+    const request = new messages.SignSettleDepositRequest();
+    const convertedAddress = makeMessagesAddress(address);
+    const convertedSettleDeposit = makeSettleDeposit(settleDeposit);
+    request.setAddress(convertedAddress);
+    request.setSettledeposit(convertedSettleDeposit);
+
+    return new Promise(((resolve, reject) => {
+      this.client.signSettleDeposit(request, (err, resp) => {
+        if (err) {
+          logger.error(`failed to signSettleDeposit: ${err.stack}`);
+          return reject(err);
+        }
+
+        const res = resp.getSettledeposit();
+        resolve({
+          settleDeposit: {
+            nonce: res.getNonce(),
+            signature: res.getSignature(),
+            amount: res.getAmount(),
+            index: res.getIndex(),
+            sender: res.getSender(),
+            recipient: res.getRecipient(),
+            gasLimit: res.getGaslimit(),
+            gasPrice: res.getGasprice(),
+            version: res.getVersion(),
+            senderPubKey: res.getSenderpubkey(),
+          },
+        });
+      });
+    }));
   }
 }

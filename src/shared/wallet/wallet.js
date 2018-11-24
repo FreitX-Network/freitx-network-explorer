@@ -27,6 +27,7 @@ export class Wallet extends Component {
     fetchAddressId: fetchAddressId,
     address: TAddressDetails,
     serverUrl: string,
+    chainId: number,
   };
 
   constructor(props: any) {
@@ -73,7 +74,7 @@ export class Wallet extends Component {
   }
 
   tabs() {
-    const {serverUrl} = this.props;
+    const {serverUrl, chainId} = this.props;
     const {selectedTab, wallet, createNew} = this.state;
     const tabs = (
       <div className='tabs'>
@@ -83,10 +84,12 @@ export class Wallet extends Component {
           >
             <a>{t('wallet.tab.transfer', {token: t('account.testnet.token')})}</a>
           </li>
-          <li className={`${selectedTab === VOTE ? 'is-active' : ''}`}
-            onClick={() => this.setState({selectedTab: VOTE})}>
-            <a>{t('wallet.tab.vote')}</a>
-          </li>
+          {chainId === 1 && (
+            <li className={`${selectedTab === VOTE ? 'is-active' : ''}`}
+              onClick={() => this.setState({selectedTab: VOTE})}>
+              <a>{t('wallet.tab.vote')}</a>
+            </li>
+          )}
           <li className={`${selectedTab === INTERACT ? 'is-active' : ''}`}
             onClick={() => this.setState({selectedTab: INTERACT})}>
             <a>{t('wallet.tab.interact')}</a>
@@ -113,7 +116,7 @@ export class Wallet extends Component {
       break;
     }
     default: {
-      tab = <Transfer wallet={wallet} address={this.props.address} updateWalletInfo={this.updateWalletInfo}/>;
+      tab = <Transfer chainId={chainId} wallet={wallet} address={this.props.address} updateWalletInfo={this.updateWalletInfo}/>;
       break;
     }
     }
@@ -131,6 +134,7 @@ export class Wallet extends Component {
                   updateWalletInfo={this.updateWalletInfo}
                   createNew={this.state.createNew}
                   setCreateNew={() => this.setState({createNew: true})}
+                  chainId={chainId}
                 />
               )
             }

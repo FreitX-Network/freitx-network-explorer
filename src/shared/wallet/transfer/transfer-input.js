@@ -1,6 +1,6 @@
 // @flow
-
 import Component from 'inferno-component';
+import {toRau, fromRau} from 'iotex-client-js/dist/account/utils';
 import {TextInputField} from '../../common/inputfields/text-input-field';
 import type {TWallet, TRawTransfer} from '../../../entities/wallet-types';
 import {WALLET} from '../../common/site-url';
@@ -9,16 +9,26 @@ import {TransactionDetailSection} from '../transaction-detail-section';
 import {t} from '../../../lib/iso-i18n';
 import type {Error} from '../../../entities/common-types';
 import type {TAddressDetails} from '../../../entities/explorer-types';
-import {acceptableNonce, isValidBytes, isValidRawAddress, onlyNumber} from '../validator';
+import {acceptableNonce, isValidBytes, isValidRawAddress, onlyNumber, onlyFloat} from '../validator';
 import type {TRawTransferRequest} from '../../../entities/explorer-types';
 import {BroadcastFail, BroadcastSuccess} from '../broadcastedTransaction';
 import {clearButton, greenButton} from '../../common/buttons';
+import {decodeAddress} from '../../../lib/decode-address';
+import {ContinueDeposit} from './continue-deposit';
+
+function getChainId(rawAddress) {
+  const addr = decodeAddress(rawAddress);
+  return addr.chainId;
+}
 
 export class TransferInput extends Component {
   props: {
     wallet: TWallet,
     address: TAddressDetails,
     updateWalletInfo: any,
+    gasPrice: string,
+    gasLimit: number,
+    chainId: number,
   };
 
   constructor(props: any) {
@@ -26,12 +36,16 @@ export class TransferInput extends Component {
     this.state = {
       recipient: '',
       amount: '',
+      gasPrice: this.props.gasPrice || '0',
+      gasLimit: this.props.gasLimit || 1000000,
       nonce: this.props.address ? this.props.address.pendingNonce : 1,
       currentNonce: this.props.address ? this.props.address.nonce : 1,
       nonceMessage: t('wallet.input.nonce.suggestion', {nonce: this.props.address ? this.props.address.nonce : 0}),
       dataInBytes: '',
       errors_recipient: '',
       errors_amount: '',
+      errors_gasPrice: '',
+      errors_gasLimit: '',
       errors_nonce: '',
       errors_dataInBytes: '',
       message: '',
@@ -39,6 +53,8 @@ export class TransferInput extends Component {
       broadcast: null,
       generating: false,
       hasErrors: false,
+      isCrossChainTransfer: false,
+      targetChainId: props.chainId,
     };
 
     (this: any).generateTransfer = this.generateTransfer.bind(this);
@@ -52,13 +68,25 @@ export class TransferInput extends Component {
     this.setState({nonce: this.props.address ? this.props.address.nonce + 1 : this.state.nonce});
   }
 
-  componentWillReceiveProps(nextProps: {address: TAddressDetails}, nextContext: any) {
+  componentWillReceiveProps(nextProps: { address: TAddressDetails }, nextContext: any) {
     if (this.state.nonce <= nextProps.address.nonce) {
-      this.setState({nonceMessage: t('wallet.input.nonce.suggestion', {nonce: nextProps.address.nonce}), currentNonce: nextProps.address.nonce});
+      this.setState({
+        nonceMessage: t('wallet.input.nonce.suggestion', {nonce: nextProps.address.nonce}),
+        currentNonce: nextProps.address.nonce,
+      });
     }
   }
 
   handleInputChange(name: string, value: string) {
+    if (name === 'recipient') {
+      const {chainId} = this.props;
+      const targetChainId = getChainId(value);
+      if (chainId !== targetChainId) {
+        this.setState({isCrossChainTransfer: true, targetChainId});
+      } else {
+        this.setState({isCrossChainTransfer: false, targetChainId: chainId});
+      }
+    }
     this.checkFormErrors(name, value);
   }
 
@@ -71,7 +99,7 @@ export class TransferInput extends Component {
     this.hasErrors();
   }
 
-  // eslint-disable-next-line max-statements
+  // eslint-disable-next-line max-statements,complexity
   checkFormErrors(name: string, value: ?string) {
     const {currentNonce} = this.state;
 
@@ -93,6 +121,14 @@ export class TransferInput extends Component {
       break;
     }
     case 'amount': {
+      this.updateFormState(name, value, value && onlyFloat(value));
+      break;
+    }
+    case 'gasPrice': {
+      this.updateFormState(name, value, '');
+      break;
+    }
+    case 'gasLimit': {
       this.updateFormState(name, value, value && onlyNumber(value));
       break;
     }
@@ -116,7 +152,7 @@ export class TransferInput extends Component {
     });
   }
 
-  receiveResponse(res: {ok: boolean, rawTransaction: any, errors: Array<string>, error: ?Error}) {
+  receiveResponse(res: { ok: boolean, rawTransaction: any, errors: Array<string>, error: ?Error }) {
     if (!res.ok) {
       if (res.errors && res.errors.length > 0) {
         res.errors.forEach(key => {
@@ -124,7 +160,11 @@ export class TransferInput extends Component {
         });
         this.setState({message: t('wallet.error.fix'), generating: false, rawTransaction: null});
       } else {
-        this.setState({message: t(res.error ? res.error.message : t('error.unknown')), generating: false, rawTransaction: null});
+        this.setState({
+          message: t(res.error ? res.error.message : t('error.unknown')),
+          generating: false,
+          rawTransaction: null,
+        });
       }
     } else {
       this.resetErrors();
@@ -139,19 +179,21 @@ export class TransferInput extends Component {
 
   generateTransfer() {
     const {wallet} = this.props;
-    const {recipient, amount, nonce, dataInBytes} = this.state;
+    const {recipient, amount, nonce, dataInBytes, gasPrice, gasLimit, isCrossChainTransfer} = this.state;
 
     this.setState({generating: true});
     const rawTransfer: TRawTransferRequest = {
       version: 0x01,
       nonce,
-      amount,
+      amount: toRau(amount, 'Iotx'),
       sender: wallet.rawAddress,
       recipient,
       payload: dataInBytes.replace(/^(0x)/, ''),
       isCoinbase: false,
+      gasPrice,
+      gasLimit,
     };
-    fetchPost(WALLET.GENERATE_TRANSFER, {rawTransfer, wallet}).then(res => {
+    fetchPost(WALLET.GENERATE_TRANSFER, {rawTransfer, wallet, isCrossChainTransfer}).then(res => {
       this.receiveResponse(res);
     });
   }
@@ -165,7 +207,7 @@ export class TransferInput extends Component {
             name='recipient'
             value={this.state.recipient}
             error={t(this.state.errors_recipient)}
-            placeholder='¯\_(ツ)_/¯'
+            placeholder='io...'
             update={(name, value) => this.handleInputChange(name, value)}
           />
 
@@ -174,7 +216,7 @@ export class TransferInput extends Component {
             name='amount'
             value={this.state.amount}
             error={t(this.state.errors_amount)}
-            placeholder='0'
+            placeholder='1'
             update={(name, value) => this.handleInputChange(name, value)}>
             <p className='control'>
               <a className='button is-static'>{t('account.testnet.token')}</a>
@@ -188,6 +230,24 @@ export class TransferInput extends Component {
             error={t(this.state.errors_nonce)}
             placeholder='10'
             extra={this.state.nonceMessage}
+            update={(name, value) => this.handleInputChange(name, value)}
+          />
+
+          <TextInputField
+            label={t('wallet.input.gasPrice')}
+            name='gasPrice'
+            value={this.state.gasPrice}
+            error={t(this.state.errors_gasPrice)}
+            placeholder='0'
+            update={(name, value) => this.handleInputChange(name, value)}
+          />
+
+          <TextInputField
+            label={t('wallet.input.gasLimit')}
+            name='gasLimit'
+            value={this.state.gasLimit}
+            error={t(this.state.errors_gasLimit)}
+            placeholder={0}
             update={(name, value) => this.handleInputChange(name, value)}
           />
 
@@ -208,10 +268,12 @@ export class TransferInput extends Component {
   }
 
   displayRawTransfer(rawTransfer: TRawTransfer, balance: number) {
+    const {isCrossChainTransfer} = this.state;
+
     const signature = rawTransfer.signature;
     const cleanedTransfer = {
       ...rawTransfer,
-      payload: `0x${rawTransfer.payload}`,
+      payload: `0x${rawTransfer.payload || ''}`,
     };
     delete cleanedTransfer.signature;
     delete cleanedTransfer.isCoinbase;
@@ -223,7 +285,7 @@ export class TransferInput extends Component {
       {c1: t('wallet.transfer.nonce'), c2: cleanedTransfer.nonce},
       {c1: t('wallet.transfer.data'), c2: cleanedTransfer.payload},
     ];
-
+    const balanceRau = fromRau(parseInt(toRau(balance, 'Rau'), 10) - parseInt(cleanedTransfer.amount, 10), 'Iotx');
     return (
       <TransactionDetailSection
         rawTransaction={rawTransfer}
@@ -233,12 +295,16 @@ export class TransferInput extends Component {
         type={'transfer'}
         broadcast={this.broadcast}
         title={t('wallet.transfer.detail-title')}
+        isCrossChainTransfer={isCrossChainTransfer}
       >
-        <div>
-          <table className='dialogue-table'>
+        <div className='dialogue-table'>
+          <table >
             <tr>
               <td style={{lineHeight: '3.5'}}>{t('wallet.transfer.amount')}</td>
-              <td className='c2-table '><p className='err_red' style={{fontSize: '32px', display: 'inline-block'}}>{cleanedTransfer.amount}</p> {t('account.testnet.token')}</td>
+              <td className='c2-table'><p style={{
+                fontSize: '32px',
+                display: 'inline-block',
+              }}>{fromRau(cleanedTransfer.amount, 'Iotx')}</p> {t('account.testnet.token')}</td>
             </tr>
             {rows.map(r =>
               (<tr>
@@ -249,7 +315,9 @@ export class TransferInput extends Component {
             )}
           </table>
           <div>
-            <p className='err_red'><strong>{t('wallet.transfer.balance-after', {balance: balance - cleanedTransfer.amount})} {t('account.testnet.token')}<br/>{t('wallet.detail.are-you-sure')}</strong></p>
+            <p className='err_red'>
+              {t('wallet.transfer.balance-after', {balance: balanceRau})} {t('account.testnet.token')}<br/>{t('wallet.detail.are-you-sure')}
+            </p>
           </div>
         </div>
       </TransactionDetailSection>
@@ -262,12 +330,16 @@ export class TransferInput extends Component {
   }
 
   sendNewIOTXClick() {
-    this.setState({broadcast: null, rawTransaction: null, nonce: this.props.address ? this.props.address.nonce + 1 : this.state.nonce});
+    this.setState({
+      broadcast: null,
+      rawTransaction: null,
+      nonce: this.props.address ? this.props.address.nonce + 1 : this.state.nonce,
+    });
   }
 
   render() {
-    const {wallet, address} = this.props;
-    const {generating} = this.state;
+    const {wallet, address, chainId} = this.props;
+    const {generating, isCrossChainTransfer, targetChainId} = this.state;
 
     if (!wallet) {
       return null;
@@ -278,6 +350,17 @@ export class TransferInput extends Component {
     if (broadcast) {
       const sendNewIOTX = clearButton(`${t('wallet.transfer.sendNew')} ${t('account.testnet.token')}`, this.sendNewIOTXClick);
       if (broadcast.success) {
+        if (isCrossChainTransfer) {
+          return (
+            <ContinueDeposit
+              hash={broadcast.txHash}
+              rawTransaction={rawTransaction}
+              targetChainId={targetChainId}
+              wallet={wallet}
+              sendNewIOTX={sendNewIOTX}
+            />
+          );
+        }
         return BroadcastSuccess(broadcast.txHash, 'transfer', sendNewIOTX);
       }
       return BroadcastFail(broadcast.error, t('wallet.transfer.broadcast.fail', {token: t('account.testnet.token')}), sendNewIOTX);
@@ -287,6 +370,8 @@ export class TransferInput extends Component {
       <div>
         <p className='wallet-title'>{`${t('wallet.transfer.send')} ${t('account.testnet.token')}`}</p>
         {message && <div className='notification is-danger'>{message}</div>}
+        {isCrossChainTransfer &&
+        <div className='notification is-info'>{t('wallet.transfer.crossChain', {chainId, targetChainId})}</div>}
         {this.inputFields(generating)}
         {rawTransaction ? this.displayRawTransfer(rawTransaction, address.totalBalance) : null}
       </div>

@@ -1,5 +1,6 @@
 /* eslint-disable no-process-env */
 import process from 'global/process';
+
 require('dotenv').config();
 
 module.exports = {
@@ -8,7 +9,7 @@ module.exports = {
   server: {
     protocol: 'http:',
     host: 'localhost',
-    port: process.env.PORT || 14005,
+    port: 14008,
     staticDir: './dist',
     routePrefix: '/',
   },
@@ -24,13 +25,14 @@ module.exports = {
       },
     },
     freitxCore: {
-      serverUrl: 'http://176.57.71.37:14004/',
+      serverUrl: 'http://localhost:14004/',
     },
     walletCore: {
-      serverUrl: '159.89.223.147:42124' ,
+      serverUrl: 'localhost:42124' ,
     },
   },
   analytics: {
     googleTid: process.env.GOOGLE_TID || 'UA-XXXXXXXXX-1',
   },
+  chains: JSON.parse('[{"id":1,"name":"mainchain","url":"http://localhost:4004/"},{"id":2,"name":"subchain","url":"http://localhost:4005/"}]'),
 };
