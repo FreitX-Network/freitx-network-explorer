@@ -1,1 +1,1 @@
-# FreitX Network Front End Blockchain
+#FreitX Network Explorer
