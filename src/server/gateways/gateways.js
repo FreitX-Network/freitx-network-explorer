@@ -10,7 +10,7 @@ export function setGateways(server) {
   server.gateways.freitxCore = new FreitxCoreExplorer(server.config.gateways.freitxCore);
   server.gateways.walletCore = new WalletCore(server.config.gateways.walletCore);
   server.gateways.crossChain = new CrossChain(config.get('chains'));
-  server.gateways.iotxRpcMethods = new RpcMethods(new HttpProvider(server.config.gateways.freitxCore.serverUrl));
+  server.gateways.onexRpcMethods = new RpcMethods(new HttpProvider(server.config.gateways.freitxCore.serverUrl));
 
   server.gateways.freitxCore.init()
     .catch(e => logger.error('failed to init gateways', {err: e}));

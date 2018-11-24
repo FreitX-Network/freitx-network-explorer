@@ -146,7 +146,7 @@ export class WalletCore {
     this.client = new services.walletServiceClient(opts.serverUrl, grpc.credentials.createInsecure());
   }
 
-  // get the address detail of an iotex address
+  // get the address detail of an FreitX Network address
   async generateWallet(chainId: number): Promise<TWallet> {
     const request = new messages.NewWalletRequest();
     request.setChainid(chainId);

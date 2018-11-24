@@ -235,7 +235,7 @@ export class ExecutionSummary extends Component {
     if (execution.contract) {
       rows.push({c1: t('execution.contract'), c2: (<Link to={`/address/${execution.contract}`} className='link'>{execution.contract}</Link>)});
     }
-    rows.push({c1: t('meta.amount'), c2: (<span>{fromRau(execution.amount)} OneX</span>)});
+    rows.push({c1: t('meta.amount'), c2: (<span>(execution.amount)</span>)});
     rows.push({c1: t('execution.gas'), c2: (execution.gas)});
     rows.push({c1: t('execution.input'), c2: (execution.data)});
     rows.push({c1: t('execution.nonce'), c2: (execution.nonce)});

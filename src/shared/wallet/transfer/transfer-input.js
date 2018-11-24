@@ -59,7 +59,7 @@ export class TransferInput extends Component {
 
     (this: any).generateTransfer = this.generateTransfer.bind(this);
     (this: any).broadcast = this.broadcast.bind(this);
-    (this: any).sendNewIOTXClick = this.sendNewIOTXClick.bind(this);
+    (this: any).sendNewONEXClick = this.sendNewONEXClick.bind(this);
     (this: any).checkFormErrors = this.checkFormErrors.bind(this);
     (this: any).hasErrors = this.hasErrors.bind(this);
   }
@@ -185,7 +185,7 @@ export class TransferInput extends Component {
     const rawTransfer: TRawTransferRequest = {
       version: 0x01,
       nonce,
-      amount: toRau(amount, 'Iotx'),
+      amount: toRau(amount, 'OneX'),
       sender: wallet.rawAddress,
       recipient,
       payload: dataInBytes.replace(/^(0x)/, ''),
@@ -207,7 +207,7 @@ export class TransferInput extends Component {
             name='recipient'
             value={this.state.recipient}
             error={t(this.state.errors_recipient)}
-            placeholder='io...'
+            placeholder='¯\_(ツ)_/¯'
             update={(name, value) => this.handleInputChange(name, value)}
           />
 
@@ -216,7 +216,7 @@ export class TransferInput extends Component {
             name='amount'
             value={this.state.amount}
             error={t(this.state.errors_amount)}
-            placeholder='1'
+            placeholder='0'
             update={(name, value) => this.handleInputChange(name, value)}>
             <p className='control'>
               <a className='button is-static'>{t('account.testnet.token')}</a>
@@ -285,7 +285,7 @@ export class TransferInput extends Component {
       {c1: t('wallet.transfer.nonce'), c2: cleanedTransfer.nonce},
       {c1: t('wallet.transfer.data'), c2: cleanedTransfer.payload},
     ];
-    const balanceRau = fromRau(parseInt(toRau(balance, 'Rau'), 10) - parseInt(cleanedTransfer.amount, 10), 'Iotx');
+    const balanceRau = fromRau(parseInt(toRau(balance, 'Rau'), 10) - parseInt(cleanedTransfer.amount, 10), 'OneX');
     return (
       <TransactionDetailSection
         rawTransaction={rawTransfer}
@@ -301,10 +301,10 @@ export class TransferInput extends Component {
           <table >
             <tr>
               <td style={{lineHeight: '3.5'}}>{t('wallet.transfer.amount')}</td>
-              <td className='c2-table'><p style={{
+              <td className='c2-table'><p className='err_red' style={{
                 fontSize: '32px',
                 display: 'inline-block',
-              }}>{fromRau(cleanedTransfer.amount, 'Iotx')}</p> {t('account.testnet.token')}</td>
+              }}>{fromRau(cleanedTransfer.amount, 'OneX')}</p> {t('account.testnet.token')}</td>
             </tr>
             {rows.map(r =>
               (<tr>
@@ -329,7 +329,7 @@ export class TransferInput extends Component {
     this.setState({broadcast: result});
   }
 
-  sendNewIOTXClick() {
+  sendNewONEXClick() {
     this.setState({
       broadcast: null,
       rawTransaction: null,
@@ -348,7 +348,7 @@ export class TransferInput extends Component {
     const {message, rawTransaction, broadcast} = this.state;
 
     if (broadcast) {
-      const sendNewIOTX = clearButton(`${t('wallet.transfer.sendNew')} ${t('account.testnet.token')}`, this.sendNewIOTXClick);
+      const sendNewONEX = clearButton(`${t('wallet.transfer.sendNew')} ${t('account.testnet.token')}`, this.sendNewONEXClick);
       if (broadcast.success) {
         if (isCrossChainTransfer) {
           return (
@@ -357,13 +357,13 @@ export class TransferInput extends Component {
               rawTransaction={rawTransaction}
               targetChainId={targetChainId}
               wallet={wallet}
-              sendNewIOTX={sendNewIOTX}
+              sendNewONEX={sendNewONEX}
             />
           );
         }
-        return BroadcastSuccess(broadcast.txHash, 'transfer', sendNewIOTX);
+        return BroadcastSuccess(broadcast.txHash, 'transfer', sendNewONEX);
       }
-      return BroadcastFail(broadcast.error, t('wallet.transfer.broadcast.fail', {token: t('account.testnet.token')}), sendNewIOTX);
+      return BroadcastFail(broadcast.error, t('wallet.transfer.broadcast.fail', {token: t('account.testnet.token')}), sendNewONEX);
     }
 
     return (

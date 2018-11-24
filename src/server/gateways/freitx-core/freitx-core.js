@@ -147,7 +147,7 @@ export interface IGExplorer {
   // get block by block ID
   getBlockByID(blockId: string): GBlock,
 
-  // get statistic of iotx
+  // get statistic of OneX
   getCoinStatistic(): GCoinStatistic,
 
   // get consensus metrics
@@ -469,7 +469,7 @@ export class FreitxCoreExplorer {
     });
   }
 
-  // get statistic of iotx
+  // get statistic of OneX
   async getCoinStatistic(): Promise<TCoinStatistic> {
     return this.fetchValue('coinStatistic', null, async() => {
       return await promisify(this.exp.getCoinStatistic)();

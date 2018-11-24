@@ -74,9 +74,10 @@ export class UnlockWallet extends Component {
   unlock(priKey: string, priKeyError: string, message: string, fetching: boolean) {
     const {chainId} = this.props;
     return (
-      <div>
+        <div className='new_wallet'>
         <Dialogue
           getSetActiveFn={setDialogueActive => this.setDialogueActive = setDialogueActive}
+          style={{color: '#000'}}
           title={t('wallet.unlock.new.title')}
           cancelButton={cancelButton(this.setDialogueNotActiveButton)}
           submitButton={greenButton(t('wallet.unlock.new.yes'), false, this.newWalletClick, false)}>

@@ -94,11 +94,11 @@ export class NewWallet extends Component {
         <br/>
 
         <article style={{marginTop: '10px'}} className='message is-warning'>
-          <div className='message-body sms'>
-            <p className='sms_p_block'><strong>{t('new-wallet.warn.do-not-lose')}</strong> {t('new-wallet.warn.cant-recover')}</p>
-            <p className='sms_p_block'><strong>{t('new-wallet.warn.do-not-share')}</strong> {t('new-wallet.warn.stolen')}</p>
-            <p className='sms_p_block'><strong>{t('new-wallet.warn.backup')}</strong> {t('new-wallet.warn.secure')}</p>
-          </div>
+        <div className='message-body'>
+          <p><strong>{t('new-wallet.warn.do-not-lose')}</strong> {t('new-wallet.warn.cant-recover')}</p>
+          <p><strong>{t('new-wallet.warn.do-not-share')}</strong> {t('new-wallet.warn.stolen')}</p>
+          <p><strong>{t('new-wallet.warn.backup')}</strong> {t('new-wallet.warn.secure')}</p>
+         </div>
         </article>
 
         <br/>

@@ -2,6 +2,7 @@
 
 import Component from 'inferno-component';
 import type {TWallet} from '../../entities/wallet-types';
+import {fromRau} from 'iotex-client-js/dist/account/utils';
 import type {TAddressDetails} from '../../entities/explorer-types';
 import {assetURL} from '../../lib/asset-url';
 import {t} from '../../lib/iso-i18n';
@@ -49,7 +50,7 @@ export class AccountSection extends Component {
           <p className='wallet-item'>{t('account.wallet')}</p>
         </div>
         <div style={{alignContent: 'center'}}>
-          <p id='balance'>{address ? address.totalBalance : 0}<b className='main-color'>{t('account.testnet.token')}</b></p>
+        <p id='balance'>{address ? fromRau(address.totalBalance, 'OneX') : 0}<b className='main-color'>{t('account.testnet.token')}</b></p>
         </div>
         <div>
           <p className='wallet-address'>{t('account.address')}</p>

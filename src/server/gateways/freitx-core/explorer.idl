@@ -276,7 +276,7 @@ interface Explorer {
     // get the balance of an address
     getAddressBalance(address string) string
 
-    // get the address detail of an iotex address
+    // get the address detail of an Freitx address
     getAddressDetails(address string) AddressDetails
 
     // get list of transfers by start block height, transfer offset and limit
@@ -330,7 +330,7 @@ interface Explorer {
     // get block by block id
     getBlockByID(blkID string) Block
 
-    // get statistic of iotx
+    // get statistic of OneX
     getCoinStatistic() CoinStatistic
 
     // get consensus metrics

@@ -42,7 +42,7 @@ export const ContinueDeposit = connect(
   }
 
   render() {
-    const {sendNewIOTX, chains, targetChainId} = this.props;
+    const {sendNewONEX, chains, targetChainId} = this.props;
     const {fetched, hash, error} = this.state;
     // to be fetched
     if (!fetched) {
@@ -54,10 +54,10 @@ export const ContinueDeposit = connect(
     }
 
     if (error) {
-      return BroadcastFail(error, t('wallet.transfer.broadcast.fail', {token: t('account.testnet.token')}), sendNewIOTX);
+      return BroadcastFail(error, t('wallet.transfer.broadcast.fail', {token: t('account.testnet.token')}), sendNewONEX);
     }
 
     const targetChain = chains.find(c => c.id === targetChainId);
-    return BroadcastSuccess(hash, 'transfer', sendNewIOTX, `${targetChain.url}deposits/`, true);
+    return BroadcastSuccess(hash, 'transfer', sendNewONEX, `${targetChain.url}deposits/`, true);
   }
   });

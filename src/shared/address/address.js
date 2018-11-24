@@ -41,7 +41,7 @@ export class Address extends Component {
     return (
       <div className='column container'>
         <Helmet
-          title={`${t('address.title')} - IoTeX`}
+          title={`${t('address.title')} - FreitX Network Blockchain`}
         />
         <div>
           <h1 className='title'>{t('address.title')}</h1>

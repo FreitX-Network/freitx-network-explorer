@@ -37,7 +37,7 @@ export class Delegates extends Component {
     return (
       <div className='column container'>
         <Helmet
-          title={'Delegate - IoTeX'}
+          title={'Delegate - FreitX Network Blockchain'}
         />
         <div>
           <h1 className='title'>Delegates</h1>

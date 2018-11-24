@@ -20,7 +20,7 @@ function handleInput(args) {
 }
 
 export function setWalletRoutes(server) {
-  const {gateways: {walletCore, freitxCore, crossChain, iotxRpcMethods}} = server;
+  const {gateways: {walletCore, freitxCore, crossChain, onexRpcMethods}} = server;
 
   function walletHandler(ctx, next) {
     ctx.isoRender({
@@ -140,9 +140,9 @@ export function setWalletRoutes(server) {
       switch (type) {
       case 'transfer':
         if (isCrossChainTransfer) {
-          result = await iotxRpcMethods.createDeposit(rawTransaction);
+          result = await onexRpcMethods.createDeposit(rawTransaction);
         } else {
-          result = await iotxRpcMethods.sendTransfer(rawTransaction);
+          result = await onexRpcMethods.sendTransfer(rawTransaction);
         }
         break;
       case 'vote':
@@ -164,7 +164,7 @@ export function setWalletRoutes(server) {
 
   async function continueDeposit(ctx, next) {
     const {targetChainId, hash, rawTransaction, wallet} = ctx.request.body;
-    const {returnValue} = await iotxRpcMethods.getReceiptByExecutionID(hash);
+    const {returnValue} = await onexRpcMethods.getReceiptByExecutionID(hash);
     const index = intFromHexLE(returnValue);
     const settleDeposit = {
       ...rawTransaction,
@@ -179,7 +179,7 @@ export function setWalletRoutes(server) {
     if (!resp || !resp.settleDeposit) {
       return ctx.response.body = {ok: false, error: {code: 'FAIL_SETTLE_DEPOSIT', message: 'failed to settle deposit'}};
     }
-    resp = await iotxRpcMethods.settleDeposit(resp.settleDeposit);
+    resp = await onexRpcMethods.settleDeposit(resp.settleDeposit);
     ctx.response.body = resp;
   }
 
