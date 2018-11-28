@@ -4,10 +4,10 @@ module.exports = {
       level: 'info',
     },
     freitxCore: {
-      serverUrl: 'http://localhost:14004/',
+      serverUrl: 'http://159.89.223.147:14004/',
     },
     walletCore: {
-      serverUrl: 'localhost:42124',
+      serverUrl: '159.89.223.147:42124',
     },
   },
 };
