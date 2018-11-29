@@ -12,14 +12,6 @@ import {fetchConsensusMetrics} from '../../consensus-metrics/consensus-metrics-a
 import type {TCoinStatistic, TConsensusMetrics} from '../../../entities/explorer-types';
 import {Navboard} from './navboard';
 import {OnexExplorerTitle} from '../onex-explorer-title';
-import {RpcMethods, HttpProvider} from 'iotex-client-js';
-
-(async () => {
- const methods = new RpcMethods(new HttpProvider('http://159.89.223.147:14004'));
- const trans = await methods.getTransferByID('2603b7167c0e1e0c4203a485474962d10643f66510a8273b16e30f0a47778c0a');
- console.log(trans)
-})()
-
 
 type PropsType = {
   statistic: TCoinStatistic,

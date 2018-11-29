@@ -25,10 +25,10 @@ module.exports = {
       },
     },
     freitxCore: {
-      serverUrl: 'http://159.89.223.147:14004/',
+      serverUrl: 'http://104.248.41.194:14004/',
     },
     walletCore: {
-      serverUrl: '159.89.223.147:42124' ,
+      serverUrl: '104.248.41.194:42124' ,
     },
   },
   analytics: {
