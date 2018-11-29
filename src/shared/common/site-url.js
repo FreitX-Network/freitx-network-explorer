@@ -85,15 +85,15 @@ export class BLOCKS {
 export class EXECUTION {
 
   static get INDEX(): string {
-    return '/executions/:id/';
+    return '/contracts/:id/';
   }
 
   static get GET(): string {
-    return '/api/getExecutionId';
+    return '/api/getContractId';
   }
 
   static get GET_RECEIPT(): string {
-    return '/api/getExecutionReceipt';
+    return '/api/getContractReceipt';
   }
 
   static get GET_EXECUTIONS(): string {
@@ -104,11 +104,11 @@ export class EXECUTION {
 export class EXECUTIONS {
 
   static get INDEX(): string {
-    return '/executions/';
+    return '/contracts/';
   }
 
   static get GET(): string {
-    return '/api/getExecutions';
+    return '/api/getContracts';
   }
 }
 
