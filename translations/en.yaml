@@ -196,6 +196,7 @@ dashboard.executionsMsg: >-
   Total number of contract execution created/recorded on FreitX Network
   blockchain.
 execution.title: Contract Details
+execution.amount: Total Amount
 execution.timestamp: Created At
 execution.executor: Contracter
 execution.id: Contract Hash
