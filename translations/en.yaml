@@ -2,9 +2,9 @@ meta.title: Title
 meta.description: Description
 meta.address: Address
 meta.id: Hash
-meta.transfers: Assets
-meta.transactions: Assets
-meta.transfer: Asset
+meta.transfers: Transfers
+meta.transactions: Transfers
+meta.transfer: Transfer
 meta.height: Height
 meta.timestamp: Timestamp
 meta.amount: Amount
@@ -17,8 +17,8 @@ meta.loading: Loading
 meta.all: View All
 meta.block: Block
 meta.blocks: Blocks
-meta.vote: Bond
-meta.votes: Bonds
+meta.vote: Vote
+meta.votes: Votes
 meta.payload: Payload
 meta.account: Wallet
 meta.dashboard: Dashboard
@@ -26,27 +26,27 @@ meta.version: Version
 address.title: Address Summary
 address.totalBalance: Total Balance
 address.nonce: Nonce
-address.voteDetails: Bond Details
-address.listOfTransfers: List of Assets
-address.listOfExecutions: List of Contracts
+address.voteDetails: Vote Details
+address.listOfTransfers: List of Transfers
+address.listOfExecutions: List of Executions
 address.error.failGetAddress: 'Could not get address details for ${id}'
 address.error.failGetTransfers: 'Could not get transfers for address ${id}'
-address.error.failGetVotes: 'Could not get bonds for address ${id}'
+address.error.failGetVotes: 'Could not get votes for address ${id}'
 block.title: Block Details
 block.id: Block Hash
 block.totalAmount: Total Amount
 block.totalForged: Total Rewarded
 block.generatedBy: Producer Public Key
 block.size: Size (in Bytes)
-block.listOfTransfers: List of Assets
-block.listOfVotes: List of Bonds
+block.listOfTransfers: List of Transfers
+block.listOfVotes: List of Votes
 block.error.failGetBlock: 'Could not retrieve block details for ${id}'
 block.error.failGetTransfers: 'Could not retrieve transfers for block ${id}'
 block.error.failGetVotes: 'Could not get retrieve for block ${id}'
 dashboard.epochs: Epochs
 dashboard.blocks: Blocks
-dashboard.transfers: Assets
-dashboard.votes: Bonds
+dashboard.transfers: Transfers
+dashboard.votes: Votes
 dashboard.faps: IFTPS
 dashboard.bbh: Genesis
 dashboard.epochsMsg: >-
@@ -55,33 +55,33 @@ dashboard.epochsMsg: >-
   produce the blocks on behalf of the whole network.
 dashboard.blocksMsg: Total number of blocks built on FreitX Network blockchain.
 dashboard.transfersMsg: Total number of token transfer created/recorded on FreitX Network blockchain.
-dashboard.votesMsg: Total number of bonds for producers on FreitX Network blockchain.
+dashboard.votesMsg: Total number of votes for producers on FreitX Network blockchain.
 dashboard.fapsMsg: >-
   Instant Finalized Transaction Rate (IFTPS) - The number of instantly finalized
-  actions (Transactions + bonds) per second.
+  actions (Transactions + votes) per second.
 dashboard.bbhMsg: >-
   Block Building History - How long the FreitX Network blockchain has been
   running (timestamp of the current block - timestamp of the first block)
 latestBlocks.title: Current Blocks
-latestTransfers.title: Current Assets
-latestVotes.title: Current Bonds
+latestTransfers.title: Current Transfers
+latestVotes.title: Current Votes
 blocks.title: Blocks
 blocks.forged: Forged
 blocks.error.get: Could not get blocks
 blockchainExplorer.title: FreitX Network Blockchain Private Mode
-transfers.title: Assets
-transfer.title: Asset Details
+transfers.title: Transfers
+transfer.title: Transfer Details
 transfer.sender: Sender
 transfer.recipient: Recipient
 transfer.fee: System Fee
-transfer.hash: Asset Hash
+transfer.hash: Transfer Hash
 transfer.coinBase: Genesis
 transfer.error.get: 'Could not get retrieve assets details for ${id}'
 transfers.error.get: Could not get transactions
 footer.website: Website
 footer.blog: Blog
 footer.chat: Chat
-votes.title: Bonds
+votes.title: Votes
 nav.error.statistic: Could not get statistics
 nav.error.coin: Could not get coin price
 consensus.error.fail: Could not get consensus metrics
@@ -90,20 +90,20 @@ empty.no: 'No'
 empty.noMore: No More
 empty.yet: Yet
 error.unknown: Something Went Wrong
-vote.title: Bond Details
-vote.id: Bond Hash
-vote.votee: Bond To
-vote.voter: Bond From
-vote.voters: Bond To
+vote.title: Vote Details
+vote.id: Vote Hash
+vote.votee: Vote To
+vote.voter: Vote From
+vote.voters: Vote To
 vote.blockId: Block Hash
 vote.nonce: Nonce
 vote.version: Version
-vote.error.getVote: 'Could not get bond ${id}'
-votes.out: Bond sent out
-votes.in: Bond received
-votes.error.get: Could not get bonds
+vote.error.getVote: 'Could not get vote ${id}'
+votes.out: Vote sent out
+votes.in: Vote received
+votes.error.get: Could not get votes
 breadcrumbs.home: home
-breadcrumbs.votes: bonds
+breadcrumbs.votes: votes
 breadcrumbs.transfers: assets
 breadcrumbs.blocks: blocks
 breadcrumbs.address: address
@@ -111,11 +111,11 @@ breadcrumbs.executions: contracts
 base.message.close: Close
 wallet.title.wallet: Wallet
 wallet.tab.transfer: 'Send ${token}'
-wallet.tab.vote: Bond
+wallet.tab.vote: Vote
 wallet.tab.contract: Smart Contracts
 wallet.tab.interact: Interact
 wallet.tab.deploy: Deploy
-wallet.transactionDetail.title: Asset Detail
+wallet.transactionDetail.title: Transfer Detail
 wallet.transactionDetail.raw: Raw Transaction Detail
 wallet.transactionDetail.signed: Transaction Signature
 wallet.account.hidden: '******************************************************************'
@@ -165,7 +165,7 @@ wallet.transfer.crossChain: >-
   This is a cross-chain transfer from the current chain with ID ${chainId} to
   the one with ID ${targetChainId}
 wallet.transfer.title: Send
-wallet.vote.title: Bond for Producing
+wallet.vote.title: Vote for Producing
 wallet.transaction.title: Transaction
 wallet.interact.abiTemplate: >-
   [{ "type":"contructor", "inputs": [{ "name":"param1", "type":"uint256",
@@ -188,21 +188,21 @@ wallet.account.placehold.privateKey: Paste your private key here
 wallet.input.solidity: Solidity (optional)
 wallet.deploy.generateAbiAndByteCode: Generate
 wallet.generate.fail: Something went wrong. Please check your internet connect/ try again
-meta.executions: Contracts
-meta.execution: Contract
-latestExecutions.title: Current Contracts
-dashboard.executions: Contracts
+meta.executions: Executions
+meta.execution: Execution
+latestExecutions.title: Current Executions
+dashboard.executions: Executions
 dashboard.executionsMsg: >-
   Total number of contract execution created/recorded on FreitX Network
   blockchain.
-execution.title: Contract Details
+execution.title: Execution Details
 execution.amount: Total Amount
 execution.timestamp: Created At
-execution.executor: Contracter
-execution.id: Contract Hash
+execution.executor: Executor
+execution.id: Execution Hash
 execution.contract: Contract
-execution.hash: Contract Hash
-block.listOfExecutions: List of Contracts
+execution.hash: Execution Hash
+block.listOfExecutions: List of Executions
 execution.error.failGetExecution: 'Could not get execution details for ${id}'
 executions.error.get: Could not get contracts
 receipt.title: Receipt
@@ -271,12 +271,12 @@ account.testnet.token: OneX
 account.address: Address
 account.transaction-history: Account Transaction History
 wallet.detail.are-you-sure: Are you sure you want to proceed operation?
-wallet.vote.input.title: Bond
+wallet.vote.input.title: Vote
 wallet.vote.fail: Please try to vote later
-wallet.vote.button.new: Create new bond
+wallet.vote.button.new: Create new vote
 wallet.vote.detail-title: You are boding tokens.
-wallet.vote.voter: Bond From
-wallet.vote.votee: Bond To
+wallet.vote.voter: Vote From
+wallet.vote.votee: Vote To
 wallet.vote.nonce: Nonce
 wallet.transfer.amount: Amount
 wallet.transfer.detail-title: You are sending

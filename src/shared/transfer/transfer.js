@@ -114,10 +114,6 @@ export class TransferSummary extends Component {
         c2: (transfer.amount),
       },
       {
-        c1: t('transfer.fee'),
-        c2: (transfer.fee),
-      },
-      {
         c1: t('meta.timestamp'),
         c2: fromNow(transfer.timestamp),
       }, {

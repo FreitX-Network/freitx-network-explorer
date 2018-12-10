@@ -29,7 +29,7 @@ export class ADDRESS {
 export class VOTE {
 
   static get INDEX(): string {
-    return '/bonds/:id/';
+    return '/vote/:id/';
   }
 
   static get GET_VOTE(): string {
@@ -40,11 +40,11 @@ export class VOTE {
 export class VOTES {
 
   static get INDEX(): string {
-    return '/bonds/';
+    return '/vote/';
   }
 
   static get GET(): string {
-    return '/api/getBonds';
+    return '/api/getVotes';
   }
 }
 
@@ -63,7 +63,7 @@ export class BLOCK {
   }
 
   static get GET_VOTES(): string {
-    return '/api/getBlockBondsId';
+    return '/api/getBlockVotesId';
   }
 
   static get GET_EXECUTIONS(): string {
@@ -85,7 +85,7 @@ export class BLOCKS {
 export class EXECUTION {
 
   static get INDEX(): string {
-    return '/contracts/:id/';
+    return '/executions/:id/';
   }
 
   static get GET(): string {
@@ -104,11 +104,11 @@ export class EXECUTION {
 export class EXECUTIONS {
 
   static get INDEX(): string {
-    return '/contracts/';
+    return '/executions/';
   }
 
   static get GET(): string {
-    return '/api/getContracts';
+    return '/api/getExecutions';
   }
 }
 
